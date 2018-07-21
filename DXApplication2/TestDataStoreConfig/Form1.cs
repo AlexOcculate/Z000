@@ -22,6 +22,7 @@ namespace TestDataStoreConfig
          DataStoreConfig.Info += this.DataStoreConfig_Info;
          dsCfg = DataStoreConfig.Deserialize( dsCfgSample );
          this.InitializeGrid( );
+
       }
 
       private void DataStoreConfig_Info( string msg )
