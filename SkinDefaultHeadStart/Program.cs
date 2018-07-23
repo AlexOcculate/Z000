@@ -27,6 +27,10 @@ namespace SkinDefaultHeadStart
          //string skinStyle = "Metropolis Dark";
          //string skinStyle = "Office 2016 Colorful";
          //stringt skinStyle = "Visual Studio 2013 Blue";
+         //foreach( SkinContainer cnt in SkinManager.Default.Skins )
+         //{
+         //   //( cnt.SkinName );
+         //}
          UserLookAndFeel.Default.SetSkinStyle( skinStyle );
          //
          Application.EnableVisualStyles( );
