@@ -13,6 +13,9 @@ suppa951-ps4@yahoo.com.au
 - bysimon@yahoo.com
 - bysimon@gmai.com
 
+20180723 - SkinsThemesIconsSplashscreens
+https://youtu.be/6e1Eeg0tepo
+
 20180723 - MenuBar Head Start
 https://youtu.be/QwOATKIU_e8
 
@@ -30,6 +33,3 @@ https://youtu.be/gy98szoHknI
 
 20180721 - DataStore and DataStoreConfig Model & Test
 https://youtu.be/qPj__zyrzyw
-
-20180723 - SkinsThemesIconsSplashscreens
-https://youtu.be/6e1Eeg0tepo
