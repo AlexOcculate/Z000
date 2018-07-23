@@ -21,6 +21,7 @@ namespace SkinDefaultHeadStart
          BonusSkins.Register( );
          SkinManager.EnableFormSkins( );
 
+         //TODO: App.Config!!!
          string skinStyle = "The Bezier";
          //string skinStyle = "Visual Studio 2013 Blue";
          //string skinStyle = "Metropolis Dark";

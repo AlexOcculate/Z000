@@ -1,5 +1,6 @@
 ﻿using DevExpress.Customization;
 using DevExpress.XtraEditors.ColorWheel;
+using DevExpress.XtraSplashScreen;
 using System;
 using System.Linq;
 
@@ -24,6 +25,12 @@ namespace SkinDefaultHeadStart
       {
          ColorWheelForm cwForm = new ColorWheelForm( );
          cwForm.Show( );
+      }
+
+      private void splashscreenBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
+      {
+         SplashScreenManager.ShowForm( typeof( SplashScreen1 ) );
+         //SplashScreenManager.CloseForm( );
       }
    }
 }

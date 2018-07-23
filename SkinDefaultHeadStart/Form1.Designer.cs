@@ -45,6 +45,8 @@
          this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
          this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
          this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+         this.barSubItem2 = new DevExpress.XtraBars.BarSubItem();
+         this.splashscreenBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
          this.SuspendLayout();
          // 
@@ -69,9 +71,11 @@
             this.barButtonItem1,
             this.barSubItem1,
             this.colorSwatchesBarButtonItem,
-            this.colorMixerBarButtonItem});
+            this.colorMixerBarButtonItem,
+            this.barSubItem2,
+            this.splashscreenBarButtonItem});
          this.barManager1.MainMenu = this.bar2;
-         this.barManager1.MaxItemId = 6;
+         this.barManager1.MaxItemId = 8;
          this.barManager1.StatusBar = this.bar3;
          // 
          // bar1
@@ -89,7 +93,8 @@
          this.bar2.DockRow = 0;
          this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
          this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem1, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem2)});
          this.bar2.OptionsBar.MultiLine = true;
          this.bar2.OptionsBar.UseWholeRow = true;
          this.bar2.Text = "Main menu";
@@ -180,6 +185,21 @@
          this.barButtonItem1.Id = 2;
          this.barButtonItem1.Name = "barButtonItem1";
          // 
+         // barSubItem2
+         // 
+         this.barSubItem2.Caption = "Help";
+         this.barSubItem2.Id = 6;
+         this.barSubItem2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.splashscreenBarButtonItem)});
+         this.barSubItem2.Name = "barSubItem2";
+         // 
+         // splashscreenBarButtonItem
+         // 
+         this.splashscreenBarButtonItem.Caption = "Splashscreen";
+         this.splashscreenBarButtonItem.Id = 7;
+         this.splashscreenBarButtonItem.Name = "splashscreenBarButtonItem";
+         this.splashscreenBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.splashscreenBarButtonItem_ItemClick);
+         // 
          // Form1
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,6 +234,8 @@
       private DevExpress.XtraBars.BarButtonItem barButtonItem1;
       private DevExpress.XtraBars.BarButtonItem colorSwatchesBarButtonItem;
       private DevExpress.XtraBars.BarButtonItem colorMixerBarButtonItem;
+      private DevExpress.XtraBars.BarSubItem barSubItem2;
+      private DevExpress.XtraBars.BarButtonItem splashscreenBarButtonItem;
    }
 }
 
