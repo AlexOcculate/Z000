@@ -95,6 +95,60 @@ namespace DataPhilosophiae.Config.Model
                                  new XCData( @"D:\TEMP\SQLite\chinook\chinook.db" )
                               )
                            )
+                        ),
+                        new XElement( DsElemNm,
+                           new XAttribute( NmAttrNm, "Test" ),
+                           new XAttribute( ActvAttrNm, false ),
+                           new XAttribute( LddoAttrNm, true ), // LoadDefaultDatabaseOnly
+                           new XAttribute( LsoAttrNm, true ),  // LoadSystemObjects
+                           new XAttribute( WfAttrNm, true ),   // WithFields
+                           new XElement(
+                              StgDirElemNm,                    // Local StagePathDir
+                              new XCData( "stage/dir/" + "Test" )
+                           ),
+                           new XElement( CsElemNm,
+                              new XAttribute( PnAttrNm, "System.Data.SqlClient" ),  // DataStore's Provider Name
+                              new XElement(
+                                 ConnStrElemNm,                  // DataStore's Connection String
+                                 new XCData( @"D:\TEMP\SQLite\chinook\chinook.db" )
+                              )
+                           )
+                        ),
+                        new XElement( DsElemNm,
+                           new XAttribute( NmAttrNm, "QualityAssurance" ),
+                           new XAttribute( ActvAttrNm, false ),
+                           new XAttribute( LddoAttrNm, true ), // LoadDefaultDatabaseOnly
+                           new XAttribute( LsoAttrNm, true ),  // LoadSystemObjects
+                           new XAttribute( WfAttrNm, true ),   // WithFields
+                           new XElement(
+                              StgDirElemNm,                    // Local StagePathDir
+                              new XCData( "default/stage/dir/"+"QualityAssurance" )
+                           ),
+                           new XElement( CsElemNm,
+                              new XAttribute( PnAttrNm, "System.Data.SqlClient" ),  // DataStore's Provider Name
+                              new XElement(
+                                 ConnStrElemNm,                  // DataStore's Connection String
+                                 new XCData( @"D:\TEMP\SQLite\chinook\chinook.db" )
+                              )
+                           )
+                        ),
+                        new XElement( DsElemNm,
+                           new XAttribute( NmAttrNm, "UserAcceptance" ),
+                           new XAttribute( ActvAttrNm, false ),
+                           new XAttribute( LddoAttrNm, true ), // LoadDefaultDatabaseOnly
+                           new XAttribute( LsoAttrNm, true ),  // LoadSystemObjects
+                           new XAttribute( WfAttrNm, true ),   // WithFields
+                           new XElement(
+                              StgDirElemNm,                    // Local StagePathDir
+                              new XCData( "default/stage/dir"/*"stage/dir/" + "Development"*/)
+                           ),
+                           new XElement( CsElemNm,
+                              new XAttribute( PnAttrNm, "System.Data.SqlClient" ),  // DataStore's Provider Name
+                              new XElement(
+                                 ConnStrElemNm,                  // DataStore's Connection String
+                                 new XCData( @"D:\TEMP\SQLite\chinook\chinook.db" )
+                              )
+                           )
                         )
                      )
                   )

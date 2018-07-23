@@ -49,11 +49,13 @@
          this.gridControl1.TabIndex = 0;
          this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+         this.gridControl1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gridControl1_MouseMove);
          // 
          // gridView1
          // 
          this.gridView1.GridControl = this.gridControl1;
          this.gridView1.Name = "gridView1";
+         this.gridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView1_MouseDown);
          // 
          // ribbonControl1
          // 
