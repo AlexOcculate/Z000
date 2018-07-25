@@ -1,6 +1,4 @@
 ﻿using DevExpress.LookAndFeel;
-using DevExpress.Skins;
-using DevExpress.UserSkins;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -18,9 +16,13 @@ namespace SkinDefaultHeadStart
       private static void Main()
       {
          // WinForms Controls > Build an Application > Skins
-         BonusSkins.Register( );
-         SkinManager.EnableFormSkins( );
+         // To register bonus skins in code, first ensure that your project references the DevExpress.BonusSkins
+         // assembly. Then call the DevExpress.UserSkins.BonusSkins.Register method before the main application
+         // form runs.
+         DevExpress.UserSkins.BonusSkins.Register( );
+         DevExpress.Skins.SkinManager.EnableFormSkins( );
 
+         // WinForms Controls > Build an Application > Skins
          //TODO: App.Config!!!
          string skinStyle = "The Bezier";
          //string skinStyle = "Visual Studio 2013 Blue";

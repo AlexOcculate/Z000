@@ -3,15 +3,18 @@ kasecom@gmail.com
 qiqqa159-qwerty@yahoo.com
 suppa951-ps4@yahoo.com.au
 
+--------------------------------------------------------------------------------------
 
-cardosi64@gmail.com
-- cardosi2004@yahoo.com.br
-- cardosi@hotmail.com
-kasecom@gmail.com
-qiqqa159-qwerty@yahoo.com
-suppa951-ps4@yahoo.com.au
-- bysimon@yahoo.com
-- bysimon@gmai.com
+Java Data Pattern
+
+App.Config x XDocument
+
+Dialog SelectPath, Open Save
+
+RibbonForms, RibbonBar and RibbonStatusBar
+
+20180724 - MetaDataItem Tab
+https://youtu.be/peushMVQnnA
 
 20180723 - SkinsThemesIconsSplashscreens
 https://youtu.be/6e1Eeg0tepo
@@ -33,3 +36,14 @@ https://youtu.be/gy98szoHknI
 
 20180721 - DataStore and DataStoreConfig Model & Test
 https://youtu.be/qPj__zyrzyw
+
+=====================================================================================
+
+cardosi64@gmail.com
+- cardosi2004@yahoo.com.br
+- cardosi@hotmail.com
+kasecom@gmail.com
+qiqqa159-qwerty@yahoo.com
+suppa951-ps4@yahoo.com.au
+- bysimon@yahoo.com
+- bysimon@gmai.com

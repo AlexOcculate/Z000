@@ -28,8 +28,9 @@
       /// </summary>
       private void InitializeComponent()
       {
-         DevExpress.Utils.Animation.PushTransition pushTransition1 = new DevExpress.Utils.Animation.PushTransition();
-         this.barManager1 = new DevExpress.XtraBars.BarManager();
+         this.components = new System.ComponentModel.Container();
+         DevExpress.Utils.Animation.PushTransition pushTransition2 = new DevExpress.Utils.Animation.PushTransition();
+         this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
          this.bar1 = new DevExpress.XtraBars.Bar();
          this.bar2 = new DevExpress.XtraBars.Bar();
          this.fileBarSubItem = new DevExpress.XtraBars.BarSubItem();
@@ -50,9 +51,11 @@
          this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
          this.deleteBarButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
          this.guiBarSubItem = new DevExpress.XtraBars.BarSubItem();
-         this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-         this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
-         this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
+         this.ToolbarsBarListItem = new DevExpress.XtraBars.BarToolbarsListItem();
+         this.dockingBarMenuItem = new DevExpress.XtraBars.BarDockingMenuItem();
+         this.workspaceBarMenuItem = new DevExpress.XtraBars.BarWorkspaceMenuItem();
+         this.workspaceManager1 = new DevExpress.Utils.WorkspaceManager();
+         this.barMdiChildrenListItem1 = new DevExpress.XtraBars.BarMdiChildrenListItem();
          this.skinBarSubItem1 = new DevExpress.XtraBars.SkinBarSubItem();
          this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
          this.helpBarSubItem = new DevExpress.XtraBars.BarSubItem();
@@ -63,11 +66,12 @@
          this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
          this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
          this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+         this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+         this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+         this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
          this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
-         this.ToolbarsBarListItem = new DevExpress.XtraBars.BarToolbarsListItem();
-         this.dockingBarMenuItem = new DevExpress.XtraBars.BarDockingMenuItem();
-         this.workspaceBarMenuItem = new DevExpress.XtraBars.BarWorkspaceMenuItem();
-         this.workspaceManager1 = new DevExpress.Utils.WorkspaceManager();
+         this.colorSwatchesBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+         this.colorMixerBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
          this.SuspendLayout();
          // 
@@ -112,9 +116,12 @@
             this.skinDropDownButtonItem1,
             this.ToolbarsBarListItem,
             this.dockingBarMenuItem,
-            this.workspaceBarMenuItem});
+            this.workspaceBarMenuItem,
+            this.barMdiChildrenListItem1,
+            this.colorSwatchesBarButtonItem,
+            this.colorMixerBarButtonItem});
          this.barManager1.MainMenu = this.bar2;
-         this.barManager1.MaxItemId = 30;
+         this.barManager1.MaxItemId = 33;
          this.barManager1.StatusBar = this.bar3;
          // 
          // bar1
@@ -280,33 +287,44 @@
          this.guiBarSubItem.Id = 2;
          this.guiBarSubItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.ToolbarsBarListItem),
-            new DevExpress.XtraBars.LinkPersistInfo(this.dockingBarMenuItem),
-            new DevExpress.XtraBars.LinkPersistInfo(this.workspaceBarMenuItem),
-            new DevExpress.XtraBars.LinkPersistInfo(this.skinBarSubItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.skinDropDownButtonItem1)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.dockingBarMenuItem, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.workspaceBarMenuItem, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barMdiChildrenListItem1, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.skinBarSubItem1, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.skinDropDownButtonItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.colorSwatchesBarButtonItem, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.colorMixerBarButtonItem)});
          this.guiBarSubItem.Name = "guiBarSubItem";
          // 
-         // barButtonItem3
+         // ToolbarsBarListItem
          // 
-         this.barButtonItem3.Caption = "Toolbars";
-         this.barButtonItem3.Enabled = false;
-         this.barButtonItem3.Id = 6;
-         this.barButtonItem3.Name = "barButtonItem3";
-         this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
+         this.ToolbarsBarListItem.Caption = "ToolBars";
+         this.ToolbarsBarListItem.Id = 27;
+         this.ToolbarsBarListItem.Name = "ToolbarsBarListItem";
          // 
-         // barButtonItem4
+         // dockingBarMenuItem
          // 
-         this.barButtonItem4.Caption = "Docking";
-         this.barButtonItem4.Enabled = false;
-         this.barButtonItem4.Id = 7;
-         this.barButtonItem4.Name = "barButtonItem4";
+         this.dockingBarMenuItem.Caption = "Docking";
+         this.dockingBarMenuItem.Id = 28;
+         this.dockingBarMenuItem.Name = "dockingBarMenuItem";
          // 
-         // barButtonItem5
+         // workspaceBarMenuItem
          // 
-         this.barButtonItem5.Caption = "Workspaces";
-         this.barButtonItem5.Enabled = false;
-         this.barButtonItem5.Id = 8;
-         this.barButtonItem5.Name = "barButtonItem5";
+         this.workspaceBarMenuItem.Caption = "Workspace";
+         this.workspaceBarMenuItem.Id = 29;
+         this.workspaceBarMenuItem.Name = "workspaceBarMenuItem";
+         this.workspaceBarMenuItem.WorkspaceManager = this.workspaceManager1;
+         // 
+         // workspaceManager1
+         // 
+         this.workspaceManager1.TargetControl = this;
+         this.workspaceManager1.TransitionType = pushTransition2;
+         // 
+         // barMdiChildrenListItem1
+         // 
+         this.barMdiChildrenListItem1.Caption = "MDI";
+         this.barMdiChildrenListItem1.Id = 30;
+         this.barMdiChildrenListItem1.Name = "barMdiChildrenListItem1";
          // 
          // skinBarSubItem1
          // 
@@ -386,35 +404,47 @@
          this.barDockControlRight.Manager = this.barManager1;
          this.barDockControlRight.Size = new System.Drawing.Size(0, 409);
          // 
+         // barButtonItem3
+         // 
+         this.barButtonItem3.Caption = "Toolbars";
+         this.barButtonItem3.Enabled = false;
+         this.barButtonItem3.Id = 6;
+         this.barButtonItem3.Name = "barButtonItem3";
+         this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
+         // 
+         // barButtonItem4
+         // 
+         this.barButtonItem4.Caption = "Docking";
+         this.barButtonItem4.Enabled = false;
+         this.barButtonItem4.Id = 7;
+         this.barButtonItem4.Name = "barButtonItem4";
+         // 
+         // barButtonItem5
+         // 
+         this.barButtonItem5.Caption = "Workspaces";
+         this.barButtonItem5.Enabled = false;
+         this.barButtonItem5.Id = 8;
+         this.barButtonItem5.Name = "barButtonItem5";
+         // 
          // barButtonItem6
          // 
          this.barButtonItem6.Caption = "Skins && Themes";
          this.barButtonItem6.Id = 9;
          this.barButtonItem6.Name = "barButtonItem6";
          // 
-         // ToolbarsBarListItem
+         // colorSwatchesBarButtonItem
          // 
-         this.ToolbarsBarListItem.Caption = "ToolBars";
-         this.ToolbarsBarListItem.Id = 27;
-         this.ToolbarsBarListItem.Name = "ToolbarsBarListItem";
+         this.colorSwatchesBarButtonItem.Caption = "Color Swatches";
+         this.colorSwatchesBarButtonItem.Id = 31;
+         this.colorSwatchesBarButtonItem.Name = "colorSwatchesBarButtonItem";
+         this.colorSwatchesBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.colorSwatchesBarButtonItem_ItemClick);
          // 
-         // dockingBarMenuItem
+         // colorMixerBarButtonItem
          // 
-         this.dockingBarMenuItem.Caption = "Docking";
-         this.dockingBarMenuItem.Id = 28;
-         this.dockingBarMenuItem.Name = "dockingBarMenuItem";
-         // 
-         // workspaceBarMenuItem
-         // 
-         this.workspaceBarMenuItem.Caption = "Workspace";
-         this.workspaceBarMenuItem.Id = 29;
-         this.workspaceBarMenuItem.Name = "workspaceBarMenuItem";
-         this.workspaceBarMenuItem.WorkspaceManager = this.workspaceManager1;
-         // 
-         // workspaceManager1
-         // 
-         this.workspaceManager1.TargetControl = this;
-         this.workspaceManager1.TransitionType = pushTransition1;
+         this.colorMixerBarButtonItem.Caption = "Color Mixer";
+         this.colorMixerBarButtonItem.Id = 32;
+         this.colorMixerBarButtonItem.Name = "colorMixerBarButtonItem";
+         this.colorMixerBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.colorMixerBarButtonItem_ItemClick);
          // 
          // Form1
          // 
@@ -474,6 +504,9 @@
       private DevExpress.XtraBars.BarDockingMenuItem dockingBarMenuItem;
       private DevExpress.XtraBars.BarWorkspaceMenuItem workspaceBarMenuItem;
       private DevExpress.Utils.WorkspaceManager workspaceManager1;
+      private DevExpress.XtraBars.BarMdiChildrenListItem barMdiChildrenListItem1;
+      private DevExpress.XtraBars.BarButtonItem colorSwatchesBarButtonItem;
+      private DevExpress.XtraBars.BarButtonItem colorMixerBarButtonItem;
    }
 }
 

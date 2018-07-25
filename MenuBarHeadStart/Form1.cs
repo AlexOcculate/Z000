@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DevExpress.Customization;
+using DevExpress.XtraEditors.ColorWheel;
 
 namespace MenuBarHeadStart
 {
@@ -59,6 +61,20 @@ namespace MenuBarHeadStart
       private void exitBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
       {
 
+      }
+
+      private void colorMixerBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
+      {
+         ColorWheelForm cwForm = new ColorWheelForm( );
+         cwForm.Show( );
+      }
+
+      private void colorSwatchesBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
+      {
+         using( SvgSkinPaletteSelector svgSkinPaletteSelector = new SvgSkinPaletteSelector( this ) )
+         {
+            svgSkinPaletteSelector.ShowDialog( );
+         }
       }
    }
 }
