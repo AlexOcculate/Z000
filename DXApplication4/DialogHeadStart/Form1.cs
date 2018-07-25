@@ -60,7 +60,7 @@ namespace DialogHeadStart
             }
          }
          //
-         this.openRecentBarListItem.MaxSubItemTextWidth = 100;
+         this.openRecentBarListItem.MaxSubItemTextWidth = 200;
          this.openRecentBarListItem.ShowNumbers = true;
          this.openRecentBarListItem.Strings.Add("Item1");
          this.openRecentBarListItem.Strings.Add("Item2");
@@ -165,8 +165,6 @@ namespace DialogHeadStart
       private void OpenFileDialogHelper()
       {
          XtraOpenFileDialog dialog = this.xtraOpenFileDialog1;
-         //using( XtraOpenFileDialog dialog = new DevExpress.XtraEditors.XtraOpenFileDialog( ) )
-         //{
          dialog.InitialDirectory = this.DefaultPath;
          dialog.ShowDragDropConfirmation = true;
          dialog.AutoUpdateFilterDescription = false;
@@ -175,11 +173,23 @@ namespace DialogHeadStart
          DialogResult dialogResult = dialog.ShowDialog();
          if(dialogResult == DialogResult.OK)
          {
-            this.DefaultFileName = dialog.FileName;
+            this.DefaultFileName = Path.GetFileName(dialog.FileName);
+            this.DefaultPath = Path.GetDirectoryName(dialog.FileName);
+            this.UpdateOpenRecentList(dialog.FileName);
             this.FileOpened = true;
             this.UpdateFileNameLabel();
+            this.UpdateFileStatusLabel();
          }
-         //}
+      }
+
+      private void UpdateOpenRecentList(string item)
+      {
+         Strings s = this.openRecentBarListItem.Strings;
+         s.Insert(0, item);
+         if( s.Count > 10 )
+         {
+            s.RemoveAt(s.Count-1);
+         }
       }
 
       private DialogResult SaveFileDialogHelper(bool decisionTaken = false)
@@ -209,6 +219,7 @@ namespace DialogHeadStart
                      //System.IO.File.WriteAllText( dialog.FileName, this.mainModule.Text );
                      this.DefaultFileName = Path.GetFileName(dialog.FileName);
                      this.DefaultPath = Path.GetDirectoryName(dialog.FileName);
+                     this.UpdateOpenRecentList( dialog.FileName );
                   }
                   break;
                case DialogResult.No:
@@ -258,28 +269,29 @@ namespace DialogHeadStart
 
          this.OpenFileDialogHelper();
       }
-      private void openRecentBarListItem_GetItemData( object sender, EventArgs e )
+
+      private void openRecentBarListItem_GetItemData(object sender, EventArgs e)
       {
          BarListItem bar = sender as BarListItem;
-         if( bar.Strings.Count > 0 )
+         if(bar.Strings.Count > 0)
          {
             return;
          }
       }
 
-      private void openRecentBarListItem_ListItemClick( object sender, ListItemClickEventArgs e )
+      private void openRecentBarListItem_ListItemClick(object sender, ListItemClickEventArgs e)
       {
-         if( this.SaveFileDialogHelper( ) != DialogResult.OK )
+         if(this.SaveFileDialogHelper() != DialogResult.OK)
          {
             return;
          }
          BarListItem bar = sender as BarListItem;
-         string str = bar.Strings[ e.Index ];
-         this.DefaultFileName = Path.GetFileName( str );
-         this.DefaultPath = Path.GetDirectoryName( str );
+         string str = bar.Strings[e.Index];
+         this.DefaultFileName = Path.GetFileName(str);
+         this.DefaultPath = Path.GetDirectoryName(str);
          this.FileOpened = true;
-         this.UpdateFileNameLabel( );
-         this.UpdateFileStatusLabel( );
+         this.UpdateFileNameLabel();
+         this.UpdateFileStatusLabel();
       }
 
       private void saveBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -343,6 +355,5 @@ namespace DialogHeadStart
       {
          this.fileStatusLabelControl.Text = this.NeedToSave ? "Dirty" : "Clean";
       }
-
    }
 }
