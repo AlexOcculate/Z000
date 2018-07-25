@@ -9,8 +9,6 @@ Java Data Pattern
 
 App.Config x XDocument
 
-Dialog SelectPath, Open Save
-
 RibbonForms, RibbonBar and RibbonStatusBar
 
 20180725 - Menu Logic, System Dialog,  User Dialog Headstart
