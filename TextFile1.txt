@@ -13,6 +13,9 @@ Dialog SelectPath, Open Save
 
 RibbonForms, RibbonBar and RibbonStatusBar
 
+20180725 - Menu Logic, System Dialog,  User Dialog Headstart
+https://youtu.be/lXR4f5lSIWI
+
 20180724 - MetaDataItem Tab
 https://youtu.be/peushMVQnnA
 
