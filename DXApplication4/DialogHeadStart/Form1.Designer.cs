@@ -29,6 +29,7 @@
       private void InitializeComponent()
       {
          this.components = new System.ComponentModel.Container();
+         DevExpress.Utils.Animation.PushTransition pushTransition2 = new DevExpress.Utils.Animation.PushTransition();
          this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
          this.bar1 = new DevExpress.XtraBars.Bar();
          this.bar2 = new DevExpress.XtraBars.Bar();
@@ -63,6 +64,12 @@
          this.xtraFolderBrowserDialog1 = new DevExpress.XtraEditors.XtraFolderBrowserDialog(this.components);
          this.fileNameLabelControl = new DevExpress.XtraEditors.LabelControl();
          this.fileStatusLabelControl = new DevExpress.XtraEditors.LabelControl();
+         this.toolbarsBarListItem = new DevExpress.XtraBars.BarToolbarsListItem();
+         this.dockingBarMenuItem = new DevExpress.XtraBars.BarDockingMenuItem();
+         this.workspaceBarMenuItem = new DevExpress.XtraBars.BarWorkspaceMenuItem();
+         this.workspaceManager1 = new DevExpress.Utils.WorkspaceManager();
+         this.colorSwatchesBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+         this.colorMixerBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
          this.SuspendLayout();
          // 
@@ -98,9 +105,14 @@
             this.skinListDropDownButtonItem,
             this.makeDirtyBarButtonItem,
             this.openRecentBarListItem,
-            this.openRecentBarSubItem});
+            this.openRecentBarSubItem,
+            this.toolbarsBarListItem,
+            this.dockingBarMenuItem,
+            this.workspaceBarMenuItem,
+            this.colorSwatchesBarButtonItem,
+            this.colorMixerBarButtonItem});
          this.barManager1.MainMenu = this.bar2;
-         this.barManager1.MaxItemId = 22;
+         this.barManager1.MaxItemId = 27;
          this.barManager1.StatusBar = this.bar3;
          // 
          // bar1
@@ -239,8 +251,13 @@
          this.guiBarSubItem.Caption = "GUI";
          this.guiBarSubItem.Id = 16;
          this.guiBarSubItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.skinMenuBarSubItem),
-            new DevExpress.XtraBars.LinkPersistInfo(this.skinListDropDownButtonItem)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.toolbarsBarListItem, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.dockingBarMenuItem, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.workspaceBarMenuItem, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.skinMenuBarSubItem, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.skinListDropDownButtonItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.colorSwatchesBarButtonItem, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.colorMixerBarButtonItem)});
          this.guiBarSubItem.Name = "guiBarSubItem";
          // 
          // skinMenuBarSubItem
@@ -357,6 +374,44 @@
          this.fileStatusLabelControl.TabIndex = 5;
          this.fileStatusLabelControl.Text = "Empty";
          // 
+         // toolbarsBarListItem
+         // 
+         this.toolbarsBarListItem.Caption = "Toolbar";
+         this.toolbarsBarListItem.Id = 22;
+         this.toolbarsBarListItem.Name = "toolbarsBarListItem";
+         // 
+         // dockingBarMenuItem
+         // 
+         this.dockingBarMenuItem.Caption = "Docking";
+         this.dockingBarMenuItem.Id = 23;
+         this.dockingBarMenuItem.Name = "dockingBarMenuItem";
+         // 
+         // workspaceBarMenuItem
+         // 
+         this.workspaceBarMenuItem.Caption = "Workspace";
+         this.workspaceBarMenuItem.Id = 24;
+         this.workspaceBarMenuItem.Name = "workspaceBarMenuItem";
+         this.workspaceBarMenuItem.WorkspaceManager = this.workspaceManager1;
+         // 
+         // workspaceManager1
+         // 
+         this.workspaceManager1.TargetControl = this;
+         this.workspaceManager1.TransitionType = pushTransition2;
+         // 
+         // colorSwatchesBarButtonItem
+         // 
+         this.colorSwatchesBarButtonItem.Caption = "Color Swatches";
+         this.colorSwatchesBarButtonItem.Id = 25;
+         this.colorSwatchesBarButtonItem.Name = "colorSwatchesBarButtonItem";
+         this.colorSwatchesBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.colorSwatchesBarButtonItem_ItemClick);
+         // 
+         // colorMixerBarButtonItem
+         // 
+         this.colorMixerBarButtonItem.Caption = "Color Mixer";
+         this.colorMixerBarButtonItem.Id = 26;
+         this.colorMixerBarButtonItem.Name = "colorMixerBarButtonItem";
+         this.colorMixerBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.colorMixerBarButtonItem_ItemClick);
+         // 
          // Form1
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -415,6 +470,12 @@
       private DevExpress.XtraEditors.LabelControl fileStatusLabelControl;
       private DevExpress.XtraBars.BarListItem openRecentBarListItem;
       private DevExpress.XtraBars.BarSubItem openRecentBarSubItem;
+      private DevExpress.XtraBars.BarToolbarsListItem toolbarsBarListItem;
+      private DevExpress.XtraBars.BarDockingMenuItem dockingBarMenuItem;
+      private DevExpress.XtraBars.BarWorkspaceMenuItem workspaceBarMenuItem;
+      private DevExpress.Utils.WorkspaceManager workspaceManager1;
+      private DevExpress.XtraBars.BarButtonItem colorSwatchesBarButtonItem;
+      private DevExpress.XtraBars.BarButtonItem colorMixerBarButtonItem;
    }
 }
 

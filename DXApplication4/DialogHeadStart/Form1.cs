@@ -44,12 +44,7 @@ namespace DialogHeadStart
          //   //( cnt.SkinName );
          //}
          DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(skinStyle);
-
          //
-         using(DevExpress.Customization.SvgSkinPaletteSelector svgSkinPaletteSelector = new DevExpress.Customization.SvgSkinPaletteSelector(this))
-         {
-            svgSkinPaletteSelector.ShowDialog();
-         }
          for(int i = 0; i < this.skinMenuBarSubItem.ItemLinks.Count; i++)
          {
             if(this.skinMenuBarSubItem.ItemLinks[i].Caption == "The Bezier")
@@ -60,6 +55,7 @@ namespace DialogHeadStart
             }
          }
          //
+         //TODO: this should come from a config file, e.g. App.config...
          this.openRecentBarListItem.MaxSubItemTextWidth = 200;
          this.openRecentBarListItem.ShowNumbers = true;
          this.openRecentBarListItem.Strings.Add("Item1");
@@ -74,6 +70,8 @@ namespace DialogHeadStart
             e.Cancel = true;
          }
       }
+
+      #region --- New / Open / Open Recent / Save / Close / Exit Menu Handlers ---
 
       public const string FILE_FILTERS = "DataStoreConfig (*.dsx)|*.dsx|XML files (*.xml)|*.xml|All files (*.*)|*.*";
       public string builtinDefaultPath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -111,7 +109,7 @@ namespace DialogHeadStart
 
       private string defaultFileName;
 
-      public string DefaultFileName
+      private string DefaultFileName
       {
          get
          {
@@ -340,6 +338,20 @@ namespace DialogHeadStart
          this.SetWorkingFolderDialogHelper();
       }
 
+      private void colorSwatchesBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
+      {
+         using( DevExpress.Customization.SvgSkinPaletteSelector svgSkinPaletteSelector = new DevExpress.Customization.SvgSkinPaletteSelector( this ) )
+         {
+            svgSkinPaletteSelector.ShowDialog( );
+         }
+      }
+
+      private void colorMixerBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
+      {
+         DevExpress.XtraEditors.ColorWheel.ColorWheelForm cwForm = new DevExpress.XtraEditors.ColorWheel.ColorWheelForm( );
+         cwForm.Show( );
+      }
+
       private void makeDirtyBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
       {
          this.NeedToSave = true;
@@ -355,5 +367,7 @@ namespace DialogHeadStart
       {
          this.fileStatusLabelControl.Text = this.NeedToSave ? "Dirty" : "Clean";
       }
+
+      #endregion
    }
 }
