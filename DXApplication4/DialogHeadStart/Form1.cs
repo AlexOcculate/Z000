@@ -46,10 +46,10 @@ namespace DialogHeadStart
          DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(skinStyle);
 
          //
-         //using( DevExpress.Customization.SvgSkinPaletteSelector svgSkinPaletteSelector = new DevExpress.Customization.SvgSkinPaletteSelector( this ) )
-         //{
-         //   svgSkinPaletteSelector.ShowDialog( );
-         //}
+         using(DevExpress.Customization.SvgSkinPaletteSelector svgSkinPaletteSelector = new DevExpress.Customization.SvgSkinPaletteSelector(this))
+         {
+            svgSkinPaletteSelector.ShowDialog();
+         }
          for(int i = 0; i < this.skinMenuBarSubItem.ItemLinks.Count; i++)
          {
             if(this.skinMenuBarSubItem.ItemLinks[i].Caption == "The Bezier")
@@ -59,6 +59,12 @@ namespace DialogHeadStart
                parentItem.ImageUri.Uri = "Apply";
             }
          }
+         //
+         this.openRecentBarListItem.MaxSubItemTextWidth = 100;
+         this.openRecentBarListItem.ShowNumbers = true;
+         this.openRecentBarListItem.Strings.Add("Item1");
+         this.openRecentBarListItem.Strings.Add("Item2");
+         this.openRecentBarListItem.Strings.Add("Item3");
       }
 
       private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -176,20 +182,18 @@ namespace DialogHeadStart
          //}
       }
 
-
-      private DialogResult SaveFileDialogHelper( bool decisionTaken=false)
+      private DialogResult SaveFileDialogHelper(bool decisionTaken = false)
       {
          if(this.NeedToSave || decisionTaken)
          {
-            if( ! decisionTaken )
+            if(!decisionTaken)
             {
-               this.dialogResult = XtraMessageBox.Show( "Save your last modifications?", "Warning", MessageBoxButtons.YesNoCancel );
-            }
-            else
+               this.dialogResult = XtraMessageBox.Show("Save your last modifications?", "Warning", MessageBoxButtons.YesNoCancel);
+            } else
             {
                this.dialogResult = DialogResult.Yes;
             }
-            switch( this.dialogResult)
+            switch(this.dialogResult)
             {
                case DialogResult.Yes:
                   XtraSaveFileDialog dialog = this.xtraSaveFileDialog1;
@@ -233,7 +237,6 @@ namespace DialogHeadStart
          //}
       }
 
-
       private void newBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
       {
          if(this.SaveFileDialogHelper() != DialogResult.OK)
@@ -255,6 +258,29 @@ namespace DialogHeadStart
 
          this.OpenFileDialogHelper();
       }
+      private void openRecentBarListItem_GetItemData( object sender, EventArgs e )
+      {
+         BarListItem bar = sender as BarListItem;
+         if( bar.Strings.Count > 0 )
+         {
+            return;
+         }
+      }
+
+      private void openRecentBarListItem_ListItemClick( object sender, ListItemClickEventArgs e )
+      {
+         if( this.SaveFileDialogHelper( ) != DialogResult.OK )
+         {
+            return;
+         }
+         BarListItem bar = sender as BarListItem;
+         string str = bar.Strings[ e.Index ];
+         this.DefaultFileName = Path.GetFileName( str );
+         this.DefaultPath = Path.GetDirectoryName( str );
+         this.FileOpened = true;
+         this.UpdateFileNameLabel( );
+         this.UpdateFileStatusLabel( );
+      }
 
       private void saveBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
       {
@@ -265,7 +291,6 @@ namespace DialogHeadStart
       {
          this.SaveFileDialogHelper(true);
       }
-
 
       private void closeBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
       {
@@ -318,5 +343,6 @@ namespace DialogHeadStart
       {
          this.fileStatusLabelControl.Text = this.NeedToSave ? "Dirty" : "Clean";
       }
+
    }
 }

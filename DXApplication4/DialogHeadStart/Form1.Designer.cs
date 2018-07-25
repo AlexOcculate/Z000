@@ -36,6 +36,7 @@
          this.newBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          this.openBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          this.openRecentBarSubItem = new DevExpress.XtraBars.BarSubItem();
+         this.openRecentBarListItem = new DevExpress.XtraBars.BarListItem();
          this.saveBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          this.saveAsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          this.printBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -89,16 +90,17 @@
             this.printBarButtonItem,
             this.exportBarButtonItem,
             this.importBarButtonItem,
-            this.openRecentBarSubItem,
             this.closeBarButtonItem,
             this.exitBarButtonItem,
             this.setDefaultPathBarButtonItem,
             this.guiBarSubItem,
             this.skinMenuBarSubItem,
             this.skinListDropDownButtonItem,
-            this.makeDirtyBarButtonItem});
+            this.makeDirtyBarButtonItem,
+            this.openRecentBarListItem,
+            this.openRecentBarSubItem});
          this.barManager1.MainMenu = this.bar2;
-         this.barManager1.MaxItemId = 20;
+         this.barManager1.MaxItemId = 22;
          this.barManager1.StatusBar = this.bar3;
          // 
          // bar1
@@ -159,8 +161,19 @@
          // openRecentBarSubItem
          // 
          this.openRecentBarSubItem.Caption = "Open Recent";
-         this.openRecentBarSubItem.Id = 12;
+         this.openRecentBarSubItem.Id = 21;
+         this.openRecentBarSubItem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.openRecentBarListItem)});
          this.openRecentBarSubItem.Name = "openRecentBarSubItem";
+         // 
+         // openRecentBarListItem
+         // 
+         this.openRecentBarListItem.Caption = "Open Recent";
+         this.openRecentBarListItem.Id = 20;
+         this.openRecentBarListItem.MaxSubItemTextWidth = 100;
+         this.openRecentBarListItem.Name = "openRecentBarListItem";
+         this.openRecentBarListItem.ListItemClick += new DevExpress.XtraBars.ListItemClickEventHandler(this.openRecentBarListItem_ListItemClick);
+         this.openRecentBarListItem.GetItemData += new System.EventHandler(this.openRecentBarListItem_GetItemData);
          // 
          // saveBarButtonItem
          // 
@@ -382,7 +395,7 @@
       private DevExpress.XtraEditors.XtraFolderBrowserDialog xtraFolderBrowserDialog1;
       private DevExpress.XtraBars.BarButtonItem newBarButtonItem;
       private DevExpress.XtraBars.BarButtonItem openBarButtonItem;
-      private DevExpress.XtraBars.BarSubItem openRecentBarSubItem;
+      //private DevExpress.XtraBars.BarSubItem openRecentBarSubItem;
       private DevExpress.XtraBars.BarButtonItem saveBarButtonItem;
       private DevExpress.XtraBars.BarButtonItem saveAsBarButtonItem;
       private DevExpress.XtraBars.BarButtonItem printBarButtonItem;
@@ -400,6 +413,8 @@
       private DevExpress.XtraBars.BarButtonItem makeDirtyBarButtonItem;
       private DevExpress.XtraEditors.LabelControl fileNameLabelControl;
       private DevExpress.XtraEditors.LabelControl fileStatusLabelControl;
+      private DevExpress.XtraBars.BarListItem openRecentBarListItem;
+      private DevExpress.XtraBars.BarSubItem openRecentBarSubItem;
    }
 }
 
