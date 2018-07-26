@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+using System.Xml.Linq;
+using DataPhilosophiae.Config.Model;
+using FrontEnd.ConfigurationSetting;
+using Microsoft.Win32;
 
 namespace ConfigFilesHeadStart
 {
@@ -13,10 +12,89 @@ namespace ConfigFilesHeadStart
    {
       public Form1()
       {
+         LoadConfiguration( );
          InitializeComponent( );
+      }
+
+      private static void LoadConfiguration()
+      {
+         //
+         // [Configuration files] are used to control and manage the behavior of a [desktop and web application].
+         //
+         //    [Machine.config] : [machine level configuration file]
+         //    This is automatically installed when you install Visual Studio.Net. Only one [Machine.config] file exists on
+         //    a server. This file is at the highest level in the configuration hierarchy.
+         //
+         //    [App.config] : [application level configuration file]
+         //    This is automatically created when you create a [Desktop application] project. This file inherits setting
+         //    from the [Machine.config]
+         //
+         //    [Web.config] : [web application level configuration file]
+         //    This is automatically created when you create an [ASP.Net web application] project. This file inherits setting
+         //    from the [Machine.config]
+         //
+         //    Difference between [(App|Web).config] and [Machine.config]:
+         //
+         //    The settings made in the [(App|Web).config] file are applied to that particular desktop/web application only,
+         //    whereas the settings of [Machine.config] file are applied to the ALL Desktop or whole ASP.net application.
+         //
+         //    [(App|Web).config] file are settings of desktop/asp.net application project level. [Machine.config] are settings
+         //    of server level.
+         //
+         //    [(App|Web).config] will be for that particular desktop/web application whereas the [Machine.config] will for
+         //    the whole machine.
+         //
+         //    Every Desktop/ASP.NET application that you has a [(App|Web).config] file . The settings specified in this will
+         //    imply only to that application. Whereas "Your System" will have a [Machine.config] file in folder:
+         //    [[ Microsoft.NET\Framework\v1.1.4322\CONFIG ]]
+         //    which contains specifications and settings at a system level.
+         //
+         //    [Web.config] file is to override the settings from the [Machine.config] file. [Machine.config] file settings are
+         //    applied to all the web applications residing on the server while [Web.config] settings are application specific.
+         //
+         //    [Machine.config] is configuration file for all the application in the IIS. but [Web.config] is a configuration
+         //    file for a application or folder.
+         //
+         //    [Machine.config] for machine level configuration.but [Web.config] for a application/folder level configuration.
+         //
+         // Add reference to : System.Configuration and System.ComponentModel.DataAnnotations
+         //
          {
-            // Add reference to : System.Configuration and System.ComponentModel.DataAnnotations
+            // #1 WAY (App.config + Machine.config)
             System.Configuration.ConnectionStringSettingsCollection css = System.Configuration.ConfigurationManager.ConnectionStrings;
+         }
+         {
+            // #2 WAY (App.config + Machine.config)
+            string str = System.Configuration.ConfigurationManager.AppSettings[ "UrlToPing" ].ToString( );
+         }
+         {
+            // #3 WAY (App.config + Machine.config)
+            DataPhilosophiaeSection dps = System.Configuration.ConfigurationManager.GetSection( nameof( DataPhilosophiaeSection ) ) as DataPhilosophiaeSection;
+         }
+         {
+            // #4 WAY (Proprietary File)
+            string configFilePath = @"D:\TEMP\CS\";
+            string configFileName = @"dsConfig.xml";
+            string configFileFullPathName = Path.Combine(configFilePath,configFileName);;
+            {
+               XDocument dsCfgSample = DataStoreConfig.DsCfgSample( );
+               dsCfgSample.Save(configFileFullPathName, SaveOptions.None);
+            }
+            XDocument xDoc = XDocument.Load( configFileFullPathName, LoadOptions.None );
+            DataStoreConfig dsCfg = DataStoreConfig.Deserialize( xDoc );
+         }
+         {
+            //RegistryKey key = Registry.LocalMachine.OpenSubKey( "Software", true );
+            //RegistryKey key = Registry.CurrentUser.OpenSubKey( "Software", true );
+
+            //key.CreateSubKey( "AppName" );
+            //key = key.OpenSubKey( "AppName", true );
+
+
+            //key.CreateSubKey( "AppVersion" );
+            //key = key.OpenSubKey( "AppVersion", true );
+
+            //key.SetValue( "yourkey", "yourvalue" );
          }
       }
 
@@ -76,42 +154,3 @@ namespace ConfigFilesHeadStart
       }
    }
 }
-//
-// [Configuration files] are used to control and manage the behavior of a [desktop and web application].
-//
-//    [Machine.config] : [machine level configuration file]
-//    This is automatically installed when you install Visual Studio.Net. Only one [Machine.config] file exists on
-//    a server. This file is at the highest level in the configuration hierarchy.
-//
-//    [App.config] : [application level configuration file]
-//    This is automatically created when you create a [Desktop application] project. This file inherits setting
-//    from the [Machine.config]
-//
-//    [Web.config] : [web application level configuration file]
-//    This is automatically created when you create an [ASP.Net web application] project. This file inherits setting
-//    from the [Machine.config]
-//
-//    Difference between [(App|Web).config] and [Machine.config]:
-//
-//    The settings made in the [(App|Web).config] file are applied to that particular desktop/web application only,
-//    whereas the settings of [Machine.config] file are applied to the ALL Desktop or whole ASP.net application.
-//
-//    [(App|Web).config] file are settings of desktop/asp.net application project level. [Machine.config] are settings
-//    of server level.
-//
-//    [(App|Web).config] will be for that particular desktop/web application whereas the [Machine.config] will for
-//    the whole machine.
-//
-//    Every Desktop/ASP.NET application that you has a [(App|Web).config] file . The settings specified in this will
-//    imply only to that application. Whereas "Your System" will have a [Machine.config] file in folder:
-//    [[ Microsoft.NET\Framework\v1.1.4322\CONFIG ]]
-//    which contains specifications and settings at a system level.
-//
-//    [Web.config] file is to override the settings from the [Machine.config] file. [Machine.config] file settings are
-//    applied to all the web applications residing on the server while [Web.config] settings are application specific.
-//
-//    [Machine.config] is configuration file for all the application in the IIS. but [Web.config] is a configuration
-//    file for a application or folder.
-//
-//    [Machine.config] for machine level configuration.but [Web.config] for a application/folder level configuration.
-//

@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigFilesHeadStart", "DXA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashboardDesignerHeadStart", "DXApplication6\DashboardDesignerHeadStart\DashboardDesignerHeadStart.csproj", "{AD48BBC9-EE71-49C2-A02F-F84A307C9DA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashboardViewerHeadStart", "DXApplication7\DashboardViewerHeadStart\DashboardViewerHeadStart.csproj", "{003A1691-5271-4FF9-86CC-D7E54B01FA87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{AD48BBC9-EE71-49C2-A02F-F84A307C9DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD48BBC9-EE71-49C2-A02F-F84A307C9DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD48BBC9-EE71-49C2-A02F-F84A307C9DA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{003A1691-5271-4FF9-86CC-D7E54B01FA87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{003A1691-5271-4FF9-86CC-D7E54B01FA87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{003A1691-5271-4FF9-86CC-D7E54B01FA87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{003A1691-5271-4FF9-86CC-D7E54B01FA87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

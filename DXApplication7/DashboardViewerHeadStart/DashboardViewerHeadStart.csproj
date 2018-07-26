@@ -1,18 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A8497F37-DE3D-4BC3-A8FA-5831ED66371D}</ProjectGuid>
+    <ProjectGuid>{003A1691-5271-4FF9-86CC-D7E54B01FA87}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConfigFilesHeadStart</RootNamespace>
-    <AssemblyName>ConfigFilesHeadStart</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <RootNamespace>DashboardViewerHeadStart</RootNamespace>
+    <AssemblyName>DashboardViewerHeadStart</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,15 +34,43 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v18.1" />
+    <Reference Include="DevExpress.Charts.v18.1.Core" />
+    <Reference Include="DevExpress.CodeParser.v18.1" />
+    <Reference Include="DevExpress.Dashboard.v18.1.Core" />
+    <Reference Include="DevExpress.Dashboard.v18.1.Win" />
     <Reference Include="DevExpress.Data.v18.1" />
+    <Reference Include="DevExpress.DataAccess.v18.1" />
+    <Reference Include="DevExpress.DataAccess.v18.1.UI" />
+    <Reference Include="DevExpress.Map.v18.1.Core" />
+    <Reference Include="DevExpress.Office.v18.1.Core" />
+    <Reference Include="DevExpress.PivotGrid.v18.1.Core" />
     <Reference Include="DevExpress.Printing.v18.1.Core" />
-    <Reference Include="DevExpress.Utils.v18.1" />
-    <Reference Include="DevExpress.XtraBars.v18.1" />
+    <Reference Include="DevExpress.RichEdit.v18.1.Core" />
     <Reference Include="DevExpress.Sparkline.v18.1.Core" />
+    <Reference Include="DevExpress.TreeMap.v18.1.Core" />
+    <Reference Include="DevExpress.Utils.v18.1" />
+    <Reference Include="DevExpress.Utils.v18.1.UI" />
+    <Reference Include="DevExpress.Xpo.v18.1" />
+    <Reference Include="DevExpress.XtraBars.v18.1" />
+    <Reference Include="DevExpress.XtraCharts.v18.1" />
+    <Reference Include="DevExpress.XtraCharts.v18.1.UI" />
+    <Reference Include="DevExpress.XtraCharts.v18.1.Wizard" />
     <Reference Include="DevExpress.XtraEditors.v18.1" />
+    <Reference Include="DevExpress.XtraGauges.v18.1.Core" />
+    <Reference Include="DevExpress.XtraGauges.v18.1.Presets" />
+    <Reference Include="DevExpress.XtraGauges.v18.1.Win" />
+    <Reference Include="DevExpress.XtraGrid.v18.1" />
+    <Reference Include="DevExpress.XtraLayout.v18.1" />
+    <Reference Include="DevExpress.XtraMap.v18.1" />
+    <Reference Include="DevExpress.XtraPivotGrid.v18.1" />
+    <Reference Include="DevExpress.XtraPrinting.v18.1" />
+    <Reference Include="DevExpress.XtraReports.v18.1.Extensions" />
+    <Reference Include="DevExpress.XtraReports.v18.1" />
+    <Reference Include="DevExpress.XtraRichEdit.v18.1" />
+    <Reference Include="DevExpress.XtraRichEdit.v18.1.Extensions" />
+    <Reference Include="DevExpress.XtraTreeList.v18.1" />
+    <Reference Include="DevExpress.XtraTreeMap.v18.1" />
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -55,21 +82,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigurationSettings\DataPhilosophiaeSection.Config.cs" />
-    <Compile Include="ConfigurationSettings\DataPhilosophiaeSection.cs" />
-    <Compile Include="ConfigurationSettings\TunnelSection.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="ViewerForm1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ViewerForm1.Designer.cs">
+      <DependentUpon>ViewerForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="ViewerForm1.resx">
+      <DependentUpon>ViewerForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Dashboard1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Dashboard1.Designer.cs">
+      <DependentUpon>Dashboard1.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Dashboard1.resx">
+      <DependentUpon>Dashboard1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -78,14 +111,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="App.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="connections.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,10 +123,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Model\Model.csproj">
-      <Project>{f612e34c-e62a-40d9-8c81-df34fe61ea49}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
+    <Compile Include="Data\Invoices.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Data\Sales.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

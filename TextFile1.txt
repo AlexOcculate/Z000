@@ -13,6 +13,9 @@ App.Config x XDocument
 
 RibbonForms, RibbonBar and RibbonStatusBar
 
+20180726 - Dashboard Designer And Viewer
+https://youtu.be/W-QUl66FhEc
+
 20180725 - Menu Logic, System Dialog,  User Dialog Headstart
 https://youtu.be/lXR4f5lSIWI
 
