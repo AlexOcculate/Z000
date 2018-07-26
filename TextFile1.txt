@@ -5,6 +5,8 @@ suppa951-ps4@yahoo.com.au
 
 --------------------------------------------------------------------------------------
 
+Docking Manager + Document Manager
+
 Java Data Pattern
 
 App.Config x XDocument
