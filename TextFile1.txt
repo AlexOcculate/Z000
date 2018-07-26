@@ -9,9 +9,10 @@ Docking Manager + Document Manager
 
 Java Data Pattern
 
-App.Config x XDocument
-
 RibbonForms, RibbonBar and RibbonStatusBar
+
+20180726 - Configuration Files, Register, XDocument
+https://youtu.be/Dy78MuugqVg
 
 20180726 - Dashboard Designer And Viewer
 https://youtu.be/W-QUl66FhEc
