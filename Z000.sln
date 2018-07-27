@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashboardDesignerHeadStart"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashboardViewerHeadStart", "DXApplication7\DashboardViewerHeadStart\DashboardViewerHeadStart.csproj", "{003A1691-5271-4FF9-86CC-D7E54B01FA87}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainForm", "DXApplication8\MainForm\MainForm.csproj", "{67691EC0-483D-4F01-8B94-9BC879839119}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{003A1691-5271-4FF9-86CC-D7E54B01FA87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{003A1691-5271-4FF9-86CC-D7E54B01FA87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{003A1691-5271-4FF9-86CC-D7E54B01FA87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67691EC0-483D-4F01-8B94-9BC879839119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67691EC0-483D-4F01-8B94-9BC879839119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67691EC0-483D-4F01-8B94-9BC879839119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67691EC0-483D-4F01-8B94-9BC879839119}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
