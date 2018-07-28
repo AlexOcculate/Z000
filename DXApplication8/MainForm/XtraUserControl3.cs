@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
-namespace MainForm
+namespace DataPhilosophiae
 {
    public partial class XtraUserControl3 : DevExpress.XtraEditors.XtraUserControl
    {

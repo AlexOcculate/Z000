@@ -1,4 +1,4 @@
-﻿namespace MainForm
+﻿namespace DataPhilosophiae
 {
    partial class MainRibbonForm
    {
@@ -29,11 +29,14 @@
       private void InitializeComponent()
       {
          this.components = new System.ComponentModel.Container();
+         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainRibbonForm));
          DevExpress.Utils.Animation.PushTransition pushTransition1 = new DevExpress.Utils.Animation.PushTransition();
          DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer dockingContainer1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer();
-         this.documentGroup1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.DocumentGroup(this.components);
-         this.xtraUserControl1Document = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document(this.components);
-         this.xtraUserControl2Document = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document(this.components);
+         DevExpress.Utils.Controls.SnapOptions snapOptions1 = new DevExpress.Utils.Controls.SnapOptions();
+         this.dsCollDocumentGroup = new DevExpress.XtraBars.Docking2010.Views.Tabbed.DocumentGroup(this.components);
+         this.dsCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document(this.components);
+         this.mdiCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document(this.components);
+         this.dviCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document(this.components);
          this.mainRibbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
          this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
          this.backstageViewClientControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewClientControl();
@@ -57,8 +60,12 @@
          this.skinsColorMixerBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          this.workspaceBarMenuItem = new DevExpress.XtraBars.BarWorkspaceMenuItem();
          this.workspaceManager1 = new DevExpress.Utils.WorkspaceManager();
-         this.barDockingMenuItem1 = new DevExpress.XtraBars.BarDockingMenuItem();
-         this.barMdiChildrenListItem1 = new DevExpress.XtraBars.BarMdiChildrenListItem();
+         this.dockingBarMenuItem = new DevExpress.XtraBars.BarDockingMenuItem();
+         this.mdiChildrenBarListItem = new DevExpress.XtraBars.BarMdiChildrenListItem();
+         this.dsCollBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+         this.mdiCollBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+         this.dvCollsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+         this.messagesBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          this.fileRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
          this.fileCommonRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
          this.filePrintRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -67,18 +74,26 @@
          this.skinRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
          this.workspaceRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
          this.workspaceRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-         this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-         this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+         this.ViewRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
+         this.coreRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+         this.othersRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
          this.mainRibbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
          this.documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
          this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
          this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
-         this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
+         this.msgCollDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
          this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-         this.xtraUserControl3Document = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document(this.components);
-         ((System.ComponentModel.ISupportInitialize)(this.documentGroup1)).BeginInit();
-         ((System.ComponentModel.ISupportInitialize)(this.xtraUserControl1Document)).BeginInit();
-         ((System.ComponentModel.ISupportInitialize)(this.xtraUserControl2Document)).BeginInit();
+         this.dsCollDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
+         this.dsCollControlContainer = new DevExpress.XtraBars.Docking.ControlContainer();
+         this.mdiCollDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
+         this.mdiCollControlContainer = new DevExpress.XtraBars.Docking.ControlContainer();
+         this.dviCollDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
+         this.dviCollControlContainer = new DevExpress.XtraBars.Docking.ControlContainer();
+         this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+         ((System.ComponentModel.ISupportInitialize)(this.dsCollDocumentGroup)).BeginInit();
+         ((System.ComponentModel.ISupportInitialize)(this.dsCollDocument)).BeginInit();
+         ((System.ComponentModel.ISupportInitialize)(this.mdiCollDocument)).BeginInit();
+         ((System.ComponentModel.ISupportInitialize)(this.dviCollDocument)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
          this.backstageViewControl1.SuspendLayout();
@@ -87,29 +102,50 @@
          ((System.ComponentModel.ISupportInitialize)(this.documentManager1)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
-         this.dockPanel1.SuspendLayout();
+         this.msgCollDockPanel.SuspendLayout();
          this.dockPanel1_Container.SuspendLayout();
-         ((System.ComponentModel.ISupportInitialize)(this.xtraUserControl3Document)).BeginInit();
+         this.dsCollDockPanel.SuspendLayout();
+         this.mdiCollDockPanel.SuspendLayout();
+         this.dviCollDockPanel.SuspendLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
          this.SuspendLayout();
          // 
-         // documentGroup1
+         // dsCollDocumentGroup
          // 
-         this.documentGroup1.Items.AddRange(new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document[] {
-            this.xtraUserControl1Document,
-            this.xtraUserControl2Document,
-            this.xtraUserControl3Document});
+         this.dsCollDocumentGroup.Items.AddRange(new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document[] {
+            this.dsCollDocument,
+            this.mdiCollDocument,
+            this.dviCollDocument});
          // 
-         // xtraUserControl1Document
+         // dsCollDocument
          // 
-         this.xtraUserControl1Document.Caption = "DataStores";
-         this.xtraUserControl1Document.ControlName = "XtraUserControl1";
-         this.xtraUserControl1Document.ControlTypeName = "MainForm.XtraUserControl1";
+         this.dsCollDocument.Caption = "DataStore";
+         this.dsCollDocument.ControlName = "dsCollDockPanel";
+         this.dsCollDocument.FloatLocation = new System.Drawing.Point(0, 30);
+         this.dsCollDocument.FloatSize = new System.Drawing.Size(200, 200);
+         this.dsCollDocument.Properties.AllowClose = DevExpress.Utils.DefaultBoolean.True;
+         this.dsCollDocument.Properties.AllowFloat = DevExpress.Utils.DefaultBoolean.True;
+         this.dsCollDocument.Properties.AllowFloatOnDoubleClick = DevExpress.Utils.DefaultBoolean.True;
          // 
-         // xtraUserControl2Document
+         // mdiCollDocument
          // 
-         this.xtraUserControl2Document.Caption = "MetadataItems";
-         this.xtraUserControl2Document.ControlName = "XtraUserControl2";
-         this.xtraUserControl2Document.ControlTypeName = "MainForm.XtraUserControl2";
+         this.mdiCollDocument.Caption = "MetadataItems";
+         this.mdiCollDocument.ControlName = "mdiCollDockPanel";
+         this.mdiCollDocument.FloatLocation = new System.Drawing.Point(0, 30);
+         this.mdiCollDocument.FloatSize = new System.Drawing.Size(200, 200);
+         this.mdiCollDocument.Properties.AllowClose = DevExpress.Utils.DefaultBoolean.True;
+         this.mdiCollDocument.Properties.AllowFloat = DevExpress.Utils.DefaultBoolean.True;
+         this.mdiCollDocument.Properties.AllowFloatOnDoubleClick = DevExpress.Utils.DefaultBoolean.True;
+         // 
+         // dviCollDocument
+         // 
+         this.dviCollDocument.Caption = "DatavalueItems";
+         this.dviCollDocument.ControlName = "dviCollDockPanel";
+         this.dviCollDocument.FloatLocation = new System.Drawing.Point(0, 30);
+         this.dviCollDocument.FloatSize = new System.Drawing.Size(200, 200);
+         this.dviCollDocument.Properties.AllowClose = DevExpress.Utils.DefaultBoolean.True;
+         this.dviCollDocument.Properties.AllowFloat = DevExpress.Utils.DefaultBoolean.True;
+         this.dviCollDocument.Properties.AllowFloatOnDoubleClick = DevExpress.Utils.DefaultBoolean.True;
          // 
          // mainRibbonControl
          // 
@@ -132,15 +168,20 @@
             this.skinPaletteRibbonGalleryBarItem,
             this.skinsColorMixerBarButtonItem,
             this.workspaceBarMenuItem,
-            this.barDockingMenuItem1,
-            this.barMdiChildrenListItem1});
+            this.dockingBarMenuItem,
+            this.mdiChildrenBarListItem,
+            this.dsCollBarButtonItem,
+            this.mdiCollBarButtonItem,
+            this.dvCollsBarButtonItem,
+            this.messagesBarButtonItem});
          this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
-         this.mainRibbonControl.MaxItemId = 20;
+         this.mainRibbonControl.MaxItemId = 24;
          this.mainRibbonControl.Name = "mainRibbonControl";
          this.mainRibbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.fileRibbonPage,
             this.skinsRibbonPage,
-            this.workspaceRibbonPage});
+            this.workspaceRibbonPage,
+            this.ViewRibbonPage});
          this.mainRibbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
          this.mainRibbonControl.Size = new System.Drawing.Size(1024, 162);
          this.mainRibbonControl.StatusBar = this.mainRibbonStatusBar;
@@ -200,77 +241,68 @@
          // 
          this.fileNewBarButtonItem.Caption = "New";
          this.fileNewBarButtonItem.Id = 1;
-         this.fileNewBarButtonItem.ImageOptions.SvgImage = global::MainForm.Properties.Resources._new;
+         this.fileNewBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources._new;
          this.fileNewBarButtonItem.Name = "fileNewBarButtonItem";
          // 
          // fileOpenBarButtonItem
          // 
          this.fileOpenBarButtonItem.Caption = "Open";
          this.fileOpenBarButtonItem.Id = 2;
-         this.fileOpenBarButtonItem.ImageOptions.SvgImage = global::MainForm.Properties.Resources.open;
+         this.fileOpenBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.open;
          this.fileOpenBarButtonItem.Name = "fileOpenBarButtonItem";
          // 
          // fileSaveBarButtonItem
          // 
          this.fileSaveBarButtonItem.Caption = "Save";
          this.fileSaveBarButtonItem.Id = 3;
-         this.fileSaveBarButtonItem.ImageOptions.SvgImage = global::MainForm.Properties.Resources.save;
          this.fileSaveBarButtonItem.Name = "fileSaveBarButtonItem";
          // 
          // fileSaveAsBarButtonItem
          // 
          this.fileSaveAsBarButtonItem.Caption = "Save As";
          this.fileSaveAsBarButtonItem.Id = 6;
-         this.fileSaveAsBarButtonItem.ImageOptions.SvgImage = global::MainForm.Properties.Resources.saveas1;
          this.fileSaveAsBarButtonItem.Name = "fileSaveAsBarButtonItem";
          // 
          // fileCloseBarButtonItem
          // 
          this.fileCloseBarButtonItem.Caption = "Close";
          this.fileCloseBarButtonItem.Id = 7;
-         this.fileCloseBarButtonItem.ImageOptions.SvgImage = global::MainForm.Properties.Resources.close;
          this.fileCloseBarButtonItem.Name = "fileCloseBarButtonItem";
          // 
          // fileQuickPrintBarButtonItem
          // 
          this.fileQuickPrintBarButtonItem.Caption = "Quick Print";
          this.fileQuickPrintBarButtonItem.Id = 8;
-         this.fileQuickPrintBarButtonItem.ImageOptions.SvgImage = global::MainForm.Properties.Resources.printquick;
          this.fileQuickPrintBarButtonItem.Name = "fileQuickPrintBarButtonItem";
          // 
          // filePrintBarButtonItem
          // 
          this.filePrintBarButtonItem.Caption = "Print";
          this.filePrintBarButtonItem.Id = 9;
-         this.filePrintBarButtonItem.ImageOptions.SvgImage = global::MainForm.Properties.Resources.print;
          this.filePrintBarButtonItem.Name = "filePrintBarButtonItem";
          // 
          // filePrintPreviewBarButtonItem
          // 
          this.filePrintPreviewBarButtonItem.Caption = "Print Previw";
          this.filePrintPreviewBarButtonItem.Id = 10;
-         this.filePrintPreviewBarButtonItem.ImageOptions.SvgImage = global::MainForm.Properties.Resources.printpreview;
          this.filePrintPreviewBarButtonItem.Name = "filePrintPreviewBarButtonItem";
          // 
          // filePageSetupBarButtonItem
          // 
          this.filePageSetupBarButtonItem.Caption = "Page Setup";
          this.filePageSetupBarButtonItem.Id = 11;
-         this.filePageSetupBarButtonItem.ImageOptions.SvgImage = global::MainForm.Properties.Resources.productcomparisons;
          this.filePageSetupBarButtonItem.Name = "filePageSetupBarButtonItem";
          // 
          // fileExportBarButtonItem
          // 
          this.fileExportBarButtonItem.Caption = "Export";
          this.fileExportBarButtonItem.Id = 12;
-         this.fileExportBarButtonItem.ImageOptions.SvgImage = global::MainForm.Properties.Resources.export;
          this.fileExportBarButtonItem.Name = "fileExportBarButtonItem";
          // 
          // fileImportBarButtonItem
          // 
          this.fileImportBarButtonItem.Caption = "Import";
          this.fileImportBarButtonItem.Id = 13;
-         this.fileImportBarButtonItem.ImageOptions.SvgImage = global::MainForm.Properties.Resources.docking;
          this.fileImportBarButtonItem.Name = "fileImportBarButtonItem";
          // 
          // skinDropDownButtonItem
@@ -288,7 +320,6 @@
          // 
          this.skinsColorMixerBarButtonItem.Caption = "Color Mixer";
          this.skinsColorMixerBarButtonItem.Id = 16;
-         this.skinsColorMixerBarButtonItem.ImageOptions.SvgImage = global::MainForm.Properties.Resources.driving;
          this.skinsColorMixerBarButtonItem.Name = "skinsColorMixerBarButtonItem";
          this.skinsColorMixerBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.skinsColorMixerBarButtonItem_ItemClick);
          // 
@@ -296,6 +327,7 @@
          // 
          this.workspaceBarMenuItem.Caption = "Workspace";
          this.workspaceBarMenuItem.Id = 17;
+         this.workspaceBarMenuItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("workspaceBarMenuItem.ImageOptions.SvgImage")));
          this.workspaceBarMenuItem.Name = "workspaceBarMenuItem";
          this.workspaceBarMenuItem.WorkspaceManager = this.workspaceManager1;
          // 
@@ -304,17 +336,51 @@
          this.workspaceManager1.TargetControl = this;
          this.workspaceManager1.TransitionType = pushTransition1;
          // 
-         // barDockingMenuItem1
+         // dockingBarMenuItem
          // 
-         this.barDockingMenuItem1.Caption = "barDockingMenuItem1";
-         this.barDockingMenuItem1.Id = 18;
-         this.barDockingMenuItem1.Name = "barDockingMenuItem1";
+         this.dockingBarMenuItem.Caption = "Docking";
+         this.dockingBarMenuItem.Id = 18;
+         this.dockingBarMenuItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("dockingBarMenuItem.ImageOptions.SvgImage")));
+         this.dockingBarMenuItem.Name = "dockingBarMenuItem";
          // 
-         // barMdiChildrenListItem1
+         // mdiChildrenBarListItem
          // 
-         this.barMdiChildrenListItem1.Caption = "barMdiChildrenListItem1";
-         this.barMdiChildrenListItem1.Id = 19;
-         this.barMdiChildrenListItem1.Name = "barMdiChildrenListItem1";
+         this.mdiChildrenBarListItem.Caption = "MDI";
+         this.mdiChildrenBarListItem.Id = 19;
+         this.mdiChildrenBarListItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("mdiChildrenBarListItem.ImageOptions.SvgImage")));
+         this.mdiChildrenBarListItem.Name = "mdiChildrenBarListItem";
+         // 
+         // dsCollBarButtonItem
+         // 
+         this.dsCollBarButtonItem.Caption = "DataStores";
+         this.dsCollBarButtonItem.Id = 20;
+         this.dsCollBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("dsCollBarButtonItem.ImageOptions.SvgImage")));
+         this.dsCollBarButtonItem.Name = "dsCollBarButtonItem";
+         this.dsCollBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.dsCollBarButtonItem_ItemClick);
+         // 
+         // mdiCollBarButtonItem
+         // 
+         this.mdiCollBarButtonItem.Caption = "MetadataItems";
+         this.mdiCollBarButtonItem.Id = 21;
+         this.mdiCollBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("mdiCollBarButtonItem.ImageOptions.SvgImage")));
+         this.mdiCollBarButtonItem.Name = "mdiCollBarButtonItem";
+         this.mdiCollBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.mdiCollBarButtonItem_ItemClick);
+         // 
+         // dvCollsBarButtonItem
+         // 
+         this.dvCollsBarButtonItem.Caption = "DataValueItems";
+         this.dvCollsBarButtonItem.Id = 22;
+         this.dvCollsBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("dvCollsBarButtonItem.ImageOptions.SvgImage")));
+         this.dvCollsBarButtonItem.Name = "dvCollsBarButtonItem";
+         this.dvCollsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.dviCollBarButtonItem_ItemClick);
+         // 
+         // messagesBarButtonItem
+         // 
+         this.messagesBarButtonItem.Caption = "Messages";
+         this.messagesBarButtonItem.Id = 23;
+         this.messagesBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("messagesBarButtonItem.ImageOptions.SvgImage")));
+         this.messagesBarButtonItem.Name = "messagesBarButtonItem";
+         this.messagesBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.messagesBarButtonItem_ItemClick);
          // 
          // fileRibbonPage
          // 
@@ -369,29 +435,39 @@
          // workspaceRibbonPage
          // 
          this.workspaceRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.workspaceRibbonPageGroup,
-            this.ribbonPageGroup1,
-            this.ribbonPageGroup2});
+            this.workspaceRibbonPageGroup});
          this.workspaceRibbonPage.Name = "workspaceRibbonPage";
          this.workspaceRibbonPage.Text = "Workspace";
          // 
          // workspaceRibbonPageGroup
          // 
          this.workspaceRibbonPageGroup.ItemLinks.Add(this.workspaceBarMenuItem);
+         this.workspaceRibbonPageGroup.ItemLinks.Add(this.dockingBarMenuItem);
+         this.workspaceRibbonPageGroup.ItemLinks.Add(this.mdiChildrenBarListItem);
          this.workspaceRibbonPageGroup.Name = "workspaceRibbonPageGroup";
          this.workspaceRibbonPageGroup.Text = "Workspace";
          // 
-         // ribbonPageGroup1
+         // ViewRibbonPage
          // 
-         this.ribbonPageGroup1.ItemLinks.Add(this.barDockingMenuItem1);
-         this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-         this.ribbonPageGroup1.Text = "ribbonPageGroup1";
+         this.ViewRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.coreRibbonPageGroup,
+            this.othersRibbonPageGroup});
+         this.ViewRibbonPage.Name = "ViewRibbonPage";
+         this.ViewRibbonPage.Text = "View";
          // 
-         // ribbonPageGroup2
+         // coreRibbonPageGroup
          // 
-         this.ribbonPageGroup2.ItemLinks.Add(this.barMdiChildrenListItem1);
-         this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-         this.ribbonPageGroup2.Text = "ribbonPageGroup2";
+         this.coreRibbonPageGroup.ItemLinks.Add(this.dsCollBarButtonItem);
+         this.coreRibbonPageGroup.ItemLinks.Add(this.mdiCollBarButtonItem);
+         this.coreRibbonPageGroup.ItemLinks.Add(this.dvCollsBarButtonItem);
+         this.coreRibbonPageGroup.Name = "coreRibbonPageGroup";
+         this.coreRibbonPageGroup.Text = "Core";
+         // 
+         // othersRibbonPageGroup
+         // 
+         this.othersRibbonPageGroup.ItemLinks.Add(this.messagesBarButtonItem);
+         this.othersRibbonPageGroup.Name = "othersRibbonPageGroup";
+         this.othersRibbonPageGroup.Text = "Others";
          // 
          // mainRibbonStatusBar
          // 
@@ -411,20 +487,24 @@
          // tabbedView1
          // 
          this.tabbedView1.DocumentGroups.AddRange(new DevExpress.XtraBars.Docking2010.Views.Tabbed.DocumentGroup[] {
-            this.documentGroup1});
+            this.dsCollDocumentGroup});
          this.tabbedView1.Documents.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseDocument[] {
-            this.xtraUserControl1Document,
-            this.xtraUserControl2Document,
-            this.xtraUserControl3Document});
-         dockingContainer1.Element = this.documentGroup1;
+            this.dsCollDocument,
+            this.mdiCollDocument,
+            this.dviCollDocument});
+         dockingContainer1.Element = this.dsCollDocumentGroup;
          this.tabbedView1.RootContainer.Nodes.AddRange(new DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer[] {
             dockingContainer1});
+         this.tabbedView1.Style = DevExpress.XtraBars.Docking2010.Views.DockingViewStyle.Light;
          // 
          // dockManager1
          // 
          this.dockManager1.Form = this;
          this.dockManager1.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
-            this.dockPanel1});
+            this.msgCollDockPanel,
+            this.dsCollDockPanel,
+            this.mdiCollDockPanel,
+            this.dviCollDockPanel});
          this.dockManager1.TopZIndexControls.AddRange(new string[] {
             "DevExpress.XtraBars.BarDockControl",
             "DevExpress.XtraBars.StandaloneBarDockControl",
@@ -437,18 +517,19 @@
             "DevExpress.XtraBars.Navigation.TileNavPane",
             "DevExpress.XtraBars.TabFormControl",
             "DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl"});
+         this.dockManager1.ClosingPanel += new DevExpress.XtraBars.Docking.DockPanelCancelEventHandler(this.dockManager1_ClosingPanel);
          // 
-         // dockPanel1
+         // msgCollDockPanel
          // 
-         this.dockPanel1.Controls.Add(this.dockPanel1_Container);
-         this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
-         this.dockPanel1.ID = new System.Guid("78f65fbd-b59f-4655-81da-623dc44662fb");
-         this.dockPanel1.Location = new System.Drawing.Point(0, 494);
-         this.dockPanel1.Name = "dockPanel1";
-         this.dockPanel1.OriginalSize = new System.Drawing.Size(200, 200);
-         this.dockPanel1.SavedSizeFactor = 0D;
-         this.dockPanel1.Size = new System.Drawing.Size(1024, 200);
-         this.dockPanel1.Text = "Messages";
+         this.msgCollDockPanel.Controls.Add(this.dockPanel1_Container);
+         this.msgCollDockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
+         this.msgCollDockPanel.ID = new System.Guid("78f65fbd-b59f-4655-81da-623dc44662fb");
+         this.msgCollDockPanel.Location = new System.Drawing.Point(0, 494);
+         this.msgCollDockPanel.Name = "msgCollDockPanel";
+         this.msgCollDockPanel.OriginalSize = new System.Drawing.Size(200, 200);
+         this.msgCollDockPanel.SavedSizeFactor = 0D;
+         this.msgCollDockPanel.Size = new System.Drawing.Size(1024, 200);
+         this.msgCollDockPanel.Text = "Messages";
          // 
          // dockPanel1_Container
          // 
@@ -458,18 +539,68 @@
          this.dockPanel1_Container.Size = new System.Drawing.Size(1018, 166);
          this.dockPanel1_Container.TabIndex = 0;
          // 
-         // xtraUserControl3Document
+         // dsCollDockPanel
          // 
-         this.xtraUserControl3Document.Caption = "DataItems";
-         this.xtraUserControl3Document.ControlName = "XtraUserControl3";
-         this.xtraUserControl3Document.ControlTypeName = "MainForm.XtraUserControl3";
+         this.dsCollDockPanel.Controls.Add(this.dsCollControlContainer);
+         this.dsCollDockPanel.DockedAsTabbedDocument = true;
+         this.dsCollDockPanel.FloatLocation = new System.Drawing.Point(0, 30);
+         this.dsCollDockPanel.ID = new System.Guid("c12420fd-450d-424f-93fd-22ed825d4925");
+         this.dsCollDockPanel.Name = "dsCollDockPanel";
+         this.dsCollDockPanel.OriginalSize = new System.Drawing.Size(200, 200);
+         this.dsCollDockPanel.SavedSizeFactor = 1D;
+         this.dsCollDockPanel.Text = "DataStore";
+         // 
+         // dsCollControlContainer
+         // 
+         this.dsCollControlContainer.Location = new System.Drawing.Point(0, 0);
+         this.dsCollControlContainer.Name = "dsCollControlContainer";
+         this.dsCollControlContainer.Size = new System.Drawing.Size(1024, 305);
+         this.dsCollControlContainer.TabIndex = 0;
+         // 
+         // mdiCollDockPanel
+         // 
+         this.mdiCollDockPanel.Controls.Add(this.mdiCollControlContainer);
+         this.mdiCollDockPanel.DockedAsTabbedDocument = true;
+         this.mdiCollDockPanel.FloatLocation = new System.Drawing.Point(0, 30);
+         this.mdiCollDockPanel.ID = new System.Guid("6e6b1021-cde6-4685-9aeb-1a1ac4b235ad");
+         this.mdiCollDockPanel.Name = "mdiCollDockPanel";
+         this.mdiCollDockPanel.OriginalSize = new System.Drawing.Size(200, 200);
+         this.mdiCollDockPanel.SavedSizeFactor = 1D;
+         this.mdiCollDockPanel.Text = "MetadataItems";
+         // 
+         // mdiCollControlContainer
+         // 
+         this.mdiCollControlContainer.Location = new System.Drawing.Point(0, 0);
+         this.mdiCollControlContainer.Name = "mdiCollControlContainer";
+         this.mdiCollControlContainer.Size = new System.Drawing.Size(1024, 305);
+         this.mdiCollControlContainer.TabIndex = 0;
+         // 
+         // dviCollDockPanel
+         // 
+         this.dviCollDockPanel.Controls.Add(this.dviCollControlContainer);
+         this.dviCollDockPanel.DockedAsTabbedDocument = true;
+         this.dviCollDockPanel.FloatLocation = new System.Drawing.Point(0, 30);
+         this.dviCollDockPanel.ID = new System.Guid("dff311e3-f029-48a1-8282-8724101d98b8");
+         this.dviCollDockPanel.Name = "dviCollDockPanel";
+         this.dviCollDockPanel.OriginalSize = new System.Drawing.Size(200, 200);
+         this.dviCollDockPanel.SavedSizeFactor = 1D;
+         this.dviCollDockPanel.Text = "DatavalueItems";
+         // 
+         // dviCollControlContainer
+         // 
+         this.dviCollControlContainer.Location = new System.Drawing.Point(0, 0);
+         this.dviCollControlContainer.Name = "dviCollControlContainer";
+         this.dviCollControlContainer.Size = new System.Drawing.Size(1024, 305);
+         this.dviCollControlContainer.TabIndex = 0;
          // 
          // MainRibbonForm
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+         this.behaviorManager1.SetBehaviors(this, new DevExpress.Utils.Behaviors.Behavior[] {
+            ((DevExpress.Utils.Behaviors.Behavior)(DevExpress.Utils.Behaviors.Common.SnapWindowBehavior.Create(typeof(DevExpress.Utils.BehaviorSource.SnapWindowBehaviorSourceForForm), snapOptions1)))});
          this.ClientSize = new System.Drawing.Size(1024, 720);
-         this.Controls.Add(this.dockPanel1);
+         this.Controls.Add(this.msgCollDockPanel);
          this.Controls.Add(this.mainRibbonStatusBar);
          this.Controls.Add(this.mainRibbonControl);
          this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Glow;
@@ -478,9 +609,10 @@
          this.StatusBar = this.mainRibbonStatusBar;
          this.Text = "Form1";
          this.Load += new System.EventHandler(this.MainRibbonForm_Load);
-         ((System.ComponentModel.ISupportInitialize)(this.documentGroup1)).EndInit();
-         ((System.ComponentModel.ISupportInitialize)(this.xtraUserControl1Document)).EndInit();
-         ((System.ComponentModel.ISupportInitialize)(this.xtraUserControl2Document)).EndInit();
+         ((System.ComponentModel.ISupportInitialize)(this.dsCollDocumentGroup)).EndInit();
+         ((System.ComponentModel.ISupportInitialize)(this.dsCollDocument)).EndInit();
+         ((System.ComponentModel.ISupportInitialize)(this.mdiCollDocument)).EndInit();
+         ((System.ComponentModel.ISupportInitialize)(this.dviCollDocument)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).EndInit();
          this.backstageViewControl1.ResumeLayout(false);
@@ -489,9 +621,12 @@
          ((System.ComponentModel.ISupportInitialize)(this.documentManager1)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
-         this.dockPanel1.ResumeLayout(false);
+         this.msgCollDockPanel.ResumeLayout(false);
          this.dockPanel1_Container.ResumeLayout(false);
-         ((System.ComponentModel.ISupportInitialize)(this.xtraUserControl3Document)).EndInit();
+         this.dsCollDockPanel.ResumeLayout(false);
+         this.mdiCollDockPanel.ResumeLayout(false);
+         this.dviCollDockPanel.ResumeLayout(false);
+         ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -527,23 +662,35 @@
       private DevExpress.Utils.WorkspaceManager workspaceManager1;
       private DevExpress.XtraBars.Ribbon.RibbonPage workspaceRibbonPage;
       private DevExpress.XtraBars.Ribbon.RibbonPageGroup workspaceRibbonPageGroup;
-      private DevExpress.XtraBars.BarDockingMenuItem barDockingMenuItem1;
-      private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
-      private DevExpress.XtraBars.BarMdiChildrenListItem barMdiChildrenListItem1;
-      private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+      private DevExpress.XtraBars.BarDockingMenuItem dockingBarMenuItem;
+      private DevExpress.XtraBars.BarMdiChildrenListItem mdiChildrenBarListItem;
       private DevExpress.XtraBars.Ribbon.RibbonStatusBar mainRibbonStatusBar;
       private DevExpress.XtraBars.Ribbon.RecentItemControl recentItemControl1;
       private DevExpress.XtraBars.Ribbon.RecentStackPanel recentStackPanel2;
       private DevExpress.XtraBars.Ribbon.RecentStackPanel recentStackPanel1;
       private DevExpress.XtraBars.Docking2010.DocumentManager documentManager1;
       private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView tabbedView1;
-      private DevExpress.XtraBars.Docking2010.Views.Tabbed.DocumentGroup documentGroup1;
-      private DevExpress.XtraBars.Docking2010.Views.Tabbed.Document xtraUserControl1Document;
       private DevExpress.XtraBars.Docking.DockManager dockManager1;
-      private DevExpress.XtraBars.Docking2010.Views.Tabbed.Document xtraUserControl2Document;
-      private DevExpress.XtraBars.Docking.DockPanel dockPanel1;
+      private DevExpress.XtraBars.Docking.DockPanel msgCollDockPanel;
       private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
-      private DevExpress.XtraBars.Docking2010.Views.Tabbed.Document xtraUserControl3Document;
+      private DevExpress.XtraBars.BarButtonItem dsCollBarButtonItem;
+      private DevExpress.XtraBars.BarButtonItem mdiCollBarButtonItem;
+      private DevExpress.XtraBars.Ribbon.RibbonPage ViewRibbonPage;
+      private DevExpress.XtraBars.Ribbon.RibbonPageGroup coreRibbonPageGroup;
+      private DevExpress.XtraBars.BarButtonItem dvCollsBarButtonItem;
+      private DevExpress.XtraBars.Docking.DockPanel dsCollDockPanel;
+      private DevExpress.XtraBars.Docking.ControlContainer dsCollControlContainer;
+      private DevExpress.XtraBars.Docking2010.Views.Tabbed.Document dsCollDocument;
+      private DevExpress.XtraBars.Docking2010.Views.Tabbed.DocumentGroup dsCollDocumentGroup;
+      private DevExpress.XtraBars.Docking2010.Views.Tabbed.Document mdiCollDocument;
+      private DevExpress.XtraBars.Docking.DockPanel mdiCollDockPanel;
+      private DevExpress.XtraBars.Docking.ControlContainer mdiCollControlContainer;
+      private DevExpress.XtraBars.Docking2010.Views.Tabbed.Document dviCollDocument;
+      private DevExpress.XtraBars.Docking.DockPanel dviCollDockPanel;
+      private DevExpress.XtraBars.Docking.ControlContainer dviCollControlContainer;
+      private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+      private DevExpress.XtraBars.Ribbon.RibbonPageGroup othersRibbonPageGroup;
+      private DevExpress.XtraBars.BarButtonItem messagesBarButtonItem;
    }
 }
 

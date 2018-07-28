@@ -28,6 +28,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashboardViewerHeadStart", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainForm", "DXApplication8\MainForm\MainForm.csproj", "{67691EC0-483D-4F01-8B94-9BC879839119}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageXuc", "MessageXuc\MessageXuc.csproj", "{C816B7D2-A7F9-4196-9AB2-3499056F8CA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStoreCollectionXuc", "DataStoreCollectionXuc\DataStoreCollectionXuc.csproj", "{8B8DC1BD-0D84-4399-A228-645EA7EE718A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +78,14 @@ Global
 		{67691EC0-483D-4F01-8B94-9BC879839119}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67691EC0-483D-4F01-8B94-9BC879839119}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67691EC0-483D-4F01-8B94-9BC879839119}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C816B7D2-A7F9-4196-9AB2-3499056F8CA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C816B7D2-A7F9-4196-9AB2-3499056F8CA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C816B7D2-A7F9-4196-9AB2-3499056F8CA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C816B7D2-A7F9-4196-9AB2-3499056F8CA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B8DC1BD-0D84-4399-A228-645EA7EE718A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B8DC1BD-0D84-4399-A228-645EA7EE718A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B8DC1BD-0D84-4399-A228-645EA7EE718A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B8DC1BD-0D84-4399-A228-645EA7EE718A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

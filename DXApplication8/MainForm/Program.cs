@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using DevExpress.UserSkins;
 using DevExpress.Skins;
 
-namespace MainForm
+namespace DataPhilosophiae
 {
    static class Program
    {

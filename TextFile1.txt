@@ -54,3 +54,77 @@ qiqqa159-qwerty@yahoo.com
 suppa951-ps4@yahoo.com.au
 - bysimon@yahoo.com
 - bysimon@gmai.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- Create a RibbonForm
+- Rename the RibbonForm from "Form1" to "MainRibbonForm"
+- Stablish the default skin style to "The Bezier"
+- Stablish RibbonStyle "Office2013" (form smart tag)
+- Add a BackStage
+- Stablish BackStage style "Office2013"
+
+- Create a RiboonPage "fileRibbonPage" text "File"
+- - Create a RibbonPageGroup "fileCommonRibbonPageGroup" text"Common"
+- - Create a RibbonPageGroup "filePrintRibbonPageGroup" text "Print"
+- - Create a RibbonPageGroup "fileExportPageGroup" text "Export & Import"
+
+Add Item to "Common" RibbonPageGroup as the following:
+
+(name) , Caption, ImageOptions/SvgImage (add to project resources)
+"fileNewBarButtonItem" , "New" , new 
+"fileOpenBarButtonItem" , "Open", open
+"fileSaveBarButtonItem" , "Save", Save
+"fileSaveAsBarButtonItem" , "Save As", saveas
+"fileCloseAsBarButtonItem" , "Close", close
+
+Add Item to "Print" RibbonPageGroup as the following:
+
+(name) , Caption, ImageOptions/SvgImage (add to project resources)
+"fileQuickPrintBarButtonItem" , "Quick Print", print
+"filePrintBarButtonItem" , "Print", print
+"filePrintPreviewBarButtonItem" , "Print Preview", print
+"filePageSetupBarButtonItem" , "Page Setup", page
+
+Add Item to "Export & Import" RibbonPageGroup as the following:
+
+(name) , Caption, ImageOptions/SvgImage (add to project resources)
+"fileExportBarButtonItem", "Export", exp
+"fileImportBarButtonItem", "Import", imp
+
+
+
+- Create a RiboonPage "skinsRibbonPage" text "Skins"
+- - Create a RibbonPageGroup "skinsSkinsRibbonPageGroup" text"Skins"
+
+Add Item to "Skins" RibbonPageGroup as the following:
+
+(name) , Caption, ImageOptions/SvgImage (add to project resources)
+skinDropDownButtonItem
+skinPaletteRibbonGalleryBarItem
+skinsColorMixerBarButtonItem , Color Mixer
+
+
+
+- Create a RiboonPage "workspaceRibbonPage" text "Workspace"
+- - Create a RibbonPageGroup "workspaceRibbonPageGroup" text"Workspace"
+
+
+
+
+
+
+
+
