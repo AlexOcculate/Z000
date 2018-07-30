@@ -644,6 +644,7 @@
          this.Ribbon = this.mainRibbonControl;
          this.StatusBar = this.mainRibbonStatusBar;
          this.Text = "Form1";
+         this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainRibbonForm_FormClosing);
          this.Load += new System.EventHandler(this.MainRibbonForm_Load);
          ((System.ComponentModel.ISupportInitialize)(this.dsCollDocumentGroup)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.dsCollDocument)).EndInit();

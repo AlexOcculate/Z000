@@ -30,6 +30,14 @@ namespace DataPhilosophiae
          DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle( skinStyle );
       }
 
+      private void MainRibbonForm_FormClosing( object sender, FormClosingEventArgs e )
+      {
+         if( this.SaveFileDialogHelper( ) != DialogResult.OK )
+         {
+            e.Cancel = true;
+         }
+      }
+
       private void DataStoreConfig_Error( string msg )
       {
          this.MsgCollXuc.Error( msg );
@@ -104,9 +112,17 @@ namespace DataPhilosophiae
       #endregion
 
       private DataStoreConfig dsConfig;
+
       private void fileNewBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
       {
-
+         if( this.SaveFileDialogHelper( ) != DialogResult.OK )
+         {
+            return;
+         }
+         this.DefaultFileName = this.builtinDefaultFilename;
+         this.MsgCollXuc.Info( "New file '{0}'!", Path.Combine( this.DefaultPath, this.builtinDefaultFilename ) );
+         this.UpdateFileNameLabel( );
+         return;
       }
       private void fileOpenBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
       {
@@ -133,12 +149,19 @@ namespace DataPhilosophiae
       }
       private void fileSaveAsBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
       {
-
+         this.SaveFileDialogHelper( true );
       }
       private void fileCloseBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
       {
+         if( this.SaveFileDialogHelper( ) != DialogResult.OK )
+         {
+            return;
+         }
+         this.MsgCollXuc.Info( "File '{0}' closed!", Path.Combine( this.DefaultPath, this.DefaultFileName ) );
 
+         this.DefaultFileName = this.builtinDefaultFilename;
       }
+
       private void fileQuickPrintBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
       {
 
@@ -284,7 +307,7 @@ namespace DataPhilosophiae
          }
          else
          {
-            this.MsgCollXuc.Info( "Open operation canceled!" );
+            this.MsgCollXuc.Warn( "Open operation canceled!" );
          }
          return dialogResult;
       }
@@ -322,10 +345,10 @@ namespace DataPhilosophiae
                   }
                   break;
                case DialogResult.No:
-                  this.MsgCollXuc.Info( "File '{0}' not saved.", this.DefaultFileName );
+                  this.MsgCollXuc.Warn( "File '{0}' not saved.", this.DefaultFileName );
                   break;
                case DialogResult.Cancel:
-                  this.MsgCollXuc.Info( "Save operation canceled: '{0}'!", this.DefaultFileName );
+                  this.MsgCollXuc.Warn( "Save operation canceled: '{0}'!", this.DefaultFileName );
                   return DialogResult.Cancel;
             }
          }
@@ -334,6 +357,7 @@ namespace DataPhilosophiae
          this.UpdateFileStatusLabel( );
          return this.dialogResult = DialogResult.OK;
       }
+
       private void UpdateFileNameLabel()
       {
          //         this.fileNameLabelControl.Text = this.FileOpened ? Path.GetFileName( this.DefaultFileName ) : "Empty";
@@ -354,7 +378,6 @@ namespace DataPhilosophiae
       }
 
       #endregion
-
 
       #region --- "Open/View" and "Close/Hide" Dockings... ---
       private void dockManager1_ClosingPanel( object sender, DevExpress.XtraBars.Docking.DockPanelCancelEventArgs e )
