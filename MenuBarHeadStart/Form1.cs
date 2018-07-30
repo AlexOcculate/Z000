@@ -25,7 +25,8 @@ namespace MenuBarHeadStart
 
       private void aboutBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
       {
-
+            String About = "This is version 1.0 - About menu item test\n";
+            MessageBox.Show(About, "This is version 1.0" );
       }
 
       private void deleteBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
