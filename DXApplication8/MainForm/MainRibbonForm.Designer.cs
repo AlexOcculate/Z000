@@ -255,54 +255,63 @@
          // 
          this.fileSaveBarButtonItem.Caption = "Save";
          this.fileSaveBarButtonItem.Id = 3;
+         this.fileSaveBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.save;
          this.fileSaveBarButtonItem.Name = "fileSaveBarButtonItem";
          // 
          // fileSaveAsBarButtonItem
          // 
          this.fileSaveAsBarButtonItem.Caption = "Save As";
          this.fileSaveAsBarButtonItem.Id = 6;
+         this.fileSaveAsBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.saveas;
          this.fileSaveAsBarButtonItem.Name = "fileSaveAsBarButtonItem";
          // 
          // fileCloseBarButtonItem
          // 
          this.fileCloseBarButtonItem.Caption = "Close";
          this.fileCloseBarButtonItem.Id = 7;
+         this.fileCloseBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.close;
          this.fileCloseBarButtonItem.Name = "fileCloseBarButtonItem";
          // 
          // fileQuickPrintBarButtonItem
          // 
          this.fileQuickPrintBarButtonItem.Caption = "Quick Print";
          this.fileQuickPrintBarButtonItem.Id = 8;
+         this.fileQuickPrintBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.printquick;
          this.fileQuickPrintBarButtonItem.Name = "fileQuickPrintBarButtonItem";
          // 
          // filePrintBarButtonItem
          // 
          this.filePrintBarButtonItem.Caption = "Print";
          this.filePrintBarButtonItem.Id = 9;
+         this.filePrintBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.print;
          this.filePrintBarButtonItem.Name = "filePrintBarButtonItem";
          // 
          // filePrintPreviewBarButtonItem
          // 
          this.filePrintPreviewBarButtonItem.Caption = "Print Previw";
          this.filePrintPreviewBarButtonItem.Id = 10;
+         this.filePrintPreviewBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.printpreview;
          this.filePrintPreviewBarButtonItem.Name = "filePrintPreviewBarButtonItem";
          // 
          // filePageSetupBarButtonItem
          // 
          this.filePageSetupBarButtonItem.Caption = "Page Setup";
          this.filePageSetupBarButtonItem.Id = 11;
+         this.filePageSetupBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.productcomparisons;
          this.filePageSetupBarButtonItem.Name = "filePageSetupBarButtonItem";
          // 
          // fileExportBarButtonItem
          // 
          this.fileExportBarButtonItem.Caption = "Export";
          this.fileExportBarButtonItem.Id = 12;
+         this.fileExportBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.export;
          this.fileExportBarButtonItem.Name = "fileExportBarButtonItem";
          // 
          // fileImportBarButtonItem
          // 
          this.fileImportBarButtonItem.Caption = "Import";
          this.fileImportBarButtonItem.Id = 13;
+         this.fileImportBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("fileImportBarButtonItem.ImageOptions.SvgImage")));
          this.fileImportBarButtonItem.Name = "fileImportBarButtonItem";
          // 
          // skinDropDownButtonItem
@@ -320,6 +329,7 @@
          // 
          this.skinsColorMixerBarButtonItem.Caption = "Color Mixer";
          this.skinsColorMixerBarButtonItem.Id = 16;
+         this.skinsColorMixerBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.driving;
          this.skinsColorMixerBarButtonItem.Name = "skinsColorMixerBarButtonItem";
          this.skinsColorMixerBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.skinsColorMixerBarButtonItem_ItemClick);
          // 

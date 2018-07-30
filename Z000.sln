@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageXuc", "MessageXuc\Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStoreCollectionXuc", "DataStoreCollectionXuc\DataStoreCollectionXuc.csproj", "{8B8DC1BD-0D84-4399-A228-645EA7EE718A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XtraUserControls", "XtraUserControls", "{2504FE66-7996-4277-BEAB-0D2DE77F1396}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C816B7D2-A7F9-4196-9AB2-3499056F8CA2} = {2504FE66-7996-4277-BEAB-0D2DE77F1396}
+		{8B8DC1BD-0D84-4399-A228-645EA7EE718A} = {2504FE66-7996-4277-BEAB-0D2DE77F1396}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB9E6EE3-9085-4BFF-A1D1-2A9B9C098640}

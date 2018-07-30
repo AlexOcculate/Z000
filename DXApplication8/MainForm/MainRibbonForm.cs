@@ -21,12 +21,9 @@ namespace DataPhilosophiae
          //TODO: App.Config!!!
          string skinStyle = "The Bezier";
          DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle( skinStyle );
-      }
-
-      private void skinsColorMixerBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
-      {
-         DevExpress.XtraEditors.ColorWheel.ColorWheelForm cwForm = new DevExpress.XtraEditors.ColorWheel.ColorWheelForm( );
-         cwForm.Show( );
+         this.MsgCollXuc.Info( "the number {0:#,##0}!", 100 );
+         this.MsgCollXuc.Error( "the number {0:#,##0}!", 100 );
+         this.MsgCollXuc.Warn( "the number {0:#,##0}!", 100 );
       }
 
       #region --- External Controls ---
@@ -86,6 +83,12 @@ namespace DataPhilosophiae
          }
       }
       #endregion
+
+      private void skinsColorMixerBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
+      {
+         DevExpress.XtraEditors.ColorWheel.ColorWheelForm cwForm = new DevExpress.XtraEditors.ColorWheel.ColorWheelForm( );
+         cwForm.Show( );
+      }
 
       private void dockManager1_ClosingPanel( object sender, DevExpress.XtraBars.Docking.DockPanelCancelEventArgs e )
       {
