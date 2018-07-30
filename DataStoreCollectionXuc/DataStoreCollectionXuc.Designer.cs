@@ -50,13 +50,14 @@
          this.gridView1.GridControl = this.gridControl1;
          this.gridView1.Name = "gridView1";
          // 
-         // UserControl1
+         // DataStoreCollectionXuc
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.Controls.Add(this.gridControl1);
-         this.Name = "UserControl1";
+         this.Name = "DataStoreCollectionXuc";
          this.Size = new System.Drawing.Size(800, 450);
+         this.Load += new System.EventHandler(this.DataStoreCollectionXuc_Load);
          ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
          this.ResumeLayout(false);

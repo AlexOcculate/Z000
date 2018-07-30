@@ -8,10 +8,14 @@ using System.Xml.Linq;
 namespace DataPhilosophiae.Config.Model
 {
    public delegate void InfoMessageDelegate( string msg );
+   public delegate void WarnMessageDelegate( string msg );
+   public delegate void ErrorMessageDelegate( string msg );
 
    public class DataStoreConfig
    {
       public static event InfoMessageDelegate Info;
+      public static event WarnMessageDelegate Warn;
+      public static event ErrorMessageDelegate Error;
 
       public DataStoreConfig()
       {
@@ -200,14 +204,14 @@ namespace DataPhilosophiae.Config.Model
          #region --- Calling Contract... ---
          if( doc == null )
          {
-            Info?.Invoke( "Document is null!" );
+            Error?.Invoke( "Document is null!" );
             return null;
          }
          //
          XElement dsCfgElem = doc.Element( DsCfgElemNm );
          if( dsCfgElem == null )
          {
-            Info?.Invoke( $"Document does not contains a <{DsCfgElemNm}> element!" );
+            Error?.Invoke( $"Document does not contains a <{DsCfgElemNm}> element!" );
             return null;
          }
          #endregion
@@ -217,13 +221,13 @@ namespace DataPhilosophiae.Config.Model
          dsConfig.DefaultStgDirVal = (dsCfgElem.Element( StgDirElemNm )?.Value);
          if( string.IsNullOrWhiteSpace( dsConfig.DefaultStgDirVal ) )
          {
-            Info?.Invoke( $"Document does not contains a <{StgDirElemNm}> element!" );
+            Error?.Invoke( $"Document does not contains a <{StgDirElemNm}> element!" );
          }
          // List of DataStores...
          XElement dsCollElem = dsCfgElem.Element( DsCollElemNm );
          if( dsCollElem == null )
          {
-            Info?.Invoke( $"There is no DataStore configuration: <{DsCollElemNm}> element!" );
+            Error?.Invoke( $"There is no DataStore configuration: <{DsCollElemNm}> element!" );
             return dsConfig;
          }
          //
@@ -254,7 +258,7 @@ namespace DataPhilosophiae.Config.Model
          }
          if( dsConfig.DataStoreList.Count == 0 )
          {
-            Info?.Invoke( $"There is no DataStore configuration: <{DsElemNm}> element!" );
+            Warn?.Invoke( $"There is no DataStore configuration: <{DsElemNm}> element!" );
          }
          //
          return dsConfig;
@@ -274,7 +278,7 @@ namespace DataPhilosophiae.Config.Model
       {
          if( !File.Exists( filename ) )
          {
-            Info?.Invoke( $"File {filename} does not exist!" );
+            Error?.Invoke( $"File {filename} does not exist!" );
             return null;
          }
 
@@ -282,14 +286,19 @@ namespace DataPhilosophiae.Config.Model
          {
             XDocument doc = XDocument.Load( filename, LoadOptions.None );
             DataStoreConfig dsConfig = DataStoreConfig.Deserialize( doc );
-            Info?.Invoke( $"File {filename} loaded!" );
-            return dsConfig;
+            if( dsConfig != null )
+            {
+               Info?.Invoke( $"File '{filename}' loaded!" );
+               return dsConfig;
+            }
+            Error?.Invoke( $"Load error @ '{filename}'!" );
+            return null;
          }
          catch( Exception ex )
          {
-            Info?.Invoke( $"File {filename} exception!" );
-            Info?.Invoke( ex.Message );
-            Info?.Invoke( ex.StackTrace );
+            Error?.Invoke( $"Load exceptions @ '{filename}'!" );
+            Error?.Invoke( ex.Message );
+            Error?.Invoke( ex.StackTrace );
             return null;
          }
       }
@@ -304,9 +313,9 @@ namespace DataPhilosophiae.Config.Model
          }
          catch( Exception ex )
          {
-            Info?.Invoke( $"File {filename} exception!" );
-            Info?.Invoke( ex.Message );
-            Info?.Invoke( ex.StackTrace );
+            Error?.Invoke( $"File {filename} exception!" );
+            Error?.Invoke( ex.Message );
+            Error?.Invoke( ex.StackTrace );
             return;
          }
       }

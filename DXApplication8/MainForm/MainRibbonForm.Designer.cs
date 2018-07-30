@@ -90,6 +90,9 @@
          this.dviCollDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
          this.dviCollControlContainer = new DevExpress.XtraBars.Docking.ControlContainer();
          this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+         this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
+         this.xtraSaveFileDialog1 = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
+         this.xtraFolderBrowserDialog1 = new DevExpress.XtraEditors.XtraFolderBrowserDialog(this.components);
          ((System.ComponentModel.ISupportInitialize)(this.dsCollDocumentGroup)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.dsCollDocument)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.mdiCollDocument)).BeginInit();
@@ -243,6 +246,7 @@
          this.fileNewBarButtonItem.Id = 1;
          this.fileNewBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources._new;
          this.fileNewBarButtonItem.Name = "fileNewBarButtonItem";
+         this.fileNewBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fileNewBarButtonItem_ItemClick);
          // 
          // fileOpenBarButtonItem
          // 
@@ -250,6 +254,7 @@
          this.fileOpenBarButtonItem.Id = 2;
          this.fileOpenBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.open;
          this.fileOpenBarButtonItem.Name = "fileOpenBarButtonItem";
+         this.fileOpenBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fileOpenBarButtonItem_ItemClick);
          // 
          // fileSaveBarButtonItem
          // 
@@ -257,6 +262,7 @@
          this.fileSaveBarButtonItem.Id = 3;
          this.fileSaveBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.save;
          this.fileSaveBarButtonItem.Name = "fileSaveBarButtonItem";
+         this.fileSaveBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fileSaveBarButtonItem_ItemClick);
          // 
          // fileSaveAsBarButtonItem
          // 
@@ -264,6 +270,7 @@
          this.fileSaveAsBarButtonItem.Id = 6;
          this.fileSaveAsBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.saveas;
          this.fileSaveAsBarButtonItem.Name = "fileSaveAsBarButtonItem";
+         this.fileSaveAsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fileSaveAsBarButtonItem_ItemClick);
          // 
          // fileCloseBarButtonItem
          // 
@@ -271,6 +278,7 @@
          this.fileCloseBarButtonItem.Id = 7;
          this.fileCloseBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.close;
          this.fileCloseBarButtonItem.Name = "fileCloseBarButtonItem";
+         this.fileCloseBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fileCloseBarButtonItem_ItemClick);
          // 
          // fileQuickPrintBarButtonItem
          // 
@@ -278,6 +286,7 @@
          this.fileQuickPrintBarButtonItem.Id = 8;
          this.fileQuickPrintBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.printquick;
          this.fileQuickPrintBarButtonItem.Name = "fileQuickPrintBarButtonItem";
+         this.fileQuickPrintBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fileQuickPrintBarButtonItem_ItemClick);
          // 
          // filePrintBarButtonItem
          // 
@@ -285,6 +294,7 @@
          this.filePrintBarButtonItem.Id = 9;
          this.filePrintBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.print;
          this.filePrintBarButtonItem.Name = "filePrintBarButtonItem";
+         this.filePrintBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.filePrintBarButtonItem_ItemClick);
          // 
          // filePrintPreviewBarButtonItem
          // 
@@ -292,6 +302,7 @@
          this.filePrintPreviewBarButtonItem.Id = 10;
          this.filePrintPreviewBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.printpreview;
          this.filePrintPreviewBarButtonItem.Name = "filePrintPreviewBarButtonItem";
+         this.filePrintPreviewBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.filePrintPreviewBarButtonItem_ItemClick);
          // 
          // filePageSetupBarButtonItem
          // 
@@ -299,6 +310,7 @@
          this.filePageSetupBarButtonItem.Id = 11;
          this.filePageSetupBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.productcomparisons;
          this.filePageSetupBarButtonItem.Name = "filePageSetupBarButtonItem";
+         this.filePageSetupBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.filePageSetupBarButtonItem_ItemClick);
          // 
          // fileExportBarButtonItem
          // 
@@ -306,6 +318,7 @@
          this.fileExportBarButtonItem.Id = 12;
          this.fileExportBarButtonItem.ImageOptions.SvgImage = global::DataPhilosophiae.Properties.Resources.export;
          this.fileExportBarButtonItem.Name = "fileExportBarButtonItem";
+         this.fileExportBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fileExportBarButtonItem_ItemClick);
          // 
          // fileImportBarButtonItem
          // 
@@ -313,6 +326,7 @@
          this.fileImportBarButtonItem.Id = 13;
          this.fileImportBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("fileImportBarButtonItem.ImageOptions.SvgImage")));
          this.fileImportBarButtonItem.Name = "fileImportBarButtonItem";
+         this.fileImportBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.fileImportBarButtonItem_ItemClick);
          // 
          // skinDropDownButtonItem
          // 
@@ -603,6 +617,18 @@
          this.dviCollControlContainer.Size = new System.Drawing.Size(1024, 305);
          this.dviCollControlContainer.TabIndex = 0;
          // 
+         // xtraOpenFileDialog1
+         // 
+         this.xtraOpenFileDialog1.FileName = "xtraOpenFileDialog1";
+         // 
+         // xtraSaveFileDialog1
+         // 
+         this.xtraSaveFileDialog1.FileName = "xtraSaveFileDialog1";
+         // 
+         // xtraFolderBrowserDialog1
+         // 
+         this.xtraFolderBrowserDialog1.SelectedPath = "xtraFolderBrowserDialog1";
+         // 
          // MainRibbonForm
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -701,6 +727,9 @@
       private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
       private DevExpress.XtraBars.Ribbon.RibbonPageGroup othersRibbonPageGroup;
       private DevExpress.XtraBars.BarButtonItem messagesBarButtonItem;
+      private DevExpress.XtraEditors.XtraOpenFileDialog xtraOpenFileDialog1;
+      private DevExpress.XtraEditors.XtraSaveFileDialog xtraSaveFileDialog1;
+      private DevExpress.XtraEditors.XtraFolderBrowserDialog xtraFolderBrowserDialog1;
    }
 }
 
