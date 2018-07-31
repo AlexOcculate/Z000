@@ -49,6 +49,8 @@
          // 
          this.gridView1.GridControl = this.gridControl1;
          this.gridView1.Name = "gridView1";
+         this.gridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView1_MouseDown);
+         this.gridView1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gridView1_MouseMove);
          // 
          // DataStoreCollectionXuc
          // 

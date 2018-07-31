@@ -29,6 +29,7 @@
       private void InitializeComponent()
       {
          this.components = new System.ComponentModel.Container();
+         DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::DataPhilosophiae.SplashScreen1), true, true, true);
          System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainRibbonForm));
          DevExpress.Utils.Animation.PushTransition pushTransition1 = new DevExpress.Utils.Animation.PushTransition();
          DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer dockingContainer1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer();
@@ -66,6 +67,8 @@
          this.mdiCollBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          this.dvCollsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          this.messagesBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+         this.helpBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+         this.aboutBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          this.fileRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
          this.fileCommonRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
          this.filePrintRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -77,6 +80,8 @@
          this.ViewRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
          this.coreRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
          this.othersRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+         this.helpRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
+         this.helpRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
          this.mainRibbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
          this.documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
          this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
@@ -106,8 +111,8 @@
          ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
          this.msgCollDockPanel.SuspendLayout();
-         this.dockPanel1_Container.SuspendLayout();
          this.dsCollDockPanel.SuspendLayout();
+         this.dsCollControlContainer.SuspendLayout();
          this.mdiCollDockPanel.SuspendLayout();
          this.dviCollDockPanel.SuspendLayout();
          ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
@@ -150,6 +155,10 @@
          this.dviCollDocument.Properties.AllowFloat = DevExpress.Utils.DefaultBoolean.True;
          this.dviCollDocument.Properties.AllowFloatOnDoubleClick = DevExpress.Utils.DefaultBoolean.True;
          // 
+         // splashScreenManager1
+         // 
+         splashScreenManager1.ClosingDelay = 1000;
+         // 
          // mainRibbonControl
          // 
          this.mainRibbonControl.ApplicationButtonDropDownControl = this.backstageViewControl1;
@@ -176,15 +185,18 @@
             this.dsCollBarButtonItem,
             this.mdiCollBarButtonItem,
             this.dvCollsBarButtonItem,
-            this.messagesBarButtonItem});
+            this.messagesBarButtonItem,
+            this.helpBarButtonItem,
+            this.aboutBarButtonItem});
          this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
-         this.mainRibbonControl.MaxItemId = 24;
+         this.mainRibbonControl.MaxItemId = 26;
          this.mainRibbonControl.Name = "mainRibbonControl";
          this.mainRibbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.fileRibbonPage,
             this.skinsRibbonPage,
             this.workspaceRibbonPage,
-            this.ViewRibbonPage});
+            this.ViewRibbonPage,
+            this.helpRibbonPage});
          this.mainRibbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
          this.mainRibbonControl.Size = new System.Drawing.Size(1024, 162);
          this.mainRibbonControl.StatusBar = this.mainRibbonStatusBar;
@@ -193,7 +205,7 @@
          // 
          this.backstageViewControl1.Controls.Add(this.backstageViewClientControl1);
          this.backstageViewControl1.Items.Add(this.backstageViewTabItem1);
-         this.backstageViewControl1.Location = new System.Drawing.Point(203, 3);
+         this.backstageViewControl1.Location = new System.Drawing.Point(218, 90);
          this.backstageViewControl1.Name = "backstageViewControl1";
          this.backstageViewControl1.OwnerControl = this.mainRibbonControl;
          this.backstageViewControl1.SelectedTab = this.backstageViewTabItem1;
@@ -406,6 +418,22 @@
          this.messagesBarButtonItem.Name = "messagesBarButtonItem";
          this.messagesBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.messagesBarButtonItem_ItemClick);
          // 
+         // helpBarButtonItem
+         // 
+         this.helpBarButtonItem.Caption = "Help";
+         this.helpBarButtonItem.Id = 24;
+         this.helpBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("helpBarButtonItem.ImageOptions.SvgImage")));
+         this.helpBarButtonItem.Name = "helpBarButtonItem";
+         this.helpBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.helpBarButtonItem_ItemClick);
+         // 
+         // aboutBarButtonItem
+         // 
+         this.aboutBarButtonItem.Caption = "About";
+         this.aboutBarButtonItem.Id = 25;
+         this.aboutBarButtonItem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("aboutBarButtonItem.ImageOptions.SvgImage")));
+         this.aboutBarButtonItem.Name = "aboutBarButtonItem";
+         this.aboutBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.aboutBarButtonItem_ItemClick);
+         // 
          // fileRibbonPage
          // 
          this.fileRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -493,6 +521,20 @@
          this.othersRibbonPageGroup.Name = "othersRibbonPageGroup";
          this.othersRibbonPageGroup.Text = "Others";
          // 
+         // helpRibbonPage
+         // 
+         this.helpRibbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.helpRibbonPageGroup});
+         this.helpRibbonPage.Name = "helpRibbonPage";
+         this.helpRibbonPage.Text = "Help";
+         // 
+         // helpRibbonPageGroup
+         // 
+         this.helpRibbonPageGroup.ItemLinks.Add(this.helpBarButtonItem);
+         this.helpRibbonPageGroup.ItemLinks.Add(this.aboutBarButtonItem);
+         this.helpRibbonPageGroup.Name = "helpRibbonPageGroup";
+         this.helpRibbonPageGroup.Text = "Help";
+         // 
          // mainRibbonStatusBar
          // 
          this.mainRibbonStatusBar.Location = new System.Drawing.Point(0, 694);
@@ -557,7 +599,6 @@
          // 
          // dockPanel1_Container
          // 
-         this.dockPanel1_Container.Controls.Add(this.backstageViewControl1);
          this.dockPanel1_Container.Location = new System.Drawing.Point(3, 31);
          this.dockPanel1_Container.Name = "dockPanel1_Container";
          this.dockPanel1_Container.Size = new System.Drawing.Size(1018, 166);
@@ -576,6 +617,7 @@
          // 
          // dsCollControlContainer
          // 
+         this.dsCollControlContainer.Controls.Add(this.backstageViewControl1);
          this.dsCollControlContainer.Location = new System.Drawing.Point(0, 0);
          this.dsCollControlContainer.Name = "dsCollControlContainer";
          this.dsCollControlContainer.Size = new System.Drawing.Size(1024, 305);
@@ -659,8 +701,8 @@
          ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
          this.msgCollDockPanel.ResumeLayout(false);
-         this.dockPanel1_Container.ResumeLayout(false);
          this.dsCollDockPanel.ResumeLayout(false);
+         this.dsCollControlContainer.ResumeLayout(false);
          this.mdiCollDockPanel.ResumeLayout(false);
          this.dviCollDockPanel.ResumeLayout(false);
          ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
@@ -731,6 +773,10 @@
       private DevExpress.XtraEditors.XtraOpenFileDialog xtraOpenFileDialog1;
       private DevExpress.XtraEditors.XtraSaveFileDialog xtraSaveFileDialog1;
       private DevExpress.XtraEditors.XtraFolderBrowserDialog xtraFolderBrowserDialog1;
+      private DevExpress.XtraBars.BarButtonItem helpBarButtonItem;
+      private DevExpress.XtraBars.BarButtonItem aboutBarButtonItem;
+      private DevExpress.XtraBars.Ribbon.RibbonPage helpRibbonPage;
+      private DevExpress.XtraBars.Ribbon.RibbonPageGroup helpRibbonPageGroup;
    }
 }
 

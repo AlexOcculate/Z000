@@ -1,6 +1,8 @@
 ﻿using DataPhilosophiae.Config.Model;
 using DevExpress.XtraBars;
+using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
 using System;
 using System.IO;
 using System.Linq;
@@ -13,6 +15,8 @@ namespace DataPhilosophiae
       public MainRibbonForm()
       {
          this.InitializeComponent();
+         //
+         this.CreateRecentItem();
          //
          this.dsCollDockPanel.ControlContainer.Controls.Add(this.DsCollXuc);
          this.mdiCollDockPanel.ControlContainer.Controls.Add(this.MdiCollXuc);
@@ -32,7 +36,7 @@ namespace DataPhilosophiae
 
       private void MainRibbonForm_FormClosing(object sender, FormClosingEventArgs e)
       {
-         switch( this.SaveFileDialogHelper( ) )
+         switch(this.SaveFileDialogHelper())
          {
             case DialogResult.OK:
             case DialogResult.Ignore:
@@ -43,31 +47,31 @@ namespace DataPhilosophiae
          }
       }
 
-      private void DataStoreConfig_Error(string msg)
-      {
-         this.MsgCollXuc.Error(msg);
-      }
-
-      private void DataStoreConfig_Warn(string msg)
-      {
-         this.MsgCollXuc.Warn(msg);
-      }
-
-      private void DataStoreConfig_Info(string msg)
-      {
-         this.MsgCollXuc.Info(msg);
-      }
-
       #region --- External Controls ---
+      private void DataStoreConfig_Error( string msg )
+      {
+         this.MsgCollXuc.Error( msg );
+      }
+
+      private void DataStoreConfig_Warn( string msg )
+      {
+         this.MsgCollXuc.Warn( msg );
+      }
+
+      private void DataStoreConfig_Info( string msg )
+      {
+         this.MsgCollXuc.Info( msg );
+      }
+
       private DataPhilosophiae.DataStoreCollectionXuc dsCollXuc;
 
       public DataStoreCollectionXuc DsCollXuc
       {
          get
          {
-            if(this.dsCollXuc == null)
+            if( this.dsCollXuc == null )
             {
-               this.dsCollXuc = new DataPhilosophiae.DataStoreCollectionXuc() { Dock = DockStyle.Fill };
+               this.dsCollXuc = new DataPhilosophiae.DataStoreCollectionXuc( ) { Dock = DockStyle.Fill };
             }
             return this.dsCollXuc;
          }
@@ -244,16 +248,16 @@ namespace DataPhilosophiae
          {
             return;
          }
-         if( SetWorkingFolderDialogHelper() != DialogResult.OK )
+         if(this.SetWorkingFolderDialogHelper() != DialogResult.OK)
          {
-            this.MsgCollXuc.Info( "New file cancelled!" );
+            this.MsgCollXuc.Info("New file cancelled!");
             return;
          }
          this.DefaultFileName = this.builtinDefaultFilename;
-         this.dsCfg = new DataStoreConfig( this.DefaultPath );
+         this.dsCfg = new DataStoreConfig(this.DefaultPath);
          this.MsgCollXuc.Info("New file '{0}'!", Path.Combine(this.DefaultPath, this.DefaultFileName));
          this.UpdateFileNameLabel();
-         this.UpdateFileStatusLabel( );
+         this.UpdateFileStatusLabel();
          return;
       }
 
@@ -263,7 +267,7 @@ namespace DataPhilosophiae
          XtraFolderBrowserDialog dialog = this.xtraFolderBrowserDialog1;
          dialog.SelectedPath = this.DefaultPath;
          this.dialogResult = dialog.ShowDialog();
-         if( this.dialogResult == DialogResult.OK )
+         if(this.dialogResult == DialogResult.OK)
          {
             this.DefaultPath = dialog.SelectedPath;
          }
@@ -276,7 +280,7 @@ namespace DataPhilosophiae
       private void fileOpenBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
       {
          this.FileOpened = false;
-         switch( this.SaveFileDialogHelper( ) )
+         switch(this.SaveFileDialogHelper())
          {
             case DialogResult.OK:
             case DialogResult.Ignore:
@@ -328,31 +332,31 @@ namespace DataPhilosophiae
       #region --- Save / Save As File ---
       private void fileSaveBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
       {
-         if( this.SaveFileDialogHelper() != DialogResult.OK )
+         if(this.SaveFileDialogHelper() != DialogResult.OK)
          {
             return;
          }
          // this.UpdateOpenRecentList( dialog.FileName );
-         string fqn = Path.Combine( this.DefaultPath, this.DefaultFileName );
-         this.dsCfg.Save( fqn );
-         this.MsgCollXuc.Info( "File '{0}' saved.", fqn );
+         string fqn = Path.Combine(this.DefaultPath, this.DefaultFileName);
+         this.dsCfg.Save(fqn);
+         this.MsgCollXuc.Info("File '{0}' saved.", fqn);
          this.NeedToSave = false;
-         this.UpdateFileNameLabel( );
-         this.UpdateFileStatusLabel( );
+         this.UpdateFileNameLabel();
+         this.UpdateFileStatusLabel();
       }
 
       private void fileSaveAsBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
       {
-         if( this.SaveFileDialogHelper(true) != DialogResult.OK )
+         if(this.SaveFileDialogHelper(true) != DialogResult.OK)
          {
             return;
          }
-         string fqn = Path.Combine( this.DefaultPath, this.DefaultFileName );
-         this.dsCfg.Save( fqn );
-         this.MsgCollXuc.Info( "File saved as '{0}'.", fqn );
+         string fqn = Path.Combine(this.DefaultPath, this.DefaultFileName);
+         this.dsCfg.Save(fqn);
+         this.MsgCollXuc.Info("File saved as '{0}'.", fqn);
          this.NeedToSave = false;
-         this.UpdateFileNameLabel( );
-         this.UpdateFileStatusLabel( );
+         this.UpdateFileNameLabel();
+         this.UpdateFileStatusLabel();
       }
 
       private DialogResult SaveFileDialogHelper(bool decisionTaken = false)
@@ -458,6 +462,115 @@ namespace DataPhilosophiae
       private void messagesBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
       {
          this.msgCollDockPanel.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Visible;
+      }
+      #endregion
+
+      private void helpBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+      {
+      }
+
+      private void aboutBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+      {
+         SplashScreenManager.ShowForm(typeof(SplashScreen1));
+         //... 
+         SplashScreenManager.CloseForm();
+      }
+
+      #region --- BackStageViewControl and RecentItemControl ---
+      private void CreateRecentItem()
+      {
+         {
+            BackstageViewButtonItem button1 = new BackstageViewButtonItem( )
+            {
+               Caption = "Save",
+               Glyph = DevExpress.Images.ImageResourceCache.Default.GetImage( "office2013/save/save_32x32.png" )
+            };
+            BackstageViewTabItem tab1 = new BackstageViewTabItem( )
+            {
+               Caption = "Save As...",
+               Glyph = DevExpress.Images.ImageResourceCache.Default.GetImage( "office2013/save/saveas_32x32.png" )
+            };
+            this.backstageViewControl1.Items.Add( button1 );
+            this.backstageViewControl1.Items.Add( tab1 );
+            this.backstageViewControl1.Items.Insert( 1, new BackstageViewItemSeparator( ) );
+         }
+
+         //         DevExpress.XtraBars.Ribbon.RecentItemControl recentItemControl1 = new DevExpress.XtraBars.Ribbon.RecentItemControl();
+         this.recentItemControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder; //to hide border
+         this.recentItemControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.recentItemControl1.Name = "recentItemControl";
+         this.recentItemControl1.Title = "RecentControl Main Title";
+
+         //create the mandatory right panel for tab items' content
+         DevExpress.XtraBars.Ribbon.RecentStackPanel recentStackPanelRight = new DevExpress.XtraBars.Ribbon.RecentStackPanel( );
+         recentStackPanelRight.Name = "recentStackPanelRight";
+         recentStackPanelRight.SelectedItem = null;
+         this.recentItemControl1.DefaultContentPanel = recentStackPanelRight;
+
+         SimpleButton simpleButton = new SimpleButton( );
+         simpleButton.Dock = System.Windows.Forms.DockStyle.Fill;
+         simpleButton.Name = "simpleButton";
+         simpleButton.Text = "Simple Button";
+
+         //should be added to the RecentItemControl.Controls collection
+         DevExpress.XtraBars.Ribbon.RecentControlItemControlContainer recentControlItemControlContainer = new DevExpress.XtraBars.Ribbon.RecentControlItemControlContainer( );
+         recentControlItemControlContainer.Controls.Add( simpleButton );
+         recentControlItemControlContainer.Name = "recentControlItemControlContainer";
+         recentControlItemControlContainer.Size = new System.Drawing.Size( 267, 40 );
+         this.recentItemControl1.Controls.Add( recentControlItemControlContainer );
+
+         //create container item, should have a parent RecentControlItemControlContainer
+         DevExpress.XtraBars.Ribbon.RecentControlContainerItem recentControlContainerItem = new DevExpress.XtraBars.Ribbon.RecentControlContainerItem( );
+         recentControlContainerItem.ClientHeight = 40;
+         recentControlContainerItem.ControlContainer = recentControlItemControlContainer;
+         recentControlContainerItem.Name = "recentControlContainerItem";
+
+         DevExpress.XtraBars.Ribbon.RecentLabelItem recentLabelItem = new DevExpress.XtraBars.Ribbon.RecentLabelItem( );
+         recentLabelItem.Caption = "RecentControl Label";
+         recentLabelItem.Name = "recentLabelItem";
+         recentLabelItem.ItemClick += this.RecentLabelItem_ItemClick;
+
+         //create the right panel for the tab item
+         DevExpress.XtraBars.Ribbon.RecentStackPanel recentStackPanell = new DevExpress.XtraBars.Ribbon.RecentStackPanel( );
+         recentStackPanell.Caption = "RecentControl Stack Panel";
+         //add items to the right panel
+         recentStackPanell.Items.AddRange( new DevExpress.XtraBars.Ribbon.RecentItemBase[ ]
+            {
+                  recentLabelItem
+            } );
+         recentStackPanell.Name = "recentStackPanell";
+         recentStackPanell.SelectedItem = null;
+
+         //the element of the main panel
+         DevExpress.XtraBars.Ribbon.RecentTabItem recentTabItem1 = new DevExpress.XtraBars.Ribbon.RecentTabItem( );
+         recentTabItem1.Caption = "RecentControl Tab Item";
+         recentTabItem1.Name = "recentTabIteml";
+         recentTabItem1.TabPanel = recentStackPanell;
+         recentTabItem1.ItemClick += this.RecentTabItem1_ItemClick;
+
+         //create the mandatory main panel
+         DevExpress.XtraBars.Ribbon.RecentStackPanel recentStackPanelMain = new DevExpress.XtraBars.Ribbon.RecentStackPanel( );
+         //add elements to the main panel
+         recentStackPanelMain.Items.AddRange( new DevExpress.XtraBars.Ribbon.RecentItemBase[ ]
+            {
+                  recentTabItem1,
+                  recentControlContainerItem
+            } );
+         recentStackPanelMain.Name = "mainPanel1";
+         recentStackPanelMain.SelectedItem = recentTabItem1;
+         this.recentItemControl1.MainPanel = recentStackPanelMain;
+
+         //set the RecentControl as a Backstage Tab Item's content
+         this.backstageViewClientControl1.Controls.Add( this.recentItemControl1 );
+         this.recentItemControl1.SelectedTab = recentTabItem1;
+      }
+
+      private void RecentLabelItem_ItemClick( object sender, RecentItemEventArgs e )
+      {
+      }
+
+      private void RecentTabItem1_ItemClick( object sender, RecentItemEventArgs e )
+      {
       }
       #endregion
    }
