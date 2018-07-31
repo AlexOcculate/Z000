@@ -17,9 +17,14 @@ namespace DataPhilosophiae.Config.Model
       public static event WarnMessageDelegate Warn;
       public static event ErrorMessageDelegate Error;
 
-      public DataStoreConfig()
+      public DataStoreConfig(  )
       {
          this.DataStoreList = new BindingList<DataStore>( );
+      }
+      public DataStoreConfig( string builtinDefaultPath )
+         : this()
+      {
+         this.DefaultStgDirVal = builtinDefaultPath;
       }
 
       public override string ToString()

@@ -1,10 +1,10 @@
 ﻿using DataPhilosophiae.Config.Model;
+using DevExpress.XtraBars;
+using DevExpress.XtraEditors;
 using System;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.XtraBars;
-using DevExpress.XtraEditors;
 
 namespace DataPhilosophiae
 {
@@ -12,45 +12,50 @@ namespace DataPhilosophiae
    {
       public MainRibbonForm()
       {
-         this.InitializeComponent( );
+         this.InitializeComponent();
          //
-         this.dsCollDockPanel.ControlContainer.Controls.Add( this.DsCollXuc );
-         this.mdiCollDockPanel.ControlContainer.Controls.Add( this.MdiCollXuc );
-         this.dviCollDockPanel.ControlContainer.Controls.Add( this.DviCollXuc );
-         this.msgCollDockPanel.ControlContainer.Controls.Add( this.MsgCollXuc );
+         this.dsCollDockPanel.ControlContainer.Controls.Add(this.DsCollXuc);
+         this.mdiCollDockPanel.ControlContainer.Controls.Add(this.MdiCollXuc);
+         this.dviCollDockPanel.ControlContainer.Controls.Add(this.DviCollXuc);
+         this.msgCollDockPanel.ControlContainer.Controls.Add(this.MsgCollXuc);
          DataStoreConfig.Info += this.DataStoreConfig_Info;
          DataStoreConfig.Warn += this.DataStoreConfig_Warn;
          DataStoreConfig.Error += this.DataStoreConfig_Error;
       }
 
-      private void MainRibbonForm_Load( object sender, EventArgs e )
+      private void MainRibbonForm_Load(object sender, EventArgs e)
       {
          //TODO: App.Config!!!
          string skinStyle = "The Bezier";
-         DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle( skinStyle );
+         DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(skinStyle);
       }
 
-      private void MainRibbonForm_FormClosing( object sender, FormClosingEventArgs e )
+      private void MainRibbonForm_FormClosing(object sender, FormClosingEventArgs e)
       {
-         if( this.SaveFileDialogHelper( ) != DialogResult.OK )
+         switch( this.SaveFileDialogHelper( ) )
          {
-            e.Cancel = true;
+            case DialogResult.OK:
+            case DialogResult.Ignore:
+               break;
+            default:
+               e.Cancel = true;
+               break;
          }
       }
 
-      private void DataStoreConfig_Error( string msg )
+      private void DataStoreConfig_Error(string msg)
       {
-         this.MsgCollXuc.Error( msg );
+         this.MsgCollXuc.Error(msg);
       }
 
-      private void DataStoreConfig_Warn( string msg )
+      private void DataStoreConfig_Warn(string msg)
       {
-         this.MsgCollXuc.Warn( msg );
+         this.MsgCollXuc.Warn(msg);
       }
 
-      private void DataStoreConfig_Info( string msg )
+      private void DataStoreConfig_Info(string msg)
       {
-         this.MsgCollXuc.Info( msg );
+         this.MsgCollXuc.Info(msg);
       }
 
       #region --- External Controls ---
@@ -60,9 +65,9 @@ namespace DataPhilosophiae
       {
          get
          {
-            if( this.dsCollXuc == null )
+            if(this.dsCollXuc == null)
             {
-               this.dsCollXuc = new DataPhilosophiae.DataStoreCollectionXuc( ) { Dock = DockStyle.Fill };
+               this.dsCollXuc = new DataPhilosophiae.DataStoreCollectionXuc() { Dock = DockStyle.Fill };
             }
             return this.dsCollXuc;
          }
@@ -74,9 +79,9 @@ namespace DataPhilosophiae
       {
          get
          {
-            if( this.mdiCollXuc == null )
+            if(this.mdiCollXuc == null)
             {
-               this.mdiCollXuc = new DataPhilosophiae.XtraUserControl2( ) { Dock = DockStyle.Fill };
+               this.mdiCollXuc = new DataPhilosophiae.XtraUserControl2() { Dock = DockStyle.Fill };
             }
             return this.mdiCollXuc;
          }
@@ -88,9 +93,9 @@ namespace DataPhilosophiae
       {
          get
          {
-            if( this.dviCollXuc == null )
+            if(this.dviCollXuc == null)
             {
-               this.dviCollXuc = new DataPhilosophiae.XtraUserControl3( ) { Dock = DockStyle.Fill };
+               this.dviCollXuc = new DataPhilosophiae.XtraUserControl3() { Dock = DockStyle.Fill };
             }
             return this.dviCollXuc;
          }
@@ -102,103 +107,51 @@ namespace DataPhilosophiae
       {
          get
          {
-            if( this.msgCollXuc == null )
+            if(this.msgCollXuc == null)
             {
-               this.msgCollXuc = new DataPhilosophiae.MessageXuc( ) { Dock = DockStyle.Fill };
+               this.msgCollXuc = new DataPhilosophiae.MessageXuc() { Dock = DockStyle.Fill };
             }
             return this.msgCollXuc;
          }
       }
       #endregion
 
-      private DataStoreConfig dsConfig;
+      private DataStoreConfig dsCfg;
 
-      private void fileNewBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
+      private void fileQuickPrintBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
       {
-         if( this.SaveFileDialogHelper( ) != DialogResult.OK )
-         {
-            return;
-         }
-         this.DefaultFileName = this.builtinDefaultFilename;
-         this.MsgCollXuc.Info( "New file '{0}'!", Path.Combine( this.DefaultPath, this.builtinDefaultFilename ) );
-         this.UpdateFileNameLabel( );
-         return;
-      }
-      private void fileOpenBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
-      {
-         if( this.SaveFileDialogHelper( ) != DialogResult.OK )
-         {
-            return;
-         }
-         if( this.OpenFileDialogHelper( ) != DialogResult.OK )
-         {
-            return;
-         }
-
-         string fqn = Path.Combine( this.DefaultPath, this.DefaultFileName );
-         this.dsConfig = DataStoreConfig.Load( fqn );
-         if( this.dsConfig == null )
-         {
-            return;
-         }
-         this.DsCollXuc.SetConfig( this.dsConfig );
-      }
-      private void fileSaveBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
-      {
-         this.SaveFileDialogHelper( );
-      }
-      private void fileSaveAsBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
-      {
-         this.SaveFileDialogHelper( true );
-      }
-      private void fileCloseBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
-      {
-         if( this.SaveFileDialogHelper( ) != DialogResult.OK )
-         {
-            return;
-         }
-         this.MsgCollXuc.Info( "File '{0}' closed!", Path.Combine( this.DefaultPath, this.DefaultFileName ) );
-
-         this.DefaultFileName = this.builtinDefaultFilename;
       }
 
-      private void fileQuickPrintBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
+      private void filePrintBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
       {
-
-      }
-      private void filePrintBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
-      {
-
-      }
-      private void filePrintPreviewBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
-      {
-
       }
 
-      private void filePageSetupBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
+      private void filePrintPreviewBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
       {
-
       }
 
-      private void fileExportBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
+      private void filePageSetupBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
       {
-
       }
 
-      private void fileImportBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
+      private void fileExportBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
       {
-
       }
-      private void skinsColorMixerBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
+
+      private void fileImportBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
       {
-         DevExpress.XtraEditors.ColorWheel.ColorWheelForm cwForm = new DevExpress.XtraEditors.ColorWheel.ColorWheelForm( );
-         cwForm.Show( );
+      }
+
+      private void skinsColorMixerBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+      {
+         DevExpress.XtraEditors.ColorWheel.ColorWheelForm cwForm = new DevExpress.XtraEditors.ColorWheel.ColorWheelForm();
+         cwForm.Show();
       }
 
       #region --- New / Open / Open Recent / Save / Close / Exit Menu Handlers ---
 
       public const string FILE_FILTERS = "DataStoreConfig (*.dsx)|*.dsx|XML files (*.xml)|*.xml|All files (*.*)|*.*";
-      public string builtinDefaultPath = System.Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments );
+      public string builtinDefaultPath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
       public string builtinDefaultFilename = "dsConfig.dsx";
 
       private string defaultPath;
@@ -207,7 +160,7 @@ namespace DataPhilosophiae
       {
          get
          {
-            if( this.defaultPath != null )
+            if(this.defaultPath != null)
             {
                return this.defaultPath;
             }
@@ -215,16 +168,15 @@ namespace DataPhilosophiae
          }
          set
          {
-            if( value == this.builtinDefaultPath )
+            if(value == this.builtinDefaultPath)
             {
-               if( this.defaultPath != null )
+               if(this.defaultPath != null)
                {
                   this.defaultPath = null;
                }
-            }
-            else
+            } else
             {
-               if( this.defaultPath != value )
+               if(this.defaultPath != value)
                {
                   this.defaultPath = value;
                }
@@ -238,7 +190,7 @@ namespace DataPhilosophiae
       {
          get
          {
-            if( this.defaultFileName != null )
+            if(this.defaultFileName != null)
             {
                return this.defaultFileName;
             }
@@ -246,16 +198,15 @@ namespace DataPhilosophiae
          }
          set
          {
-            if( value == this.builtinDefaultFilename )
+            if(value == this.builtinDefaultFilename)
             {
-               if( this.defaultFileName != null )
+               if(this.defaultFileName != null)
                {
                   this.defaultFileName = null;
                }
-            }
-            else
+            } else
             {
-               if( this.defaultFileName != value )
+               if(this.defaultFileName != value)
                {
                   this.defaultFileName = value;
                }
@@ -286,6 +237,73 @@ namespace DataPhilosophiae
       //}
       #endregion
 
+      #region --- New File ---
+      private void fileNewBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+      {
+         if(this.SaveFileDialogHelper() != DialogResult.OK)
+         {
+            return;
+         }
+         if( SetWorkingFolderDialogHelper() != DialogResult.OK )
+         {
+            this.MsgCollXuc.Info( "New file cancelled!" );
+            return;
+         }
+         this.DefaultFileName = this.builtinDefaultFilename;
+         this.dsCfg = new DataStoreConfig( this.DefaultPath );
+         this.MsgCollXuc.Info("New file '{0}'!", Path.Combine(this.DefaultPath, this.DefaultFileName));
+         this.UpdateFileNameLabel();
+         this.UpdateFileStatusLabel( );
+         return;
+      }
+
+      private DialogResult SetWorkingFolderDialogHelper()
+      {
+         //string defaultFilePath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+         XtraFolderBrowserDialog dialog = this.xtraFolderBrowserDialog1;
+         dialog.SelectedPath = this.DefaultPath;
+         this.dialogResult = dialog.ShowDialog();
+         if( this.dialogResult == DialogResult.OK )
+         {
+            this.DefaultPath = dialog.SelectedPath;
+         }
+         return this.dialogResult;
+      }
+
+      #endregion
+
+      #region --- Open File ---
+      private void fileOpenBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+      {
+         this.FileOpened = false;
+         switch( this.SaveFileDialogHelper( ) )
+         {
+            case DialogResult.OK:
+            case DialogResult.Ignore:
+               break;
+            default:
+               return;
+         }
+         if(this.OpenFileDialogHelper() != DialogResult.OK)
+         {
+            return;
+         }
+
+         string fqn = Path.Combine(this.DefaultPath, this.DefaultFileName);
+         this.dsCfg = DataStoreConfig.Load(fqn);
+         if(this.dsCfg == null)
+         {
+            return;
+         }
+         this.DsCollXuc.SetConfig(this.dsCfg);
+         //
+         this.FileOpened = true;
+         this.UpdateOpenRecentList(fqn);
+         this.MsgCollXuc.Info("File '{0}' opened.", fqn);
+         this.UpdateFileNameLabel();
+         this.UpdateFileStatusLabel();
+      }
+
       private DialogResult OpenFileDialogHelper()
       {
          XtraOpenFileDialog dialog = this.xtraOpenFileDialog1;
@@ -294,37 +312,61 @@ namespace DataPhilosophiae
          dialog.AutoUpdateFilterDescription = false;
          dialog.Filter = FILE_FILTERS;
          dialog.FileName = this.DefaultFileName;
-         DialogResult dialogResult = dialog.ShowDialog( );
-         if( dialogResult == DialogResult.OK )
+         DialogResult dialogResult = dialog.ShowDialog();
+         if(dialogResult == DialogResult.OK)
          {
-            this.DefaultFileName = Path.GetFileName( dialog.FileName );
-            this.DefaultPath = Path.GetDirectoryName( dialog.FileName );
-            this.UpdateOpenRecentList( dialog.FileName );
-            this.FileOpened = true;
-            this.MsgCollXuc.Info( "File '{0}' opened.", dialog.FileName );
-            this.UpdateFileNameLabel( );
-            this.UpdateFileStatusLabel( );
-         }
-         else
+            this.DefaultFileName = Path.GetFileName(dialog.FileName);
+            this.DefaultPath = Path.GetDirectoryName(dialog.FileName);
+         } else
          {
-            this.MsgCollXuc.Warn( "Open operation canceled!" );
+            this.MsgCollXuc.Warn("Open operation canceled!");
          }
          return dialogResult;
       }
+      #endregion
 
-      private DialogResult SaveFileDialogHelper( bool decisionTaken = false )
+      #region --- Save / Save As File ---
+      private void fileSaveBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
       {
-         if( this.NeedToSave || decisionTaken )
+         if( this.SaveFileDialogHelper() != DialogResult.OK )
          {
-            if( !decisionTaken )
+            return;
+         }
+         // this.UpdateOpenRecentList( dialog.FileName );
+         string fqn = Path.Combine( this.DefaultPath, this.DefaultFileName );
+         this.dsCfg.Save( fqn );
+         this.MsgCollXuc.Info( "File '{0}' saved.", fqn );
+         this.NeedToSave = false;
+         this.UpdateFileNameLabel( );
+         this.UpdateFileStatusLabel( );
+      }
+
+      private void fileSaveAsBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+      {
+         if( this.SaveFileDialogHelper(true) != DialogResult.OK )
+         {
+            return;
+         }
+         string fqn = Path.Combine( this.DefaultPath, this.DefaultFileName );
+         this.dsCfg.Save( fqn );
+         this.MsgCollXuc.Info( "File saved as '{0}'.", fqn );
+         this.NeedToSave = false;
+         this.UpdateFileNameLabel( );
+         this.UpdateFileStatusLabel( );
+      }
+
+      private DialogResult SaveFileDialogHelper(bool decisionTaken = false)
+      {
+         if(this.NeedToSave || decisionTaken)
+         {
+            if(!decisionTaken)
             {
-               this.dialogResult = XtraMessageBox.Show( "Save your last modifications?", "Warning", MessageBoxButtons.YesNoCancel );
-            }
-            else
+               this.dialogResult = XtraMessageBox.Show("Save your last modifications?", "Warning", MessageBoxButtons.YesNoCancel);
+            } else
             {
                this.dialogResult = DialogResult.Yes;
             }
-            switch( this.dialogResult )
+            switch(this.dialogResult)
             {
                case DialogResult.Yes:
                   XtraSaveFileDialog dialog = this.xtraSaveFileDialog1;
@@ -334,40 +376,53 @@ namespace DataPhilosophiae
                   dialog.FileName = this.DefaultFileName;
                   dialog.CreatePrompt = true;
                   dialog.OverwritePrompt = true;
-                  this.dialogResult = dialog.ShowDialog( );
-                  if( this.dialogResult == DialogResult.OK )
+                  this.dialogResult = dialog.ShowDialog();
+                  if(this.dialogResult == DialogResult.OK)
                   {
-                     //System.IO.File.WriteAllText( dialog.FileName, this.mainModule.Text );
-                     this.DefaultFileName = Path.GetFileName( dialog.FileName );
-                     this.DefaultPath = Path.GetDirectoryName( dialog.FileName );
-                     //                     this.UpdateOpenRecentList( dialog.FileName );
-                     this.MsgCollXuc.Info( "File '{0}' saved.", dialog.FileName );
+                     this.DefaultFileName = Path.GetFileName(dialog.FileName);
+                     this.DefaultPath = Path.GetDirectoryName(dialog.FileName);
+                     return this.dialogResult = DialogResult.OK;
                   }
                   break;
                case DialogResult.No:
-                  this.MsgCollXuc.Warn( "File '{0}' not saved.", this.DefaultFileName );
+                  this.MsgCollXuc.Warn("File '{0}' not saved.", this.DefaultFileName);
                   break;
                case DialogResult.Cancel:
-                  this.MsgCollXuc.Warn( "Save operation canceled: '{0}'!", this.DefaultFileName );
-                  return DialogResult.Cancel;
+                  this.MsgCollXuc.Warn("Save operation canceled: '{0}'!", this.DefaultFileName);
+                  return this.dialogResult = DialogResult.Cancel;
             }
          }
-         this.NeedToSave = false;
-         this.UpdateFileNameLabel( );
-         this.UpdateFileStatusLabel( );
-         return this.dialogResult = DialogResult.OK;
+         //this.NeedToSave = false;
+         //this.UpdateFileNameLabel();
+         //this.UpdateFileStatusLabel();
+         return this.dialogResult = DialogResult.Ignore;
       }
+      #endregion
+
+      #region --- Close File ---
+      private void fileCloseBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+      {
+         if(this.SaveFileDialogHelper() != DialogResult.OK)
+         {
+            return;
+         }
+         this.MsgCollXuc.Info("File '{0}' closed!", Path.Combine(this.DefaultPath, this.DefaultFileName));
+
+         this.DefaultFileName = this.builtinDefaultFilename;
+      }
+      #endregion
 
       private void UpdateFileNameLabel()
       {
-         //         this.fileNameLabelControl.Text = this.FileOpened ? Path.GetFileName( this.DefaultFileName ) : "Empty";
+         // this.fileNameLabelControl.Text = this.FileOpened ? Path.GetFileName( this.DefaultFileName ) : "Empty";
       }
 
       private void UpdateFileStatusLabel()
       {
-         //         this.fileStatusLabelControl.Text = this.NeedToSave ? "Dirty" : "Clean";
+         // this.fileStatusLabelControl.Text = this.NeedToSave ? "Dirty" : "Clean";
       }
-      private void UpdateOpenRecentList( string item )
+
+      private void UpdateOpenRecentList(string item)
       {
          //Strings s = this.openRecentBarListItem.Strings;
          //s.Insert( 0, item );
@@ -380,31 +435,30 @@ namespace DataPhilosophiae
       #endregion
 
       #region --- "Open/View" and "Close/Hide" Dockings... ---
-      private void dockManager1_ClosingPanel( object sender, DevExpress.XtraBars.Docking.DockPanelCancelEventArgs e )
+      private void dockManager1_ClosingPanel(object sender, DevExpress.XtraBars.Docking.DockPanelCancelEventArgs e)
       {
          e.Panel.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Hidden;
       }
 
-      private void dsCollBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
+      private void dsCollBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
       {
          this.dsCollDockPanel.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Visible;
       }
 
-      private void mdiCollBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
+      private void mdiCollBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
       {
          this.mdiCollDockPanel.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Visible;
       }
 
-      private void dviCollBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
+      private void dviCollBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
       {
          this.dviCollDockPanel.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Visible;
       }
 
-      private void messagesBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
+      private void messagesBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
       {
          this.msgCollDockPanel.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Visible;
       }
       #endregion
-
    }
 }
