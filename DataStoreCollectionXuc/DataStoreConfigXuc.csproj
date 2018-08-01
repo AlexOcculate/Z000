@@ -48,19 +48,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataStoreCollectionXuc.cs">
+    <Compile Include="DataStoreConfigXuc.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DataStoreCollectionXuc.Designer.cs">
-      <DependentUpon>DataStoreCollectionXuc.cs</DependentUpon>
+    <Compile Include="DataStoreConfigXuc.Designer.cs">
+      <DependentUpon>DataStoreConfigXuc.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="DataStoreCollectionXuc.resx">
-      <DependentUpon>DataStoreCollectionXuc.cs</DependentUpon>
+    <EmbeddedResource Include="DataStoreConfigXuc.resx">
+      <DependentUpon>DataStoreConfigXuc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

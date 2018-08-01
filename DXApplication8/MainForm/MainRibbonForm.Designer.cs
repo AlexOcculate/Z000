@@ -40,11 +40,6 @@
          this.dviCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document(this.components);
          this.mainRibbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
          this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
-         this.backstageViewClientControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewClientControl();
-         this.recentItemControl1 = new DevExpress.XtraBars.Ribbon.RecentItemControl();
-         this.recentStackPanel2 = new DevExpress.XtraBars.Ribbon.RecentStackPanel();
-         this.recentStackPanel1 = new DevExpress.XtraBars.Ribbon.RecentStackPanel();
-         this.backstageViewTabItem1 = new DevExpress.XtraBars.Ribbon.BackstageViewTabItem();
          this.fileNewBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          this.fileOpenBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          this.fileSaveBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -104,9 +99,6 @@
          ((System.ComponentModel.ISupportInitialize)(this.dviCollDocument)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).BeginInit();
-         this.backstageViewControl1.SuspendLayout();
-         this.backstageViewClientControl1.SuspendLayout();
-         ((System.ComponentModel.ISupportInitialize)(this.recentItemControl1)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.documentManager1)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
@@ -117,6 +109,10 @@
          this.dviCollDockPanel.SuspendLayout();
          ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
          this.SuspendLayout();
+         // 
+         // splashScreenManager1
+         // 
+         splashScreenManager1.ClosingDelay = 1000;
          // 
          // dsCollDocumentGroup
          // 
@@ -154,10 +150,6 @@
          this.dviCollDocument.Properties.AllowClose = DevExpress.Utils.DefaultBoolean.True;
          this.dviCollDocument.Properties.AllowFloat = DevExpress.Utils.DefaultBoolean.True;
          this.dviCollDocument.Properties.AllowFloatOnDoubleClick = DevExpress.Utils.DefaultBoolean.True;
-         // 
-         // splashScreenManager1
-         // 
-         splashScreenManager1.ClosingDelay = 1000;
          // 
          // mainRibbonControl
          // 
@@ -203,54 +195,12 @@
          // 
          // backstageViewControl1
          // 
-         this.backstageViewControl1.Controls.Add(this.backstageViewClientControl1);
-         this.backstageViewControl1.Items.Add(this.backstageViewTabItem1);
          this.backstageViewControl1.Location = new System.Drawing.Point(218, 90);
          this.backstageViewControl1.Name = "backstageViewControl1";
          this.backstageViewControl1.OwnerControl = this.mainRibbonControl;
-         this.backstageViewControl1.SelectedTab = this.backstageViewTabItem1;
-         this.backstageViewControl1.SelectedTabIndex = 0;
          this.backstageViewControl1.Size = new System.Drawing.Size(656, 150);
          this.backstageViewControl1.Style = DevExpress.XtraBars.Ribbon.BackstageViewStyle.Office2013;
          this.backstageViewControl1.TabIndex = 1;
-         // 
-         // backstageViewClientControl1
-         // 
-         this.backstageViewClientControl1.Controls.Add(this.recentItemControl1);
-         this.backstageViewClientControl1.Location = new System.Drawing.Point(223, 63);
-         this.backstageViewClientControl1.Name = "backstageViewClientControl1";
-         this.backstageViewClientControl1.Size = new System.Drawing.Size(432, 86);
-         this.backstageViewClientControl1.TabIndex = 1;
-         // 
-         // recentItemControl1
-         // 
-         this.recentItemControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-         this.recentItemControl1.DefaultContentPanel = this.recentStackPanel2;
-         this.recentItemControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.recentItemControl1.Location = new System.Drawing.Point(0, 0);
-         this.recentItemControl1.MainPanel = this.recentStackPanel1;
-         this.recentItemControl1.Name = "recentItemControl1";
-         this.recentItemControl1.SelectedTab = null;
-         this.recentItemControl1.Size = new System.Drawing.Size(432, 100);
-         this.recentItemControl1.TabIndex = 0;
-         this.recentItemControl1.Title = "Title";
-         // 
-         // recentStackPanel2
-         // 
-         this.recentStackPanel2.Name = "recentStackPanel2";
-         this.recentStackPanel2.SelectedItem = null;
-         // 
-         // recentStackPanel1
-         // 
-         this.recentStackPanel1.Name = "recentStackPanel1";
-         this.recentStackPanel1.SelectedItem = null;
-         // 
-         // backstageViewTabItem1
-         // 
-         this.backstageViewTabItem1.Caption = "backstageViewTabItem1";
-         this.backstageViewTabItem1.ContentControl = this.backstageViewClientControl1;
-         this.backstageViewTabItem1.Name = "backstageViewTabItem1";
-         this.backstageViewTabItem1.Selected = true;
          // 
          // fileNewBarButtonItem
          // 
@@ -694,9 +644,6 @@
          ((System.ComponentModel.ISupportInitialize)(this.dviCollDocument)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.mainRibbonControl)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.backstageViewControl1)).EndInit();
-         this.backstageViewControl1.ResumeLayout(false);
-         this.backstageViewClientControl1.ResumeLayout(false);
-         ((System.ComponentModel.ISupportInitialize)(this.recentItemControl1)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.documentManager1)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).EndInit();
@@ -727,8 +674,6 @@
       private DevExpress.XtraBars.BarButtonItem filePrintPreviewBarButtonItem;
       private DevExpress.XtraBars.BarButtonItem filePageSetupBarButtonItem;
       private DevExpress.XtraBars.Ribbon.BackstageViewControl backstageViewControl1;
-      private DevExpress.XtraBars.Ribbon.BackstageViewClientControl backstageViewClientControl1;
-      private DevExpress.XtraBars.Ribbon.BackstageViewTabItem backstageViewTabItem1;
       private DevExpress.XtraBars.Ribbon.RibbonPageGroup fileExportRibbonPageGroup;
       private DevExpress.XtraBars.BarButtonItem fileExportBarButtonItem;
       private DevExpress.XtraBars.BarButtonItem fileImportBarButtonItem;
@@ -744,9 +689,6 @@
       private DevExpress.XtraBars.BarDockingMenuItem dockingBarMenuItem;
       private DevExpress.XtraBars.BarMdiChildrenListItem mdiChildrenBarListItem;
       private DevExpress.XtraBars.Ribbon.RibbonStatusBar mainRibbonStatusBar;
-      private DevExpress.XtraBars.Ribbon.RecentItemControl recentItemControl1;
-      private DevExpress.XtraBars.Ribbon.RecentStackPanel recentStackPanel2;
-      private DevExpress.XtraBars.Ribbon.RecentStackPanel recentStackPanel1;
       private DevExpress.XtraBars.Docking2010.DocumentManager documentManager1;
       private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView tabbedView1;
       private DevExpress.XtraBars.Docking.DockManager dockManager1;

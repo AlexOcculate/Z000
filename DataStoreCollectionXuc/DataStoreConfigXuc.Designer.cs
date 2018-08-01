@@ -1,6 +1,6 @@
 ﻿namespace DataPhilosophiae
 {
-    partial class DataStoreCollectionXuc
+    partial class DataStoreConfigXuc
     {
         /// <summary>
         /// Required designer variable.

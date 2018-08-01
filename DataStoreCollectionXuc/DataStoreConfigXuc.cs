@@ -18,13 +18,13 @@ using System.Xml.Linq;
 
 namespace DataPhilosophiae
 {
-   public partial class DataStoreCollectionXuc : XtraUserControl
+   public partial class DataStoreConfigXuc : XtraUserControl
    {
       private DataStoreConfig dsCfg;
 
       private GridColumn _colStagePathDir;
 
-      public DataStoreCollectionXuc()
+      public DataStoreConfigXuc()
       {
          this.InitializeComponent();
          ToolTipController.DefaultController.GetActiveObjectInfo += this.DefaultController_GetActiveObjectInfo;
@@ -183,6 +183,7 @@ namespace DataPhilosophiae
             }
          }
       }
+
       private void RefreshFocusedRow( object sender, EventArgs e )
       {
          DXMenuItem menuItem = sender as DXMenuItem;
@@ -213,6 +214,7 @@ namespace DataPhilosophiae
          ColumnView View = menuItem.Tag as ColumnView;
          View.DeleteRow( View.FocusedRowHandle );
       }
+
       private void DefaultController_GetActiveObjectInfo( object sender, ToolTipControllerGetActiveObjectInfoEventArgs e )
       {
          if( e.SelectedControl != this.gridControl1 )

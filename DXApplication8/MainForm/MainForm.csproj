@@ -75,30 +75,6 @@
     <Compile Include="SplashScreen1.Designer.cs">
       <DependentUpon>SplashScreen1.cs</DependentUpon>
     </Compile>
-    <Compile Include="XtraUserControl1.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="XtraUserControl1.Designer.cs">
-      <DependentUpon>XtraUserControl1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="XtraUserControl2.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="XtraUserControl2.Designer.cs">
-      <DependentUpon>XtraUserControl2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="XtraUserControl3.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="XtraUserControl3.Designer.cs">
-      <DependentUpon>XtraUserControl3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="XtraUserControl4.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="XtraUserControl4.Designer.cs">
-      <DependentUpon>XtraUserControl4.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="MainRibbonForm.resx">
       <DependentUpon>MainRibbonForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,18 +94,6 @@
     </Compile>
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="XtraUserControl1.resx">
-      <DependentUpon>XtraUserControl1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="XtraUserControl2.resx">
-      <DependentUpon>XtraUserControl2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="XtraUserControl3.resx">
-      <DependentUpon>XtraUserControl3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="XtraUserControl4.resx">
-      <DependentUpon>XtraUserControl4.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
@@ -191,9 +155,13 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DataStoreCollectionXuc\DataStoreCollectionXuc.csproj">
+    <ProjectReference Include="..\..\ClassLibrary1\OpenRecentXuc.csproj">
+      <Project>{afd126f4-b457-4623-9544-9f0685022d57}</Project>
+      <Name>OpenRecentXuc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataStoreCollectionXuc\DataStoreConfigXuc.csproj">
       <Project>{8b8dc1bd-0d84-4399-a228-645ea7ee718a}</Project>
-      <Name>DataStoreCollectionXuc</Name>
+      <Name>DataStoreConfigXuc</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\MessageXuc\MessageXuc.csproj">
       <Project>{c816b7d2-a7f9-4196-9ab2-3499056f8ca2}</Project>

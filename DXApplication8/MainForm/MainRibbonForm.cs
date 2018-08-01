@@ -1,9 +1,11 @@
 ﻿using DataPhilosophiae.Config.Model;
+using DevExpress.Images;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,6 +14,8 @@ namespace DataPhilosophiae
 {
    public partial class MainRibbonForm : DevExpress.XtraBars.Ribbon.RibbonForm
    {
+      private DataStoreConfig dsCfg;
+
       public MainRibbonForm()
       {
          this.InitializeComponent();
@@ -48,64 +52,72 @@ namespace DataPhilosophiae
       }
 
       #region --- External Controls ---
-      private void DataStoreConfig_Error( string msg )
+
+      #region --- DataStoreConfigXuc ---
+      private void DataStoreConfig_Error(string msg)
       {
-         this.MsgCollXuc.Error( msg );
+         this.MsgCollXuc.Error(msg);
       }
 
-      private void DataStoreConfig_Warn( string msg )
+      private void DataStoreConfig_Warn(string msg)
       {
-         this.MsgCollXuc.Warn( msg );
+         this.MsgCollXuc.Warn(msg);
       }
 
-      private void DataStoreConfig_Info( string msg )
+      private void DataStoreConfig_Info(string msg)
       {
-         this.MsgCollXuc.Info( msg );
+         this.MsgCollXuc.Info(msg);
       }
 
-      private DataPhilosophiae.DataStoreCollectionXuc dsCollXuc;
+      private DataStoreConfigXuc dsCollXuc;
 
-      public DataStoreCollectionXuc DsCollXuc
+      public DataStoreConfigXuc DsCollXuc
       {
          get
          {
-            if( this.dsCollXuc == null )
+            if(this.dsCollXuc == null)
             {
-               this.dsCollXuc = new DataPhilosophiae.DataStoreCollectionXuc( ) { Dock = DockStyle.Fill };
+               this.dsCollXuc = new DataStoreConfigXuc( ) { Dock = DockStyle.Fill };
             }
             return this.dsCollXuc;
          }
       }
+      #endregion
 
-      private DataPhilosophiae.XtraUserControl2 mdiCollXuc;
+      #region --- MetadataItemXuc ---
+      private UserControl mdiCollXuc;
 
-      public XtraUserControl2 MdiCollXuc
+      public UserControl MdiCollXuc
       {
          get
          {
             if(this.mdiCollXuc == null)
             {
-               this.mdiCollXuc = new DataPhilosophiae.XtraUserControl2() { Dock = DockStyle.Fill };
+               this.mdiCollXuc = new UserControl() { Dock = DockStyle.Fill };
             }
             return this.mdiCollXuc;
          }
       }
+      #endregion
 
-      private DataPhilosophiae.XtraUserControl3 dviCollXuc;
+      #region --- DatavalueItemXuc ---
+      private UserControl dviCollXuc;
 
-      public XtraUserControl3 DviCollXuc
+      public UserControl DviCollXuc
       {
          get
          {
             if(this.dviCollXuc == null)
             {
-               this.dviCollXuc = new DataPhilosophiae.XtraUserControl3() { Dock = DockStyle.Fill };
+               this.dviCollXuc = new UserControl() { Dock = DockStyle.Fill };
             }
             return this.dviCollXuc;
          }
       }
+      #endregion
 
-      private DataPhilosophiae.MessageXuc msgCollXuc;
+      #region --- MessageXuc ---
+      private MessageXuc msgCollXuc;
 
       public MessageXuc MsgCollXuc
       {
@@ -113,14 +125,14 @@ namespace DataPhilosophiae
          {
             if(this.msgCollXuc == null)
             {
-               this.msgCollXuc = new DataPhilosophiae.MessageXuc() { Dock = DockStyle.Fill };
+               this.msgCollXuc = new MessageXuc( ) { Dock = DockStyle.Fill };
             }
             return this.msgCollXuc;
          }
       }
       #endregion
 
-      private DataStoreConfig dsCfg;
+      #endregion
 
       private void fileQuickPrintBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
       {
@@ -480,96 +492,171 @@ namespace DataPhilosophiae
       private void CreateRecentItem()
       {
          {
-            BackstageViewButtonItem button1 = new BackstageViewButtonItem( )
+            //// WinForms Controls > DevExpress.XtraBars.Ribbon > BackstageViewTabItem > SelectedChanged
+            //// To get a selected tab item or select a tab item, use:
+            //BackstageViewTabItem oo = this.backstageViewControl1.SelectedTab;
+            //int oo = this.backstageViewControl1.SelectedTabIndex;
+            //// BackstageViewTabItem.Selected - Allows you to select a specific tab item by using this Boolean property.
+            //this.backstageViewControl1.SelectedTabChanged += this.BackstageViewControl1_SelectedTabChanged;
             {
-               Caption = "Save",
-               Glyph = DevExpress.Images.ImageResourceCache.Default.GetImage( "office2013/save/save_32x32.png" )
-            };
-            BackstageViewTabItem tab1 = new BackstageViewTabItem( )
+               BackstageViewButtonItem o = new BackstageViewButtonItem()
+               {
+                  Caption = "New",
+                  Glyph = ImageResourceCache.Default.GetImage("office2013/actions/new_32x32.png")
+               };
+               this.backstageViewControl1.Items.Add(o);
+            }
+            this.backstageViewControl1.Items.Add(new BackstageViewItemSeparator());
             {
-               Caption = "Save As...",
-               Glyph = DevExpress.Images.ImageResourceCache.Default.GetImage( "office2013/save/saveas_32x32.png" )
-            };
-            this.backstageViewControl1.Items.Add( button1 );
-            this.backstageViewControl1.Items.Add( tab1 );
-            this.backstageViewControl1.Items.Insert( 1, new BackstageViewItemSeparator( ) );
+               BackstageViewButtonItem o = new BackstageViewButtonItem()
+               {
+                  Caption = "Open",
+                  // Glyph = ImageResourceCache.Default.GetImage("office2013/actions/open_32x32.png"),
+               };
+               this.backstageViewControl1.Items.Add(o);
+            }
+            {
+               BackstageViewTabItem o = new BackstageViewTabItem( )
+               {
+                  Caption = "Open Recent",
+                  //Glyph = ImageResourceCache.Default.GetImage( "office2013/actions/open_32x32.png" )
+               };
+               this.backstageViewControl1.Items.Add( o );
+               OpenRecentXuc oo = new OpenRecentXuc( )
+               {
+                  Dock = DockStyle.Fill
+               };
+               o.ContentControl.Controls.Add( oo );
+            }
+            this.backstageViewControl1.Items.Add( new BackstageViewItemSeparator( ) );
+            {
+               BackstageViewButtonItem o = new BackstageViewButtonItem()
+               {
+                  Caption = "Save",
+                  //Glyph = ImageResourceCache.Default.GetImage("office2013/save/save_32x32.png")
+               };
+               this.backstageViewControl1.Items.Add(o);
+            }
+            {
+               BackstageViewTabItem o = new BackstageViewTabItem()
+               {
+                  Caption = "Save As...",
+                  //Glyph = ImageResourceCache.Default.GetImage("office2013/save/saveas_32x32.png")
+               };
+               this.backstageViewControl1.Items.Add(o);
+            }
+            this.backstageViewControl1.Items.Add( new BackstageViewItemSeparator( ) );
+            {
+               BackstageViewButtonItem o = new BackstageViewButtonItem()
+               {
+                  Caption = "Close",
+                  //Glyph = ImageResourceCache.Default.GetImage( "office2013/actions/close_32x32.png" )
+               };
+               this.backstageViewControl1.Items.Add(o);
+            }
+            this.backstageViewControl1.Items.Add( new BackstageViewItemSeparator( ) );
+            {
+               BackstageViewButtonItem o = new BackstageViewButtonItem( )
+               {
+                  Caption = "Exit",
+                  //Glyph = ImageResourceCache.Default.GetImage( "office2013/actions/close_32x32.png" )
+               };
+               this.backstageViewControl1.Items.Add( o );
+            }
+            this.backstageViewControl1.Items.Add( new BackstageViewItemSeparator( ) );
+            {
+               BackstageViewTabItem o = new BackstageViewTabItem();
+               o.Caption = "Export";
+               SimpleButton btn = new SimpleButton();
+               btn.Text = "Export";
+               btn.Location = new Point(10, 10);
+               o.ContentControl.Controls.Add(btn);
+               this.backstageViewControl1.Items.Add(o);
+            }
+            this.backstageViewControl1.Items.Insert(1, new BackstageViewItemSeparator());
          }
 
-         //         DevExpress.XtraBars.Ribbon.RecentItemControl recentItemControl1 = new DevExpress.XtraBars.Ribbon.RecentItemControl();
-         this.recentItemControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder; //to hide border
-         this.recentItemControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.recentItemControl1.Name = "recentItemControl";
-         this.recentItemControl1.Title = "RecentControl Main Title";
+         {
+            ////         DevExpress.XtraBars.Ribbon.RecentItemControl recentItemControl1 = new DevExpress.XtraBars.Ribbon.RecentItemControl();
+            //this.recentItemControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder; //to hide border
+            //this.recentItemControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            //this.recentItemControl1.Name = "recentItemControl";
+            //this.recentItemControl1.Title = "RecentControl Main Title";
 
-         //create the mandatory right panel for tab items' content
-         DevExpress.XtraBars.Ribbon.RecentStackPanel recentStackPanelRight = new DevExpress.XtraBars.Ribbon.RecentStackPanel( );
-         recentStackPanelRight.Name = "recentStackPanelRight";
-         recentStackPanelRight.SelectedItem = null;
-         this.recentItemControl1.DefaultContentPanel = recentStackPanelRight;
+            ////create the mandatory right panel for tab items' content
+            //DevExpress.XtraBars.Ribbon.RecentStackPanel recentStackPanelRight = new DevExpress.XtraBars.Ribbon.RecentStackPanel( );
+            //recentStackPanelRight.Name = "recentStackPanelRight";
+            //recentStackPanelRight.SelectedItem = null;
+            //this.recentItemControl1.DefaultContentPanel = recentStackPanelRight;
 
-         SimpleButton simpleButton = new SimpleButton( );
-         simpleButton.Dock = System.Windows.Forms.DockStyle.Fill;
-         simpleButton.Name = "simpleButton";
-         simpleButton.Text = "Simple Button";
+            //SimpleButton simpleButton = new SimpleButton( );
+            //simpleButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            //simpleButton.Name = "simpleButton";
+            //simpleButton.Text = "Simple Button";
 
-         //should be added to the RecentItemControl.Controls collection
-         DevExpress.XtraBars.Ribbon.RecentControlItemControlContainer recentControlItemControlContainer = new DevExpress.XtraBars.Ribbon.RecentControlItemControlContainer( );
-         recentControlItemControlContainer.Controls.Add( simpleButton );
-         recentControlItemControlContainer.Name = "recentControlItemControlContainer";
-         recentControlItemControlContainer.Size = new System.Drawing.Size( 267, 40 );
-         this.recentItemControl1.Controls.Add( recentControlItemControlContainer );
+            ////should be added to the RecentItemControl.Controls collection
+            //DevExpress.XtraBars.Ribbon.RecentControlItemControlContainer recentControlItemControlContainer = new DevExpress.XtraBars.Ribbon.RecentControlItemControlContainer( );
+            //recentControlItemControlContainer.Controls.Add( simpleButton );
+            //recentControlItemControlContainer.Name = "recentControlItemControlContainer";
+            //recentControlItemControlContainer.Size = new System.Drawing.Size( 267, 40 );
+            //this.recentItemControl1.Controls.Add( recentControlItemControlContainer );
 
-         //create container item, should have a parent RecentControlItemControlContainer
-         DevExpress.XtraBars.Ribbon.RecentControlContainerItem recentControlContainerItem = new DevExpress.XtraBars.Ribbon.RecentControlContainerItem( );
-         recentControlContainerItem.ClientHeight = 40;
-         recentControlContainerItem.ControlContainer = recentControlItemControlContainer;
-         recentControlContainerItem.Name = "recentControlContainerItem";
+            ////create container item, should have a parent RecentControlItemControlContainer
+            //DevExpress.XtraBars.Ribbon.RecentControlContainerItem recentControlContainerItem = new DevExpress.XtraBars.Ribbon.RecentControlContainerItem( );
+            //recentControlContainerItem.ClientHeight = 40;
+            //recentControlContainerItem.ControlContainer = recentControlItemControlContainer;
+            //recentControlContainerItem.Name = "recentControlContainerItem";
 
-         DevExpress.XtraBars.Ribbon.RecentLabelItem recentLabelItem = new DevExpress.XtraBars.Ribbon.RecentLabelItem( );
-         recentLabelItem.Caption = "RecentControl Label";
-         recentLabelItem.Name = "recentLabelItem";
-         recentLabelItem.ItemClick += this.RecentLabelItem_ItemClick;
+            //DevExpress.XtraBars.Ribbon.RecentLabelItem recentLabelItem = new DevExpress.XtraBars.Ribbon.RecentLabelItem( );
+            //recentLabelItem.Caption = "RecentControl Label";
+            //recentLabelItem.Name = "recentLabelItem";
+            //recentLabelItem.ItemClick += this.RecentLabelItem_ItemClick;
 
-         //create the right panel for the tab item
-         DevExpress.XtraBars.Ribbon.RecentStackPanel recentStackPanell = new DevExpress.XtraBars.Ribbon.RecentStackPanel( );
-         recentStackPanell.Caption = "RecentControl Stack Panel";
-         //add items to the right panel
-         recentStackPanell.Items.AddRange( new DevExpress.XtraBars.Ribbon.RecentItemBase[ ]
-            {
-                  recentLabelItem
-            } );
-         recentStackPanell.Name = "recentStackPanell";
-         recentStackPanell.SelectedItem = null;
+            ////create the right panel for the tab item
+            //DevExpress.XtraBars.Ribbon.RecentStackPanel recentStackPanell = new DevExpress.XtraBars.Ribbon.RecentStackPanel( );
+            //recentStackPanell.Caption = "RecentControl Stack Panel";
+            ////add items to the right panel
+            //recentStackPanell.Items.AddRange( new DevExpress.XtraBars.Ribbon.RecentItemBase[ ]
+            //   {
+            //   recentLabelItem
+            //   } );
+            //recentStackPanell.Name = "recentStackPanell";
+            //recentStackPanell.SelectedItem = null;
 
-         //the element of the main panel
-         DevExpress.XtraBars.Ribbon.RecentTabItem recentTabItem1 = new DevExpress.XtraBars.Ribbon.RecentTabItem( );
-         recentTabItem1.Caption = "RecentControl Tab Item";
-         recentTabItem1.Name = "recentTabIteml";
-         recentTabItem1.TabPanel = recentStackPanell;
-         recentTabItem1.ItemClick += this.RecentTabItem1_ItemClick;
+            ////the element of the main panel
+            //DevExpress.XtraBars.Ribbon.RecentTabItem recentTabItem1 = new DevExpress.XtraBars.Ribbon.RecentTabItem( );
+            //recentTabItem1.Caption = "RecentControl Tab Item";
+            //recentTabItem1.Name = "recentTabIteml";
+            //recentTabItem1.TabPanel = recentStackPanell;
+            //recentTabItem1.ItemClick += this.RecentTabItem1_ItemClick;
 
-         //create the mandatory main panel
-         DevExpress.XtraBars.Ribbon.RecentStackPanel recentStackPanelMain = new DevExpress.XtraBars.Ribbon.RecentStackPanel( );
-         //add elements to the main panel
-         recentStackPanelMain.Items.AddRange( new DevExpress.XtraBars.Ribbon.RecentItemBase[ ]
-            {
-                  recentTabItem1,
-                  recentControlContainerItem
-            } );
-         recentStackPanelMain.Name = "mainPanel1";
-         recentStackPanelMain.SelectedItem = recentTabItem1;
-         this.recentItemControl1.MainPanel = recentStackPanelMain;
+            ////create the mandatory main panel
+            //DevExpress.XtraBars.Ribbon.RecentStackPanel recentStackPanelMain = new DevExpress.XtraBars.Ribbon.RecentStackPanel( );
+            ////add elements to the main panel
+            //recentStackPanelMain.Items.AddRange( new DevExpress.XtraBars.Ribbon.RecentItemBase[ ]
+            //   {
+            //   recentTabItem1,
+            //   recentControlContainerItem
+            //   } );
+            //recentStackPanelMain.Name = "mainPanel1";
+            //recentStackPanelMain.SelectedItem = recentTabItem1;
+            //this.recentItemControl1.MainPanel = recentStackPanelMain;
 
-         //set the RecentControl as a Backstage Tab Item's content
-         this.backstageViewClientControl1.Controls.Add( this.recentItemControl1 );
-         this.recentItemControl1.SelectedTab = recentTabItem1;
+            ////set the RecentControl as a Backstage Tab Item's content
+            //this.backstageViewClientControl1.Controls.Add( this.recentItemControl1 );
+            //this.recentItemControl1.SelectedTab = recentTabItem1;
+         }
       }
 
-      private void RecentLabelItem_ItemClick( object sender, RecentItemEventArgs e )
+      private void BackstageViewControl1_SelectedTabChanged( object sender, BackstageViewItemEventArgs e )
       {
       }
 
-      private void RecentTabItem1_ItemClick( object sender, RecentItemEventArgs e )
+      private void RecentLabelItem_ItemClick(object sender, RecentItemEventArgs e)
+      {
+      }
+
+      private void RecentTabItem1_ItemClick(object sender, RecentItemEventArgs e)
       {
       }
       #endregion
