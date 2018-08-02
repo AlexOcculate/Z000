@@ -30,10 +30,10 @@
       {
          this.components = new System.ComponentModel.Container();
          DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition1 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
-         DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition2 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
          DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition1 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
          DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition2 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
          DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition3 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
+         DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition4 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
          DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement1 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
          DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement2 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
          DevExpress.XtraGrid.Views.Tile.TileViewItemElement tileViewItemElement3 = new DevExpress.XtraGrid.Views.Tile.TileViewItemElement();
@@ -48,6 +48,8 @@
          this.recentlyOpenedFileListBindingSource = new System.Windows.Forms.BindingSource(this.components);
          this.appConfigBindingSource = new System.Windows.Forms.BindingSource(this.components);
          this.tileView1 = new DevExpress.XtraGrid.Views.Tile.TileView();
+         this.colAvailable = new DevExpress.XtraGrid.Columns.TileViewColumn();
+         this.colEnabled = new DevExpress.XtraGrid.Columns.TileViewColumn();
          this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
          this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
          ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -72,7 +74,7 @@
          // 
          // colTimestamp
          // 
-         this.colTimestamp.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold);
+         this.colTimestamp.AppearanceCell.Font = new System.Drawing.Font("Segoe UI Light", 15F);
          this.colTimestamp.AppearanceCell.Options.UseFont = true;
          this.colTimestamp.DisplayFormat.FormatString = "yyyy/MM/dd-HH:mm:ss,fffffffzzz";
          this.colTimestamp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -106,7 +108,7 @@
          this.splitContainerControl1.Panel2.Controls.Add(this.labelControl2);
          this.splitContainerControl1.Panel2.Text = "Panel2";
          this.splitContainerControl1.Size = new System.Drawing.Size(945, 701);
-         this.splitContainerControl1.SplitterPosition = 597;
+         this.splitContainerControl1.SplitterPosition = 749;
          this.splitContainerControl1.TabIndex = 1;
          this.splitContainerControl1.Text = "splitContainerControl1";
          // 
@@ -118,7 +120,7 @@
          this.panel1.Controls.Add(this.gridControl1);
          this.panel1.Location = new System.Drawing.Point(3, 23);
          this.panel1.Name = "panel1";
-         this.panel1.Size = new System.Drawing.Size(592, 675);
+         this.panel1.Size = new System.Drawing.Size(744, 675);
          this.panel1.TabIndex = 1;
          // 
          // gridControl1
@@ -128,7 +130,7 @@
          this.gridControl1.Location = new System.Drawing.Point(0, 0);
          this.gridControl1.MainView = this.tileView1;
          this.gridControl1.Name = "gridControl1";
-         this.gridControl1.Size = new System.Drawing.Size(592, 675);
+         this.gridControl1.Size = new System.Drawing.Size(744, 675);
          this.gridControl1.TabIndex = 0;
          this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.tileView1});
@@ -151,15 +153,20 @@
             this.colTimestamp,
             this.colName,
             this.colPath,
-            this.colPinned});
+            this.colPinned,
+            this.colAvailable,
+            this.colEnabled});
+         this.tileView1.ColumnSet.CheckedColumn = this.colPinned;
+         this.tileView1.ColumnSet.EnabledColumn = this.colEnabled;
          this.tileView1.ColumnSet.GroupColumn = this.colTimestamp;
          this.tileView1.GridControl = this.gridControl1;
          this.tileView1.Name = "tileView1";
          this.tileView1.OptionsBehavior.ReadOnly = true;
          this.tileView1.OptionsTiles.AllowItemHover = true;
-         this.tileView1.OptionsTiles.GroupTextPadding = new System.Windows.Forms.Padding(12, 8, 12, 8);
+         this.tileView1.OptionsTiles.GroupTextPadding = new System.Windows.Forms.Padding(20, 8, 12, 8);
          this.tileView1.OptionsTiles.IndentBetweenGroups = 0;
-         this.tileView1.OptionsTiles.IndentBetweenItems = 0;
+         this.tileView1.OptionsTiles.IndentBetweenItems = 14;
+         this.tileView1.OptionsTiles.ItemPadding = new System.Windows.Forms.Padding(0);
          this.tileView1.OptionsTiles.ItemSize = new System.Drawing.Size(600, 100);
          this.tileView1.OptionsTiles.LayoutMode = DevExpress.XtraGrid.Views.Tile.TileViewLayoutMode.List;
          this.tileView1.OptionsTiles.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -168,12 +175,11 @@
          this.tileView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colTimestamp, DevExpress.Data.ColumnSortOrder.Ascending)});
          tableColumnDefinition1.Length.Value = 529D;
-         tableColumnDefinition2.Length.Value = 47D;
          this.tileView1.TileColumns.Add(tableColumnDefinition1);
-         this.tileView1.TileColumns.Add(tableColumnDefinition2);
          this.tileView1.TileRows.Add(tableRowDefinition1);
          this.tileView1.TileRows.Add(tableRowDefinition2);
          this.tileView1.TileRows.Add(tableRowDefinition3);
+         this.tileView1.TileRows.Add(tableRowDefinition4);
          tileViewItemElement1.Appearance.Normal.Font = new System.Drawing.Font("Tahoma", 16F);
          tileViewItemElement1.Appearance.Normal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(132)))), ((int)(((byte)(223)))));
          tileViewItemElement1.Appearance.Normal.Options.UseFont = true;
@@ -183,12 +189,14 @@
          tileViewItemElement1.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside;
          tileViewItemElement1.Text = "colName";
          tileViewItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopLeft;
+         tileViewItemElement2.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI Light", 8.25F);
+         tileViewItemElement2.Appearance.Normal.Options.UseFont = true;
          tileViewItemElement2.Column = this.colTimestamp;
          tileViewItemElement2.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
          tileViewItemElement2.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside;
          tileViewItemElement2.RowIndex = 2;
          tileViewItemElement2.Text = "colTimestamp";
-         tileViewItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
+         tileViewItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleRight;
          tileViewItemElement3.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
          tileViewItemElement3.Appearance.Normal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(132)))), ((int)(((byte)(223)))));
          tileViewItemElement3.Appearance.Normal.Options.UseFont = true;
@@ -199,16 +207,38 @@
          tileViewItemElement3.RowIndex = 1;
          tileViewItemElement3.Text = "colPath";
          tileViewItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomLeft;
-         tileViewItemElement4.Column = this.colPinned;
-         tileViewItemElement4.ColumnIndex = 1;
+         tileViewItemElement4.Appearance.Normal.BackColor = System.Drawing.Color.Navy;
+         tileViewItemElement4.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+         tileViewItemElement4.Appearance.Normal.ForeColor = System.Drawing.Color.White;
+         tileViewItemElement4.Appearance.Normal.Options.UseBackColor = true;
+         tileViewItemElement4.Appearance.Normal.Options.UseFont = true;
+         tileViewItemElement4.Appearance.Normal.Options.UseForeColor = true;
+         tileViewItemElement4.Height = 20;
          tileViewItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
          tileViewItemElement4.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside;
-         tileViewItemElement4.Text = "colPinned";
-         tileViewItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopRight;
+         tileViewItemElement4.RowIndex = 3;
+         tileViewItemElement4.StretchHorizontal = true;
+         tileViewItemElement4.Text = "Not Available!";
+         tileViewItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
          this.tileView1.TileTemplate.Add(tileViewItemElement1);
          this.tileView1.TileTemplate.Add(tileViewItemElement2);
          this.tileView1.TileTemplate.Add(tileViewItemElement3);
          this.tileView1.TileTemplate.Add(tileViewItemElement4);
+         this.tileView1.ItemCustomize += new DevExpress.XtraGrid.Views.Tile.TileViewItemCustomizeEventHandler(this.tileView1_ItemCustomize);
+         // 
+         // colAvailable
+         // 
+         this.colAvailable.FieldName = "Available";
+         this.colAvailable.Name = "colAvailable";
+         this.colAvailable.Visible = true;
+         this.colAvailable.VisibleIndex = 4;
+         // 
+         // colEnabled
+         // 
+         this.colEnabled.FieldName = "Enabled";
+         this.colEnabled.Name = "colEnabled";
+         this.colEnabled.Visible = true;
+         this.colEnabled.VisibleIndex = 5;
          // 
          // labelControl1
          // 
@@ -267,5 +297,7 @@
       private DevExpress.XtraGrid.Columns.TileViewColumn colName;
       private DevExpress.XtraGrid.Columns.TileViewColumn colPath;
       private DevExpress.XtraGrid.Columns.TileViewColumn colPinned;
+      private DevExpress.XtraGrid.Columns.TileViewColumn colAvailable;
+      private DevExpress.XtraGrid.Columns.TileViewColumn colEnabled;
    }
 }

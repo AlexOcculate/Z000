@@ -1,7 +1,7 @@
 ﻿using DataPhilosophiae.Config;
+using DevExpress.XtraGrid.Views.Tile;
 using System;
-using System.ComponentModel;
-using System.IO;
+using System.Drawing;
 using System.Linq;
 
 namespace DataPhilosophiae
@@ -15,11 +15,21 @@ namespace DataPhilosophiae
          this.InitializeComponent();
       }
 
-      public OpenRecentXuc( AppConfig appCfg )
+      public OpenRecentXuc(AppConfig appCfg)
          : this()
       {
          this.appCfg = appCfg;
          this.recentlyOpenedFileListBindingSource.DataSource = this.appCfg.RecentlyOpenedFileList;
+      }
+
+      private void tileView1_ItemCustomize(object sender, DevExpress.XtraGrid.Views.Tile.TileViewItemCustomizeEventArgs e)
+      {
+         TileView view = sender as TileView;
+         if((bool) view.GetRowCellValue(e.RowHandle, this.colAvailable) == true)
+         {
+            e.Item.Elements[3].Text = string.Empty;
+            e.Item.Elements[3].Appearance.Normal.BackColor = Color.Transparent;
+         }
       }
    }
 }

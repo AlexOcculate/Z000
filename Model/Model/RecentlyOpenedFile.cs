@@ -46,5 +46,22 @@ namespace DataPhilosophiae.Config.Model
          get; set;
       }
 
+      public const string Enabled_FldName = "Enable";
+      public const string Enabled_ColName = "Enable";
+      [Display( Name = Enabled_ColName, Description = "Is it enabled?" )]
+      public bool Enabled
+      {
+         get { return true; }
+         set { }
+      }
+
+      private Random rnd = new Random( );
+      public const string Available_FldName = "Available";
+      public const string Available_ColName = "Available";
+      [Display( Name = Available_ColName, Description = "Does it exist and is available?" )]
+      public bool Available
+      {
+         get { return this.rnd.Next( 0, 100) % 2 == 0 ? true : false; } set{ }
+      }
    }
 }
