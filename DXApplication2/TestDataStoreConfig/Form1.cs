@@ -1,4 +1,5 @@
-﻿using DataPhilosophiae.Config.Model;
+﻿using DataPhilosophiae.Config;
+using DataPhilosophiae.Config.Model;
 using DevExpress.Utils;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraBars.Ribbon;

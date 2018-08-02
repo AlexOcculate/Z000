@@ -20,7 +20,7 @@ namespace DataPhilosophiae.Config
          this.RecentlyOpenedFileList = new BindingList<RecentlyOpenedFile>();
       }
 
-      public IList<RecentlyOpenedFile> RecentlyOpenedFileList
+      public BindingList<RecentlyOpenedFile> RecentlyOpenedFileList
       {
          get;
          set;
@@ -49,8 +49,8 @@ namespace DataPhilosophiae.Config
                      new XElement(RofCollElemNm,
                         new XElement(RofElemNm,
                            new XAttribute(TsAttrNm, "20180101T235959,0000001+10:00"),
-                           new XAttribute(FnmAttrNm, @"filename01.ext"),
-                           new XAttribute(PnmAttrNm, @"D:\TEMP\CS"),
+                           new XAttribute(FnmAttrNm, @"filename01_With_a_Very_long_name.ext"),
+                           new XAttribute(PnmAttrNm, @"E:\VS10_PROJECTS\Awesomium.NET\1.6.6\Samples\Windows Forms\CSharp\WinFormsSample\Properties" ),
                            new XAttribute(PinAttrNm, "true")),
                         new XElement(RofElemNm,
                            new XAttribute(TsAttrNm, "20180101T235959,0000001+10:00"),
@@ -58,17 +58,17 @@ namespace DataPhilosophiae.Config
                            new XAttribute(PnmAttrNm, @"D:\TEMP\CS"),
                            new XAttribute(PinAttrNm, "true")),
                         new XElement(RofElemNm,
-                           new XAttribute(TsAttrNm, "20180101T235959,0000001+10:00"),
+                           new XAttribute(TsAttrNm, "20170101T235959,0000001+10:00"),
                            new XAttribute(FnmAttrNm, @"filename03.ext"),
                            new XAttribute(PnmAttrNm, @"D:\TEMP\CS"),
                            new XAttribute(PinAttrNm, "false")),
                         new XElement(RofElemNm,
-                           new XAttribute(TsAttrNm, "20180101T235959,0000001+10:00"),
+                           new XAttribute(TsAttrNm, "20180102T235959,0000001+10:00"),
                            new XAttribute(FnmAttrNm, @"filename04.ext"),
                            new XAttribute(PnmAttrNm, @"D:\TEMP\CS"),
                            new XAttribute(PinAttrNm, "true")),
                         new XElement(RofElemNm,
-                           new XAttribute(TsAttrNm, "20180101T235959,0000001+10:00"),
+                           new XAttribute(TsAttrNm, "20180102T235959,0000001+10:00"),
                            new XAttribute(FnmAttrNm, @"filename05.ext"),
                            new XAttribute(PnmAttrNm, @"D:\TEMP\CS"),
                            new XAttribute(PinAttrNm, "false")),
@@ -88,7 +88,7 @@ namespace DataPhilosophiae.Config
                            new XAttribute(PnmAttrNm, @"D:\TEMP\CS"),
                            new XAttribute(PinAttrNm, "false")),
                         new XElement(RofElemNm,
-                           new XAttribute(TsAttrNm, "20180101T235959,0000001+10:00"),
+                           new XAttribute(TsAttrNm, "20180802T235959,0000001+10:00"),
                            new XAttribute(FnmAttrNm, @"filename09.ext"),
                            new XAttribute(PnmAttrNm, @"D:\TEMP\CS")))));
          return doc;
@@ -96,26 +96,25 @@ namespace DataPhilosophiae.Config
 
       public XDocument Serialize()
       {
+         XElement coll = new XElement(RofCollElemNm);
+         foreach(RecentlyOpenedFile rof in this.RecentlyOpenedFileList)
+         {
+            XElement rofElem = new XElement(RofElemNm);
+            if(rof.Timestamp != DateTime.MinValue)
+            {
+               rofElem.Add(new XAttribute(TsAttrNm, rof.Timestamp.ToString(TIMESTAMP_FORMATSTR)));
+            }
+            rofElem.Add( new XAttribute(FnmAttrNm, rof.Name),
+                         new XAttribute(PnmAttrNm, rof.Path),
+                         new XAttribute(PinAttrNm, rof.Pinned));
+            coll.Add(rofElem);
+         }
          XDocument doc =
-            new XDocument(
-               new XDeclaration("1.0", "utf-8", "yes"),
-               new XComment("Application Configuration...")
-                  //new XElement( DsCfgElemNm,
-                  //   new XElement(
-                  //      StgDirElemNm,
-                  //      new XCData( this.DefaultStgDirVal ) // Default StagePathDir
-                  //   ),
-                  //   dsColl
-                  //)
-                              //new XProcessingInstruction("MyApp", "123-44-4444"),
-                  //new XElement( DsCfgElemNm,
-                  //   new XElement(
-                  //      StgDirElemNm,
-                  //      new XCData( this.DefaultStgDirVal ) // Default StagePathDir
-                  //   ),
-                  //   dsColl
-                  //)
-            );
+                  new XDocument(
+                     new XDeclaration("1.0", "utf-8", "yes"),
+                     new XComment("Application Configuration..."),
+                        //new XProcessingInstruction("MyApp", "123-44-4444"),
+                        new XElement(AppCfgElemNm, coll));
          return doc;
       }
 
@@ -149,14 +148,17 @@ namespace DataPhilosophiae.Config
          foreach(XElement rofElem in rofElemList)
          {
             RecentlyOpenedFile rof = new RecentlyOpenedFile();
-            string ts = (rofElem.Attribute( TsAttrNm )?.Value);
+            string ts = (rofElem.Attribute(TsAttrNm)?.Value);
             if(ts != null)
             {
                DateTime date = DateTime.ParseExact(ts, TIMESTAMP_FORMATSTR, System.Globalization.CultureInfo.InvariantCulture);
                rof.Timestamp = date;
+            } else
+            {
+               rof.Timestamp = DateTime.MinValue;
             }
             rof.Name = (rofElem.Attribute(FnmAttrNm)?.Value);
-            rof.Path = (rofElem.Attribute( PnmAttrNm )?.Value);
+            rof.Path = (rofElem.Attribute(PnmAttrNm)?.Value);
             rof.Pinned = GetBooleanAttribute((rofElem.Attribute(PinAttrNm)?.Value), false);
             cfg.RecentlyOpenedFileList.Add(rof);
          }

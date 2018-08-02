@@ -1,24 +1,27 @@
-﻿using System;
+﻿using DataPhilosophiae.Config.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using DataPhilosophiae.Config.Model;
 
 namespace DataPhilosophiae.Config
 {
    public class DataStoreConfig
    {
       public static event InfoMessageDelegate Info;
+
       public static event WarnMessageDelegate Warn;
+
       public static event ErrorMessageDelegate Error;
 
-      public DataStoreConfig(  )
+      public DataStoreConfig()
       {
-         this.DataStoreList = new BindingList<DataStore>( );
+         this.DataStoreList = new BindingList<DataStore>();
       }
-      public DataStoreConfig( string builtinDefaultPath )
+
+      public DataStoreConfig(string builtinDefaultPath)
          : this()
       {
          this.DefaultStgDirVal = builtinDefaultPath;
@@ -26,17 +29,19 @@ namespace DataPhilosophiae.Config
 
       public override string ToString()
       {
-         return this.DataStoreList.Count.ToString( );
+         return this.DataStoreList.Count.ToString();
       }
 
       public string DefaultStgDirVal
       {
-         get; set;
+         get;
+         set;
       }
 
       public IList<DataStore> DataStoreList
       {
-         get; set;
+         get;
+         set;
       }
 
       #region --- De/Serialize + Sample ---
@@ -57,267 +62,237 @@ namespace DataPhilosophiae.Config
       {
          XDocument doc =
             new XDocument(
-               new XDeclaration( "1.0", "utf-8", "yes" ),
-               new XComment( "DataStore Configuration..." ),
+               new XDeclaration("1.0", "utf-8", "yes"),
+               new XComment("DataStore Configuration..."),
                   //new XProcessingInstruction("MyApp", "123-44-4444"),
-                  new XElement( DsCfgElemNm,
+                  new XElement(DsCfgElemNm,
                      new XElement(
                         StgDirElemNm,
-                        new XCData( "default/stage/dir" ) // Default StagePathDir
+                        new XCData("default/stage/dir") // Default StagePathDir
                      ),
-                     new XElement( DsCollElemNm,
-                        new XElement( DsElemNm,
-                           new XAttribute( NmAttrNm, "Production" ),
-                           new XAttribute( ActvAttrNm, false ),
-                           new XAttribute( LddoAttrNm, true ), // LoadDefaultDatabaseOnly
-                           new XAttribute( LsoAttrNm, true ),  // LoadSystemObjects
-                           new XAttribute( WfAttrNm, true ),   // WithFields
+                     new XElement(DsCollElemNm,
+                        new XElement(DsElemNm,
+                           new XAttribute(NmAttrNm, "Production"),
+                           new XAttribute(ActvAttrNm, false),
+                           new XAttribute(LddoAttrNm, true), // LoadDefaultDatabaseOnly
+                           new XAttribute(LsoAttrNm, true),  // LoadSystemObjects
+                           new XAttribute(WfAttrNm, true),   // WithFields
                            new XElement(
                               StgDirElemNm,                    // Local StagePathDir
-                              new XCData( "stage/dir/" + "Production" )
-                           ),
-                           new XElement( CsElemNm,
-                              new XAttribute( PnAttrNm, "System.Data.SqlClient" ),  // DataStore's Provider Name
+                              new XCData("stage/dir/" + "Production")),
+                           new XElement(CsElemNm,
+                              new XAttribute(PnAttrNm, "System.Data.SqlClient"),  // DataStore's Provider Name
                               new XElement(
                                  ConnStrElemNm,                  // DataStore's Connection String
-                                 new XCData( @"D:\TEMP\SQLite\chinook\chinook.db" )
-                              )
-                           )
-                        ),
-                        new XElement( DsElemNm,
-                           new XAttribute( NmAttrNm, "Development" ),
-                           new XAttribute( ActvAttrNm, false ),
-                           new XAttribute( LddoAttrNm, true ), // LoadDefaultDatabaseOnly
-                           new XAttribute( LsoAttrNm, true ),  // LoadSystemObjects
-                           new XAttribute( WfAttrNm, true ),   // WithFields
+                                 new XCData(@"D:\TEMP\SQLite\chinook\chinook.db")))),
+                        new XElement(DsElemNm,
+                           new XAttribute(NmAttrNm, "Development"),
+                           new XAttribute(ActvAttrNm, false),
+                           new XAttribute(LddoAttrNm, true), // LoadDefaultDatabaseOnly
+                           new XAttribute(LsoAttrNm, true),  // LoadSystemObjects
+                           new XAttribute(WfAttrNm, true),   // WithFields
                            new XElement(
                               StgDirElemNm,                    // Local StagePathDir
-                              new XCData( "default/stage/dir"/*"stage/dir/" + "Development"*/)
-                           ),
-                           new XElement( CsElemNm,
-                              new XAttribute( PnAttrNm, "System.Data.SqlClient" ),  // DataStore's Provider Name
+                              new XCData("default/stage/dir"/*"stage/dir/" + "Development"*/)),
+                           new XElement(CsElemNm,
+                              new XAttribute(PnAttrNm, "System.Data.SqlClient"),  // DataStore's Provider Name
                               new XElement(
                                  ConnStrElemNm,                  // DataStore's Connection String
-                                 new XCData( @"D:\TEMP\SQLite\chinook\chinook.db" )
-                              )
-                           )
-                        ),
-                        new XElement( DsElemNm,
-                           new XAttribute( NmAttrNm, "Test" ),
-                           new XAttribute( ActvAttrNm, false ),
-                           new XAttribute( LddoAttrNm, true ), // LoadDefaultDatabaseOnly
-                           new XAttribute( LsoAttrNm, true ),  // LoadSystemObjects
-                           new XAttribute( WfAttrNm, true ),   // WithFields
+                                 new XCData(@"D:\TEMP\SQLite\chinook\chinook.db")))),
+                        new XElement(DsElemNm,
+                           new XAttribute(NmAttrNm, "Test"),
+                           new XAttribute(ActvAttrNm, false),
+                           new XAttribute(LddoAttrNm, true), // LoadDefaultDatabaseOnly
+                           new XAttribute(LsoAttrNm, true),  // LoadSystemObjects
+                           new XAttribute(WfAttrNm, true),   // WithFields
                            new XElement(
                               StgDirElemNm,                    // Local StagePathDir
-                              new XCData( "stage/dir/" + "Test" )
-                           ),
-                           new XElement( CsElemNm,
-                              new XAttribute( PnAttrNm, "System.Data.SqlClient" ),  // DataStore's Provider Name
+                              new XCData("stage/dir/" + "Test")),
+                           new XElement(CsElemNm,
+                              new XAttribute(PnAttrNm, "System.Data.SqlClient"),  // DataStore's Provider Name
                               new XElement(
                                  ConnStrElemNm,                  // DataStore's Connection String
-                                 new XCData( @"D:\TEMP\SQLite\chinook\chinook.db" )
-                              )
-                           )
-                        ),
-                        new XElement( DsElemNm,
-                           new XAttribute( NmAttrNm, "QualityAssurance" ),
-                           new XAttribute( ActvAttrNm, false ),
-                           new XAttribute( LddoAttrNm, true ), // LoadDefaultDatabaseOnly
-                           new XAttribute( LsoAttrNm, true ),  // LoadSystemObjects
-                           new XAttribute( WfAttrNm, true ),   // WithFields
+                                 new XCData(@"D:\TEMP\SQLite\chinook\chinook.db")))),
+                        new XElement(DsElemNm,
+                           new XAttribute(NmAttrNm, "QualityAssurance"),
+                           new XAttribute(ActvAttrNm, false),
+                           new XAttribute(LddoAttrNm, true), // LoadDefaultDatabaseOnly
+                           new XAttribute(LsoAttrNm, true),  // LoadSystemObjects
+                           new XAttribute(WfAttrNm, true),   // WithFields
                            new XElement(
                               StgDirElemNm,                    // Local StagePathDir
-                              new XCData( "default/stage/dir/"+"QualityAssurance" )
-                           ),
-                           new XElement( CsElemNm,
-                              new XAttribute( PnAttrNm, "System.Data.SqlClient" ),  // DataStore's Provider Name
+                              new XCData("default/stage/dir/" + "QualityAssurance")),
+                           new XElement(CsElemNm,
+                              new XAttribute(PnAttrNm, "System.Data.SqlClient"),  // DataStore's Provider Name
                               new XElement(
                                  ConnStrElemNm,                  // DataStore's Connection String
-                                 new XCData( @"D:\TEMP\SQLite\chinook\chinook.db" )
-                              )
-                           )
-                        ),
-                        new XElement( DsElemNm,
-                           new XAttribute( NmAttrNm, "UserAcceptance" ),
-                           new XAttribute( ActvAttrNm, false ),
-                           new XAttribute( LddoAttrNm, true ), // LoadDefaultDatabaseOnly
-                           new XAttribute( LsoAttrNm, true ),  // LoadSystemObjects
-                           new XAttribute( WfAttrNm, true ),   // WithFields
+                                 new XCData(@"D:\TEMP\SQLite\chinook\chinook.db")))),
+                        new XElement(DsElemNm,
+                           new XAttribute(NmAttrNm, "UserAcceptance"),
+                           new XAttribute(ActvAttrNm, false),
+                           new XAttribute(LddoAttrNm, true), // LoadDefaultDatabaseOnly
+                           new XAttribute(LsoAttrNm, true),  // LoadSystemObjects
+                           new XAttribute(WfAttrNm, true),   // WithFields
                            new XElement(
                               StgDirElemNm,                    // Local StagePathDir
-                              new XCData( "default/stage/dir"/*"stage/dir/" + "Development"*/)
-                           ),
-                           new XElement( CsElemNm,
-                              new XAttribute( PnAttrNm, "System.Data.SqlClient" ),  // DataStore's Provider Name
+                              new XCData("default/stage/dir"/*"stage/dir/" + "Development"*/)),
+                           new XElement(CsElemNm,
+                              new XAttribute(PnAttrNm, "System.Data.SqlClient"),  // DataStore's Provider Name
                               new XElement(
                                  ConnStrElemNm,                  // DataStore's Connection String
-                                 new XCData( @"D:\TEMP\SQLite\chinook\chinook.db" )
-                              )
-                           )
-                        )
-                     )
-                  )
-            );
+                                 new XCData(@"D:\TEMP\SQLite\chinook\chinook.db")))))));
          return doc;
       }
 
       public XDocument Serialize()
       {
-         XElement dsColl = new XElement( DsCollElemNm );
-         foreach( DataStore ds in this.DataStoreList )
+         XElement dsColl = new XElement(DsCollElemNm);
+         foreach(DataStore ds in this.DataStoreList)
          {
-            XElement dsElem = new XElement( DsElemNm,
-               new XAttribute( NmAttrNm, ds.Name ),
-               new XAttribute( ActvAttrNm, ds.Active ),
-               new XAttribute( LddoAttrNm, ds.LoadDefaultDatabaseOnly ),
-               new XAttribute( LsoAttrNm, ds.LoadSystemObjects ),
-               new XAttribute( WfAttrNm, ds.LoadWithFields ),
-               new XElement( StgDirElemNm,
+            XElement dsElem = new XElement(DsElemNm,
+               new XAttribute(NmAttrNm, ds.Name),
+               new XAttribute(ActvAttrNm, ds.Active),
+               new XAttribute(LddoAttrNm, ds.LoadDefaultDatabaseOnly),
+               new XAttribute(LsoAttrNm, ds.LoadSystemObjects),
+               new XAttribute(WfAttrNm, ds.LoadWithFields),
+               new XElement(StgDirElemNm,
                              ds.StagePathDir == this.DefaultStgDirVal
                ? null
-               : new XCData( ds.StagePathDir )
-               ),
-               new XElement( CsElemNm,
-                  new XAttribute( PnAttrNm, ds.ProviderName ),
-                  new XElement( ConnStrElemNm, new XCData( ds.ConnectionString ) )
-               )
-            );
-            dsColl.Add( dsElem );
+               : new XCData(ds.StagePathDir)),
+               new XElement(CsElemNm,
+                  new XAttribute(PnAttrNm, ds.ProviderName),
+                  new XElement(ConnStrElemNm, new XCData(ds.ConnectionString))));
+            dsColl.Add(dsElem);
          }
          XDocument doc =
             new XDocument(
-               new XDeclaration( "1.0", "utf-8", "yes" ),
-               new XComment( "DataStore Configuration..." ),
+               new XDeclaration("1.0", "utf-8", "yes"),
+               new XComment("DataStore Configuration..."),
                   //new XProcessingInstruction("MyApp", "123-44-4444"),
-                  new XElement( DsCfgElemNm,
+                  new XElement(DsCfgElemNm,
                      new XElement(
                         StgDirElemNm,
-                        new XCData( this.DefaultStgDirVal ) // Default StagePathDir
+                        new XCData(this.DefaultStgDirVal) // Default StagePathDir
                      ),
-                     dsColl
-                  )
-            );
+                     dsColl));
          return doc;
       }
 
-      public static DataStoreConfig Deserialize( XDocument doc )
+      public static DataStoreConfig Deserialize(XDocument doc)
       {
          #region --- Calling Contract... ---
-         if( doc == null )
+         if(doc == null)
          {
-            Error?.Invoke( "Document is null!" );
+            Error?.Invoke("Document is null!");
             return null;
          }
          //
-         XElement dsCfgElem = doc.Element( DsCfgElemNm );
-         if( dsCfgElem == null )
+         XElement dsCfgElem = doc.Element(DsCfgElemNm);
+         if(dsCfgElem == null)
          {
-            Error?.Invoke( $"Document does not contains a <{DsCfgElemNm}> element!" );
+            Error?.Invoke($"Document does not contains a <{DsCfgElemNm}> element!");
             return null;
          }
          #endregion
          //
-         DataStoreConfig cfg = new DataStoreConfig( );
+         DataStoreConfig cfg = new DataStoreConfig();
          // Default StagePathDir
-         cfg.DefaultStgDirVal = (dsCfgElem.Element( StgDirElemNm )?.Value);
-         if( string.IsNullOrWhiteSpace( cfg.DefaultStgDirVal ) )
+         cfg.DefaultStgDirVal = (dsCfgElem.Element(StgDirElemNm)?.Value);
+         if(string.IsNullOrWhiteSpace(cfg.DefaultStgDirVal))
          {
-            Error?.Invoke( $"Document does not contains a <{StgDirElemNm}> element!" );
+            Error?.Invoke($"Document does not contains a <{StgDirElemNm}> element!");
          }
          // List of DataStores...
-         XElement dsCollElem = dsCfgElem.Element( DsCollElemNm );
-         if( dsCollElem == null )
+         XElement dsCollElem = dsCfgElem.Element(DsCollElemNm);
+         if(dsCollElem == null)
          {
-            Error?.Invoke( $"There is no DataStore configuration: <{DsCollElemNm}> element!" );
+            Error?.Invoke($"There is no DataStore configuration: <{DsCollElemNm}> element!");
             return cfg;
          }
          //
-         IEnumerable<XElement> dsElemList = dsCollElem.Elements( DsElemNm );
-         foreach( XElement dsElem in dsElemList )
+         IEnumerable<XElement> dsElemList = dsCollElem.Elements(DsElemNm);
+         foreach(XElement dsElem in dsElemList)
          {
-            DataStore ds = new DataStore( );
-            ds.Name = (dsElem.Attribute( NmAttrNm )?.Value);
-            ds.Active = GetBooleanAttribute( (dsElem.Attribute( ActvAttrNm )?.Value), false );
-            ds.LoadDefaultDatabaseOnly = GetBooleanAttribute( (dsElem.Attribute( LddoAttrNm )?.Value), false );
-            ds.LoadSystemObjects = GetBooleanAttribute( (dsElem.Attribute( LsoAttrNm )?.Value), false );
-            ds.LoadWithFields = GetBooleanAttribute( (dsElem.Attribute( WfAttrNm )?.Value), false );
-            ds.StagePathDir = (dsElem.Element( StgDirElemNm )?.Value);
-            if( ds.StagePathDir == null )
+            DataStore ds = new DataStore();
+            ds.Name = (dsElem.Attribute(NmAttrNm)?.Value);
+            ds.Active = GetBooleanAttribute((dsElem.Attribute(ActvAttrNm)?.Value), false);
+            ds.LoadDefaultDatabaseOnly = GetBooleanAttribute((dsElem.Attribute(LddoAttrNm)?.Value), false);
+            ds.LoadSystemObjects = GetBooleanAttribute((dsElem.Attribute(LsoAttrNm)?.Value), false);
+            ds.LoadWithFields = GetBooleanAttribute((dsElem.Attribute(WfAttrNm)?.Value), false);
+            ds.StagePathDir = (dsElem.Element(StgDirElemNm)?.Value);
+            if(ds.StagePathDir == null)
             {
                ds.StagePathDir = cfg.DefaultStgDirVal;
             }
             //
-            XElement csElem = dsElem.Element( CsElemNm );
-            if( csElem == null )
+            XElement csElem = dsElem.Element(CsElemNm);
+            if(csElem == null)
             {
-               cfg.DataStoreList.Add( ds );
+               cfg.DataStoreList.Add(ds);
                continue;
             }
-            ds.ProviderName = (csElem.Attribute( PnAttrNm )?.Value);
-            ds.ConnectionString = (csElem.Element( ConnStrElemNm )?.Value);
-            cfg.DataStoreList.Add( ds );
+            ds.ProviderName = (csElem.Attribute(PnAttrNm)?.Value);
+            ds.ConnectionString = (csElem.Element(ConnStrElemNm)?.Value);
+            cfg.DataStoreList.Add(ds);
          }
-         if( cfg.DataStoreList.Count == 0 )
+         if(cfg.DataStoreList.Count == 0)
          {
-            Warn?.Invoke( $"There is no DataStore configuration: <{DsElemNm}> element!" );
+            Warn?.Invoke($"There is no DataStore configuration: <{DsElemNm}> element!");
          }
          //
          return cfg;
       }
 
-      private static bool GetBooleanAttribute( string boolStrVal, bool defaultValue )
+      private static bool GetBooleanAttribute(string boolStrVal, bool defaultValue)
       {
-         if( boolStrVal != null )
+         if(boolStrVal != null)
          {
-            bool.TryParse( boolStrVal, out defaultValue );
+            bool.TryParse(boolStrVal, out defaultValue);
          }
 
          return defaultValue;
       }
 
-      public static DataStoreConfig Load( string filename )
+      public static DataStoreConfig Load(string filename)
       {
-         if( !File.Exists( filename ) )
+         if(!File.Exists(filename))
          {
-            Error?.Invoke( $"File {filename} does not exist!" );
+            Error?.Invoke($"File {filename} does not exist!");
             return null;
          }
 
          try
          {
-            XDocument doc = XDocument.Load( filename, LoadOptions.None );
-            DataStoreConfig dsConfig = DataStoreConfig.Deserialize( doc );
-            if( dsConfig != null )
+            XDocument doc = XDocument.Load(filename, LoadOptions.None);
+            DataStoreConfig dsConfig = DataStoreConfig.Deserialize(doc);
+            if(dsConfig != null)
             {
-               Info?.Invoke( $"File '{filename}' loaded!" );
+               Info?.Invoke($"File '{filename}' loaded!");
                return dsConfig;
             }
-            Error?.Invoke( $"Load error @ '{filename}'!" );
+            Error?.Invoke($"Load error @ '{filename}'!");
             return null;
-         }
-         catch( Exception ex )
+         } catch(Exception ex)
          {
-            Error?.Invoke( $"Load exceptions @ '{filename}'!" );
-            Error?.Invoke( ex.Message );
-            Error?.Invoke( ex.StackTrace );
+            Error?.Invoke($"Load exceptions @ '{filename}'!");
+            Error?.Invoke(ex.Message);
+            Error?.Invoke(ex.StackTrace);
             return null;
          }
       }
 
-      public void Save( string filename )
+      public void Save(string filename)
       {
-         XDocument doc = this.Serialize( );
+         XDocument doc = this.Serialize();
          try
          {
-            doc.Save( filename );
-            Info?.Invoke( $"File {filename} saved!" );
-         }
-         catch( Exception ex )
+            doc.Save(filename);
+            Info?.Invoke($"File {filename} saved!");
+         } catch(Exception ex)
          {
-            Error?.Invoke( $"File {filename} exception!" );
-            Error?.Invoke( ex.Message );
-            Error?.Invoke( ex.StackTrace );
+            Error?.Invoke($"File {filename} exception!");
+            Error?.Invoke(ex.Message);
+            Error?.Invoke(ex.StackTrace);
             return;
          }
       }

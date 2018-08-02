@@ -1,4 +1,5 @@
-﻿using DataPhilosophiae.Config.Model;
+﻿using DataPhilosophiae.Config;
+using DataPhilosophiae.Config.Model;
 using DevExpress.Images;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
@@ -14,6 +15,8 @@ namespace DataPhilosophiae
 {
    public partial class MainRibbonForm : DevExpress.XtraBars.Ribbon.RibbonForm
    {
+      private AppConfig appCfg = AppConfig.Deserialize( AppConfig.Sample( ) );
+
       private DataStoreConfig dsCfg;
 
       public MainRibbonForm()
@@ -522,7 +525,7 @@ namespace DataPhilosophiae
                   //Glyph = ImageResourceCache.Default.GetImage( "office2013/actions/open_32x32.png" )
                };
                this.backstageViewControl1.Items.Add( o );
-               OpenRecentXuc oo = new OpenRecentXuc( )
+               OpenRecentXuc oo = new OpenRecentXuc( this.appCfg )
                {
                   Dock = DockStyle.Fill
                };

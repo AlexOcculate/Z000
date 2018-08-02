@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events\Delegates.cs" />
-    <Compile Include="Model\Config.cs" />
+    <Compile Include="Model\AppConfig.cs" />
     <Compile Include="Model\DataStore.cs" />
     <Compile Include="Model\DataStoreConfig.cs" />
     <Compile Include="Model\RecentlyOpenedFile.cs" />

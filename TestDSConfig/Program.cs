@@ -1,4 +1,5 @@
-﻿using DataPhilosophiae.Config.Model;
+﻿using DataPhilosophiae.Config;
+using DataPhilosophiae.Config.Model;
 using System;
 using System.Linq;
 using System.Xml.Linq;

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using DataPhilosophiae.Config;
 using DataPhilosophiae.Config.Model;
 using FrontEnd.ConfigurationSetting;
 using Microsoft.Win32;
