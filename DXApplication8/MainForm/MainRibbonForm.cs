@@ -85,15 +85,15 @@ namespace DataPhilosophiae
       #endregion
 
       #region --- MetadataItemXuc ---
-      private UserControl mdiCollXuc;
+      private MetadataItemCollXuc mdiCollXuc;
 
-      public UserControl MdiCollXuc
+      public MetadataItemCollXuc MdiCollXuc
       {
          get
          {
             if(this.mdiCollXuc == null)
             {
-               this.mdiCollXuc = new UserControl() { Dock = DockStyle.Fill };
+               this.mdiCollXuc = new MetadataItemCollXuc( ) { Dock = DockStyle.Fill };
             }
             return this.mdiCollXuc;
          }

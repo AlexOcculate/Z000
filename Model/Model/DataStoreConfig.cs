@@ -4,13 +4,10 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using DataPhilosophiae.Config.Model;
 
-namespace DataPhilosophiae.Config.Model
+namespace DataPhilosophiae.Config
 {
-   public delegate void InfoMessageDelegate( string msg );
-   public delegate void WarnMessageDelegate( string msg );
-   public delegate void ErrorMessageDelegate( string msg );
-
    public class DataStoreConfig
    {
       public static event InfoMessageDelegate Info;
@@ -56,7 +53,7 @@ namespace DataPhilosophiae.Config.Model
       public const string PnAttrNm = "pn";
       public const string ConnStrElemNm = "str";
 
-      public static XDocument DsCfgSample()
+      public static XDocument Sample()
       {
          XDocument doc =
             new XDocument(
@@ -221,10 +218,10 @@ namespace DataPhilosophiae.Config.Model
          }
          #endregion
          //
-         DataStoreConfig dsConfig = new DataStoreConfig( );
+         DataStoreConfig cfg = new DataStoreConfig( );
          // Default StagePathDir
-         dsConfig.DefaultStgDirVal = (dsCfgElem.Element( StgDirElemNm )?.Value);
-         if( string.IsNullOrWhiteSpace( dsConfig.DefaultStgDirVal ) )
+         cfg.DefaultStgDirVal = (dsCfgElem.Element( StgDirElemNm )?.Value);
+         if( string.IsNullOrWhiteSpace( cfg.DefaultStgDirVal ) )
          {
             Error?.Invoke( $"Document does not contains a <{StgDirElemNm}> element!" );
          }
@@ -233,7 +230,7 @@ namespace DataPhilosophiae.Config.Model
          if( dsCollElem == null )
          {
             Error?.Invoke( $"There is no DataStore configuration: <{DsCollElemNm}> element!" );
-            return dsConfig;
+            return cfg;
          }
          //
          IEnumerable<XElement> dsElemList = dsCollElem.Elements( DsElemNm );
@@ -248,25 +245,25 @@ namespace DataPhilosophiae.Config.Model
             ds.StagePathDir = (dsElem.Element( StgDirElemNm )?.Value);
             if( ds.StagePathDir == null )
             {
-               ds.StagePathDir = dsConfig.DefaultStgDirVal;
+               ds.StagePathDir = cfg.DefaultStgDirVal;
             }
             //
             XElement csElem = dsElem.Element( CsElemNm );
             if( csElem == null )
             {
-               dsConfig.DataStoreList.Add( ds );
+               cfg.DataStoreList.Add( ds );
                continue;
             }
             ds.ProviderName = (csElem.Attribute( PnAttrNm )?.Value);
             ds.ConnectionString = (csElem.Element( ConnStrElemNm )?.Value);
-            dsConfig.DataStoreList.Add( ds );
+            cfg.DataStoreList.Add( ds );
          }
-         if( dsConfig.DataStoreList.Count == 0 )
+         if( cfg.DataStoreList.Count == 0 )
          {
             Warn?.Invoke( $"There is no DataStore configuration: <{DsElemNm}> element!" );
          }
          //
-         return dsConfig;
+         return cfg;
       }
 
       private static bool GetBooleanAttribute( string boolStrVal, bool defaultValue )

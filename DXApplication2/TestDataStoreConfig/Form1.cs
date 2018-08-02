@@ -20,7 +20,7 @@ namespace TestDataStoreConfig
    public partial class Form1 : RibbonForm
    {
       private static DataStoreConfig dsCfg = DataStoreConfig.Deserialize( dsCfgSample );
-      private static XDocument dsCfgSample = DataStoreConfig.DsCfgSample( );
+      private static XDocument dsCfgSample = DataStoreConfig.Sample( );
 
       private GridColumn _colStagePathDir;
 

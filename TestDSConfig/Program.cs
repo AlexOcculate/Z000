@@ -9,7 +9,7 @@ namespace TestDSConfig
    {
       private static void Main(string[ ] args)
       {
-         XDocument dsCfgSample = DataStoreConfig.DsCfgSample();
+         XDocument dsCfgSample = DataStoreConfig.Sample();
          string element = dsCfgSample.ToString();
          DataStoreConfig dsCfg = DataStoreConfig.Deserialize( dsCfgSample );
          XDocument serialize = dsCfg.Serialize( );

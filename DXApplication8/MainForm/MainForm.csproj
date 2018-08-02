@@ -152,9 +152,6 @@
     <None Include="Resources\info_16x16.png" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\ClassLibrary1\OpenRecentXuc.csproj">
       <Project>{afd126f4-b457-4623-9544-9f0685022d57}</Project>
       <Name>OpenRecentXuc</Name>
@@ -166,6 +163,10 @@
     <ProjectReference Include="..\..\MessageXuc\MessageXuc.csproj">
       <Project>{c816b7d2-a7f9-4196-9ab2-3499056f8ca2}</Project>
       <Name>MessageXuc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MetadataItemXuc\MetadataItemCollXuc.csproj">
+      <Project>{5d793e8d-c05b-4b0f-b130-f1a891dba4da}</Project>
+      <Name>MetadataItemCollXuc</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Model\Model.csproj">
       <Project>{f612e34c-e62a-40d9-8c81-df34fe61ea49}</Project>

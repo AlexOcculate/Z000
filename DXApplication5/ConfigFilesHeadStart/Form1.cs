@@ -77,7 +77,7 @@ namespace ConfigFilesHeadStart
             string configFileName = @"dsConfig.xml";
             string configFileFullPathName = Path.Combine(configFilePath,configFileName);;
             {
-               XDocument dsCfgSample = DataStoreConfig.DsCfgSample( );
+               XDocument dsCfgSample = DataStoreConfig.Sample( );
                dsCfgSample.Save(configFileFullPathName, SaveOptions.None);
             }
             XDocument xDoc = XDocument.Load( configFileFullPathName, LoadOptions.None );

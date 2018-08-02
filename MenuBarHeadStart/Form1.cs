@@ -77,5 +77,15 @@ namespace MenuBarHeadStart
             svgSkinPaletteSelector.ShowDialog( );
          }
       }
+
+      private void emailBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
+      {
+          
+      }
+
+      private void barButtonItem11_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
+      {
+
+      }
    }
 }
