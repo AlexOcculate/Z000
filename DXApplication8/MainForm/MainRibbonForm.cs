@@ -311,30 +311,32 @@ namespace DataPhilosophiae
       #region --- Open File ---
       private void fileOpenBarButtonItem_ItemClick( object sender, ItemClickEventArgs e )
       {
-         this.FileOpened = false;
          switch( this.SaveFileDialogHelper( ) )
          {
             case DialogResult.OK:
             case DialogResult.Ignore:
                break;
             default:
-               return;
+               return ;
          }
          if( sender != this && this.OpenFileDialogHelper( ) != DialogResult.OK )
          {
-            return;
+            return ;
          }
 
          string fqn = Path.Combine( this.DefaultPath, this.DefaultFileName );
          this.dsCfg = DataStoreConfig.Load( fqn );
          if( this.dsCfg == null )
          {
-            return;
+            return ;
          }
          this.DsCollXuc.SetConfig( this.dsCfg );
          //
+         if( this.FileOpened )
+         {
+            this.UpdateOpenRecentList( fqn );
+         }
          this.FileOpened = true;
-         this.UpdateOpenRecentList( fqn );
          this.MsgCollXuc.Info( "File '{0}' opened.", fqn );
          this.UpdateFileNameLabel( );
          this.UpdateFileStatusLabel( );
@@ -444,7 +446,9 @@ namespace DataPhilosophiae
          {
             return;
          }
-         this.MsgCollXuc.Info( "File '{0}' closed!", Path.Combine( this.DefaultPath, this.DefaultFileName ) );
+         string fqn = Path.Combine(this.DefaultPath, this.DefaultFileName);
+         this.MsgCollXuc.Info( "File '{0}' closed!", fqn );
+         this.UpdateOpenRecentList( fqn );
 
          this.DefaultFileName = this.builtinDefaultFilename;
       }
