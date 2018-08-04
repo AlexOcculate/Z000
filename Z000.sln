@@ -13,6 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuBarHeadStart", "MenuBar
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{113E7F6F-0125-499A-A2BF-C860E5319953}"
 	ProjectSection(SolutionItems) = preProject
+		Backlog.txt = Backlog.txt
+		Memory.txt = Memory.txt
+		Roadmap.txt = Roadmap.txt
 		TextFile1.txt = TextFile1.txt
 	EndProjectSection
 EndProject

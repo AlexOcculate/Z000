@@ -1,4 +1,5 @@
 ﻿using DataPhilosophiae.Config;
+using DataPhilosophiae.Delegates;
 using DevExpress.XtraGrid.Views.Tile;
 using System;
 using System.Drawing;
@@ -8,6 +9,8 @@ namespace DataPhilosophiae
 {
    public partial class OpenRecentXuc : DevExpress.XtraEditors.XtraUserControl
    {
+      public event ReOpenFileDelegate ReOpenFile;
+
       private AppConfig appCfg;
 
       public OpenRecentXuc()
@@ -33,7 +36,11 @@ namespace DataPhilosophiae
 
       private void tileView1_ItemClick( object sender, TileViewItemClickEventArgs e )
       {
+         TileViewItem tvi = e.Item as TileViewItem;
 
+         string filename = tvi.Text;
+         string pathname = tvi.Text2;
+         this.ReOpenFile?.Invoke(filename, pathname);
       }
    }
 }

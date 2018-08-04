@@ -1,4 +1,5 @@
 ﻿using DataPhilosophiae.Config.Model;
+using DataPhilosophiae.Delegates;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

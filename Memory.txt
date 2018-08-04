@@ -1,0 +1,5 @@
+15,132,223
+
+Segoe UI Semilight
+
+"yyyyMMddTHHmmss,fffffffzzz"
