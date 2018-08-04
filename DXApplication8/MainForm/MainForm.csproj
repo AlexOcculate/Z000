@@ -61,12 +61,6 @@
     <Compile Include="MainRibbonForm.Designer.cs">
       <DependentUpon>MainRibbonForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="OpenSaveFolderHelper.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="OpenSaveFolderHelper.Designer.cs">
-      <DependentUpon>OpenSaveFolderHelper.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashScreen1.cs">
@@ -77,9 +71,6 @@
     </Compile>
     <EmbeddedResource Include="MainRibbonForm.resx">
       <DependentUpon>MainRibbonForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OpenSaveFolderHelper.resx">
-      <DependentUpon>OpenSaveFolderHelper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -174,6 +165,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\exportfile_32x32.png" />
     <Content Include="Resources\splashScreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

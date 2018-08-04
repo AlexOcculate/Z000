@@ -1,5 +1,4 @@
 ﻿using DataPhilosophiae.Config;
-using DataPhilosophiae.Config.Model;
 using DevExpress.Images;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
@@ -15,12 +14,18 @@ namespace DataPhilosophiae
 {
    public partial class MainRibbonForm : DevExpress.XtraBars.Ribbon.RibbonForm
    {
-      private AppConfig appCfg = AppConfig.Deserialize( AppConfig.Sample( ) );
+      private AppConfig appCfg ; // = new AppConfig( ); //.Deserialize( AppConfig.Sample( ) );
 
       private DataStoreConfig dsCfg;
 
       public MainRibbonForm()
       {
+         this.appCfg = AppConfig.Load( "App.Config" );
+         if( this.appCfg == null )
+         {
+            this.appCfg = new AppConfig();
+         }
+         //
          this.InitializeComponent();
          //
          this.CreateRecentItem();
@@ -39,7 +44,7 @@ namespace DataPhilosophiae
          //TODO: App.Config!!!
          string skinStyle = "The Bezier";
          DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(skinStyle);
-      }
+}
 
       private void MainRibbonForm_FormClosing(object sender, FormClosingEventArgs e)
       {
@@ -47,6 +52,7 @@ namespace DataPhilosophiae
          {
             case DialogResult.OK:
             case DialogResult.Ignore:
+               this.appCfg.Save("App.Config");
                break;
             default:
                e.Cancel = true;
@@ -80,7 +86,7 @@ namespace DataPhilosophiae
          {
             if(this.dsCollXuc == null)
             {
-               this.dsCollXuc = new DataStoreConfigXuc( ) { Dock = DockStyle.Fill };
+               this.dsCollXuc = new DataStoreConfigXuc() { Dock = DockStyle.Fill };
             }
             return this.dsCollXuc;
          }
@@ -96,7 +102,7 @@ namespace DataPhilosophiae
          {
             if(this.mdiCollXuc == null)
             {
-               this.mdiCollXuc = new MetadataItemCollXuc( ) { Dock = DockStyle.Fill };
+               this.mdiCollXuc = new MetadataItemCollXuc() { Dock = DockStyle.Fill };
             }
             return this.mdiCollXuc;
          }
@@ -128,7 +134,7 @@ namespace DataPhilosophiae
          {
             if(this.msgCollXuc == null)
             {
-               this.msgCollXuc = new MessageXuc( ) { Dock = DockStyle.Fill };
+               this.msgCollXuc = new MessageXuc() { Dock = DockStyle.Fill };
             }
             return this.msgCollXuc;
          }
@@ -136,6 +142,10 @@ namespace DataPhilosophiae
       #endregion
 
       #endregion
+
+      private void mainRibbonControl_ApplicationButtonClick(object sender, EventArgs e)
+      {
+      }
 
       private void fileQuickPrintBarButtonItem_ItemClick(object sender, ItemClickEventArgs e)
       {
@@ -443,12 +453,7 @@ namespace DataPhilosophiae
 
       private void UpdateOpenRecentList(string item)
       {
-         //Strings s = this.openRecentBarListItem.Strings;
-         //s.Insert( 0, item );
-         //if( s.Count > 10 )
-         //{
-         //   s.RemoveAt( s.Count - 1 );
-         //}
+         this.appCfg.AddRecentlyOpenedFile(item);
       }
 
       #endregion
@@ -491,6 +496,8 @@ namespace DataPhilosophiae
          SplashScreenManager.CloseForm();
       }
 
+      private BackstageViewTabItem rofBackstageViewTabItem;
+
       #region --- BackStageViewControl and RecentItemControl ---
       private void CreateRecentItem()
       {
@@ -519,19 +526,20 @@ namespace DataPhilosophiae
                this.backstageViewControl1.Items.Add(o);
             }
             {
-               BackstageViewTabItem o = new BackstageViewTabItem( )
+               this.rofBackstageViewTabItem = new BackstageViewTabItem()
                {
                   Caption = "Open Recent",
+                  Name = "Open Recent",
                   //Glyph = ImageResourceCache.Default.GetImage( "office2013/actions/open_32x32.png" )
                };
-               this.backstageViewControl1.Items.Add( o );
-               OpenRecentXuc oo = new OpenRecentXuc( this.appCfg )
+               this.backstageViewControl1.Items.Add(this.rofBackstageViewTabItem);
+               OpenRecentXuc xuc = new OpenRecentXuc(this.appCfg)
                {
                   Dock = DockStyle.Fill
                };
-               o.ContentControl.Controls.Add( oo );
+               this.rofBackstageViewTabItem.ContentControl.Controls.Add(xuc);
             }
-            this.backstageViewControl1.Items.Add( new BackstageViewItemSeparator( ) );
+            this.backstageViewControl1.Items.Add(new BackstageViewItemSeparator());
             {
                BackstageViewButtonItem o = new BackstageViewButtonItem()
                {
@@ -548,25 +556,25 @@ namespace DataPhilosophiae
                };
                this.backstageViewControl1.Items.Add(o);
             }
-            this.backstageViewControl1.Items.Add( new BackstageViewItemSeparator( ) );
+            this.backstageViewControl1.Items.Add(new BackstageViewItemSeparator());
             {
                BackstageViewButtonItem o = new BackstageViewButtonItem()
                {
-                  Caption = "Close",
+                  Caption = nameof(Close),
                   //Glyph = ImageResourceCache.Default.GetImage( "office2013/actions/close_32x32.png" )
                };
                this.backstageViewControl1.Items.Add(o);
             }
-            this.backstageViewControl1.Items.Add( new BackstageViewItemSeparator( ) );
+            this.backstageViewControl1.Items.Add(new BackstageViewItemSeparator());
             {
-               BackstageViewButtonItem o = new BackstageViewButtonItem( )
+               BackstageViewButtonItem o = new BackstageViewButtonItem()
                {
                   Caption = "Exit",
                   //Glyph = ImageResourceCache.Default.GetImage( "office2013/actions/close_32x32.png" )
                };
-               this.backstageViewControl1.Items.Add( o );
+               this.backstageViewControl1.Items.Add(o);
             }
-            this.backstageViewControl1.Items.Add( new BackstageViewItemSeparator( ) );
+            this.backstageViewControl1.Items.Add(new BackstageViewItemSeparator());
             {
                BackstageViewTabItem o = new BackstageViewTabItem();
                o.Caption = "Export";
@@ -651,16 +659,18 @@ namespace DataPhilosophiae
          }
       }
 
-      private void BackstageViewControl1_SelectedTabChanged( object sender, BackstageViewItemEventArgs e )
+      private void backstageViewControl1_ItemClick(object sender, BackstageViewItemEventArgs e)
       {
+         //if( e.Item.Name == "Open Recent" )
+         //{
+         //}
       }
 
-      private void RecentLabelItem_ItemClick(object sender, RecentItemEventArgs e)
+      private void backstageViewControl1_SelectedTabChanged(object sender, BackstageViewItemEventArgs e)
       {
-      }
-
-      private void RecentTabItem1_ItemClick(object sender, RecentItemEventArgs e)
-      {
+         //if( e.Item.Name == "Open Recent" )
+         //{
+         //}
       }
       #endregion
    }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -24,6 +25,25 @@ namespace DataPhilosophiae.Config
       {
          get;
          set;
+      }
+
+      public void AddRecentlyOpenedFile( string item )
+      {
+         foreach( RecentlyOpenedFile rof in this.RecentlyOpenedFileList )
+         {
+            if( string.Compare( rof.FullQualifiedName( ), item, StringComparison.Ordinal ) == 0 )
+            {
+               rof.Timestamp = DateTime.Now;
+               return;
+            }
+         }
+         RecentlyOpenedFile newRof = new RecentlyOpenedFile( );
+         newRof.Name = System.IO.Path.GetFileName( item );
+         newRof.Path = System.IO.Path.GetFullPath( item );
+         newRof.Available = true;
+         newRof.Enabled = true;
+         newRof.Timestamp = DateTime.Now;
+         this.RecentlyOpenedFileList.Add( newRof );
       }
 
       #region --- De/Serialize + Sample ---
@@ -174,6 +194,52 @@ namespace DataPhilosophiae.Config
          }
 
          return defaultValue;
+      }
+
+      public static AppConfig Load( string filename )
+      {
+         if( !File.Exists( filename ) )
+         {
+            Error?.Invoke( $"File {filename} does not exist!" );
+            return null;
+         }
+
+         try
+         {
+            XDocument doc = XDocument.Load( filename, LoadOptions.None );
+            AppConfig o = AppConfig.Deserialize( doc );
+            if( o != null )
+            {
+               Info?.Invoke( $"File '{filename}' loaded!" );
+               return o;
+            }
+            Error?.Invoke( $"Load error @ '{filename}'!" );
+            return null;
+         }
+         catch( Exception ex )
+         {
+            Error?.Invoke( $"Load exceptions @ '{filename}'!" );
+            Error?.Invoke( ex.Message );
+            Error?.Invoke( ex.StackTrace );
+            return null;
+         }
+      }
+
+      public void Save( string filename )
+      {
+         XDocument doc = this.Serialize( );
+         try
+         {
+            doc.Save( filename );
+            Info?.Invoke( $"File {filename} saved!" );
+         }
+         catch( Exception ex )
+         {
+            Error?.Invoke( $"File {filename} exception!" );
+            Error?.Invoke( ex.Message );
+            Error?.Invoke( ex.StackTrace );
+            return;
+         }
       }
       #endregion
    }

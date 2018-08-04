@@ -21,15 +21,19 @@ namespace DataPhilosophiae
          this.appCfg = appCfg;
          this.recentlyOpenedFileListBindingSource.DataSource = this.appCfg.RecentlyOpenedFileList;
       }
-
-      private void tileView1_ItemCustomize(object sender, DevExpress.XtraGrid.Views.Tile.TileViewItemCustomizeEventArgs e)
+      private void tileView1_ItemCustomize( object sender, TileViewItemCustomizeEventArgs e )
       {
          TileView view = sender as TileView;
-         if((bool) view.GetRowCellValue(e.RowHandle, this.colAvailable) == true)
+         if( (bool) view.GetRowCellValue( e.RowHandle, this.colAvailable ) == true )
          {
-            e.Item.Elements[3].Text = string.Empty;
-            e.Item.Elements[3].Appearance.Normal.BackColor = Color.Transparent;
+            e.Item.Elements[ 3 ].Text = string.Empty;
+            e.Item.Elements[ 3 ].Appearance.Normal.BackColor = Color.Transparent;
          }
+      }
+
+      private void tileView1_ItemClick( object sender, TileViewItemClickEventArgs e )
+      {
+
       }
    }
 }

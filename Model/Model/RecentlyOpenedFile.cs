@@ -61,7 +61,12 @@ namespace DataPhilosophiae.Config.Model
       [Display( Name = Available_ColName, Description = "Does it exist and is available?" )]
       public bool Available
       {
-         get { return this.rnd.Next( 0, 100) % 2 == 0 ? true : false; } set{ }
+         get ; set;
+      }
+
+      public string FullQualifiedName()
+      {
+         return System.IO.Path.Combine(this.Path, this.Name);
       }
    }
 }
