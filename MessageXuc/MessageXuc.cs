@@ -44,6 +44,28 @@ namespace DataPhilosophiae
          this.gridControl1.DataSource = this.ds;
          this.gridControl1.DataMember = INFO_TABLENAME;
          {
+            ((System.ComponentModel.ISupportInitialize) (this.gridControl1)).BeginInit( );
+            {
+               {
+                  GridColumn gc = this.gridView1.Columns[ TIMESTAMP_COLUMNNAME ];
+                  gc.DisplayFormat.FormatString = "yyyy/MM/dd-HH:mm:ss,fffffffzzz";
+                  gc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+                  gc.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
+                  gc.MaxWidth = gc.MinWidth = gc.Width = 220;
+               }
+               {
+                  GridColumn gc = this.gridView1.Columns[ CODE_COLUMNNAME ];
+                  gc.MaxWidth = gc.MinWidth = gc.Width = 60;
+               }
+               {
+                  GridColumn gc = this.gridView1.Columns[ TYPE_COLUMNNAME ];
+                  gc.MaxWidth = gc.MinWidth = gc.Width = 50;
+               }
+               this.gridView1.BestFitColumns(true);
+            }
+            ((System.ComponentModel.ISupportInitialize) (this.gridControl1)).EndInit( );
+         }
+         {
             this.gridControl1.UseEmbeddedNavigator = true;
             this.gridView1.OptionsBehavior.ReadOnly = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;

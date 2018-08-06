@@ -28,7 +28,6 @@
       /// </summary>
       private void InitializeComponent()
       {
-         this.components = new System.ComponentModel.Container();
          DevExpress.XtraEditors.TableLayout.TableColumnDefinition tableColumnDefinition1 = new DevExpress.XtraEditors.TableLayout.TableColumnDefinition();
          DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition1 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
          DevExpress.XtraEditors.TableLayout.TableRowDefinition tableRowDefinition2 = new DevExpress.XtraEditors.TableLayout.TableRowDefinition();
@@ -45,7 +44,7 @@
          this.colPath = new DevExpress.XtraGrid.Columns.TileViewColumn();
          this.colTimestamp = new DevExpress.XtraGrid.Columns.TileViewColumn();
          this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-         this.recentlyOpenedFileListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+         this.recentlyOpenedFileListBindingSource = new System.Windows.Forms.BindingSource();
          this.tileView1 = new DevExpress.XtraGrid.Views.Tile.TileView();
          this.colPinned = new DevExpress.XtraGrid.Columns.TileViewColumn();
          this.colEnabled = new DevExpress.XtraGrid.Columns.TileViewColumn();
@@ -74,7 +73,12 @@
          this.colTimestamp.DisplayFormat.FormatString = "yyyy/MM/dd-HH:mm:ss,fffffffzzz";
          this.colTimestamp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
          this.colTimestamp.FieldName = "Timestamp";
+         this.colTimestamp.GroupFormat.FormatString = "yyyy/MM/dd-HH:mmzzz";
+         this.colTimestamp.GroupFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
          this.colTimestamp.Name = "colTimestamp";
+         this.colTimestamp.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
+         this.colTimestamp.OptionsFilter.FilterBySortField = DevExpress.Utils.DefaultBoolean.True;
+         this.colTimestamp.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
          this.colTimestamp.Visible = true;
          this.colTimestamp.VisibleIndex = 0;
          // 
@@ -104,12 +108,13 @@
          this.tileView1.ColumnSet.GroupColumn = this.colTimestamp;
          this.tileView1.GridControl = this.gridControl1;
          this.tileView1.Name = "tileView1";
+         this.tileView1.OptionsTiles.AllowItemHover = true;
          this.tileView1.OptionsTiles.IndentBetweenItems = 6;
          this.tileView1.OptionsTiles.ItemSize = new System.Drawing.Size(464, 130);
          this.tileView1.OptionsTiles.LayoutMode = DevExpress.XtraGrid.Views.Tile.TileViewLayoutMode.List;
          this.tileView1.OptionsTiles.Orientation = System.Windows.Forms.Orientation.Vertical;
          this.tileView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colTimestamp, DevExpress.Data.ColumnSortOrder.Ascending)});
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colTimestamp, DevExpress.Data.ColumnSortOrder.Descending)});
          tableColumnDefinition1.Length.Value = 165D;
          this.tileView1.TileColumns.Add(tableColumnDefinition1);
          tableRowDefinition1.Length.Value = 43D;
@@ -156,7 +161,7 @@
          tileViewItemElement3.RowIndex = 2;
          tileViewItemElement3.Text = "colTimestamp";
          tileViewItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter;
-         tileViewItemElement4.Appearance.Normal.BackColor = System.Drawing.Color.Navy;
+         tileViewItemElement4.Appearance.Normal.BackColor = System.Drawing.Color.Red;
          tileViewItemElement4.Appearance.Normal.Font = new System.Drawing.Font("Segoe UI Black", 8.25F, System.Drawing.FontStyle.Bold);
          tileViewItemElement4.Appearance.Normal.ForeColor = System.Drawing.Color.White;
          tileViewItemElement4.Appearance.Normal.Options.UseBackColor = true;
@@ -165,9 +170,10 @@
          tileViewItemElement4.Height = 20;
          tileViewItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
          tileViewItemElement4.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.ZoomInside;
+         tileViewItemElement4.Name = "notFound";
          tileViewItemElement4.RowIndex = 3;
          tileViewItemElement4.StretchHorizontal = true;
-         tileViewItemElement4.Text = "Not Available!";
+         tileViewItemElement4.Text = "Not Found";
          tileViewItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
          this.tileView1.TileTemplate.Add(tileViewItemElement1);
          this.tileView1.TileTemplate.Add(tileViewItemElement2);

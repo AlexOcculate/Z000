@@ -28,15 +28,16 @@
       /// </summary>
       private void InitializeComponent()
       {
+         this.components = new System.ComponentModel.Container();
          DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::DataPhilosophiae.SplashScreen1), true, true, true);
          System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainRibbonForm));
          DevExpress.Utils.Animation.PushTransition pushTransition1 = new DevExpress.Utils.Animation.PushTransition();
          DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer dockingContainer1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer();
          DevExpress.Utils.Controls.SnapOptions snapOptions1 = new DevExpress.Utils.Controls.SnapOptions();
-         this.dsCollDocumentGroup = new DevExpress.XtraBars.Docking2010.Views.Tabbed.DocumentGroup();
-         this.dsCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document();
-         this.mdiCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document();
-         this.dviCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document();
+         this.dsCollDocumentGroup = new DevExpress.XtraBars.Docking2010.Views.Tabbed.DocumentGroup(this.components);
+         this.dsCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document(this.components);
+         this.mdiCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document(this.components);
+         this.dviCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document(this.components);
          this.mainRibbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
          this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
          this.fileNewBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -77,9 +78,9 @@
          this.helpRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
          this.helpRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
          this.mainRibbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-         this.documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager();
-         this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView();
-         this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager();
+         this.documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
+         this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
+         this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
          this.msgCollDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
          this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
          this.dsCollDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
@@ -88,10 +89,10 @@
          this.mdiCollControlContainer = new DevExpress.XtraBars.Docking.ControlContainer();
          this.dviCollDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
          this.dviCollControlContainer = new DevExpress.XtraBars.Docking.ControlContainer();
-         this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager();
-         this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog();
-         this.xtraSaveFileDialog1 = new DevExpress.XtraEditors.XtraSaveFileDialog();
-         this.xtraFolderBrowserDialog1 = new DevExpress.XtraEditors.XtraFolderBrowserDialog();
+         this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+         this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
+         this.xtraSaveFileDialog1 = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
+         this.xtraFolderBrowserDialog1 = new DevExpress.XtraEditors.XtraFolderBrowserDialog(this.components);
          ((System.ComponentModel.ISupportInitialize)(this.dsCollDocumentGroup)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.dsCollDocument)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.mdiCollDocument)).BeginInit();
@@ -180,7 +181,7 @@
             this.helpBarButtonItem,
             this.aboutBarButtonItem});
          this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
-         this.mainRibbonControl.MaxItemId = 26;
+         this.mainRibbonControl.MaxItemId = 1;
          this.mainRibbonControl.Name = "mainRibbonControl";
          this.mainRibbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.fileRibbonPage,

@@ -51,8 +51,7 @@ namespace DataPhilosophiae.Config.Model
       [Display( Name = Enabled_ColName, Description = "Is it enabled?" )]
       public bool Enabled
       {
-         get { return true; }
-         set { }
+         get ;set ;
       }
 
       private Random rnd = new Random( );

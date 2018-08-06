@@ -546,7 +546,7 @@ namespace DataPhilosophiae
                   //Glyph = ImageResourceCache.Default.GetImage( "office2013/actions/open_32x32.png" )
                };
                this.backstageViewControl1.Items.Add( this.rofBackstageViewTabItem );
-               OpenRecentXuc xuc = new OpenRecentXuc( this.appCfg )
+               OpenRecentXuc xuc = new OpenRecentXuc( this.appCfg, this.backstageViewControl1 )
                {
                   Dock = DockStyle.Fill
                };

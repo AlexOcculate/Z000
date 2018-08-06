@@ -1,0 +1,57 @@
+Selection
+Hit
+Sort
+Group
+Filter
+Search
+
+
+BackstageView
+
+RecentlyOpenedFiles Control
+- Filter
+- Finder
+- Views: Windows Explorer / Tile, Contents, Grid, etc...
+- Salvar arquivo anterior antes de abrir um proximo
+
+SplashScreen
+- Customizer para a empresa, sw name, license
+
+RibbonForm + DataStorage Control
+- Fazer visivel a tab do DataStorage apos um novo/reopened arquivo tiver sido carregado.
+- Usar o Application Title + Form Title
+
+DataStorage Control
+- Implementar "Refresh this/Refresh All" (Select/Invert Selection/Filtered/etc...)
+
+Icons
+- Padronizar todos os icons da applicacao
+- Criar projeto so de icones para aplicacao
+
+MetadataItem Control
+- Implementar
+
+RibbonStatusBar
+- Indicar nome do arquivo aberto
+- indicar status do teclado
+- indicar status do systema
+
+MessagesControl
+- Salvar e Restauras as mensagens a cada sessao.
+
+===================== ==== =====================
+===================== DONE =====================
+===================== ==== =====================
+
+BackstageView
+- fechar backstage apos "Recently Opned File" tiver sido escolhido
+
+MessagesControl
+- Format 'timestamp' column "yyyyMMddTHHmmss,fffffffzzz"
+- Melhorar a formatacao "width" das columns mostrando mais a mensagem em si mesmo!
+
+RecentlyOpenedFiles Control
+- Sort by Timestamp "yyyy/MM/dd-HH:mm"
+- Group by Timestamp "yyyy/MM/dd-HH:mm""
+- Implementar "Ativo"/"Existe" para cada arquivo da list.
+- Implementar Disable/Enable baseado na existencia do arquivo no file system!
