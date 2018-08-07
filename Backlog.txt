@@ -18,7 +18,7 @@ SplashScreen
 - Customizer para a empresa, sw name, license
 
 RibbonForm + DataStorage Control
-- Fazer visivel a tab do DataStorage apos um novo/reopened arquivo tiver sido carregado.
+? Fazer visivel a tab do DataStorage apos um novo/reopened arquivo tiver sido carregado.
 - Usar o Application Title + Form Title
 
 DataStorage Control
@@ -55,3 +55,6 @@ RecentlyOpenedFiles Control
 - Group by Timestamp "yyyy/MM/dd-HH:mm""
 - Implementar "Ativo"/"Existe" para cada arquivo da list.
 - Implementar Disable/Enable baseado na existencia do arquivo no file system!
+
+RibbonForm + DataStorage Control
+* Fazer visivel a tab do DataStorage apos um novo/reopened arquivo tiver sido carregado.

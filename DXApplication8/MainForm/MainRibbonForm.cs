@@ -317,20 +317,24 @@ namespace DataPhilosophiae
             case DialogResult.Ignore:
                break;
             default:
-               return ;
+               return;
          }
          if( sender != this && this.OpenFileDialogHelper( ) != DialogResult.OK )
          {
-            return ;
+            return;
          }
 
          string fqn = Path.Combine( this.DefaultPath, this.DefaultFileName );
          this.dsCfg = DataStoreConfig.Load( fqn );
          if( this.dsCfg == null )
          {
-            return ;
+            return;
          }
          this.DsCollXuc.SetConfig( this.dsCfg );
+         {
+            this.tabbedView1.Controller.Activate( this.dsCollDocument );
+            this.dsCollDockPanel.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Visible;
+         }
          //
          if( this.FileOpened )
          {
@@ -446,7 +450,7 @@ namespace DataPhilosophiae
          {
             return;
          }
-         string fqn = Path.Combine(this.DefaultPath, this.DefaultFileName);
+         string fqn = Path.Combine( this.DefaultPath, this.DefaultFileName );
          this.MsgCollXuc.Info( "File '{0}' closed!", fqn );
          this.UpdateOpenRecentList( fqn );
 
@@ -475,20 +479,24 @@ namespace DataPhilosophiae
       private void dockManager1_ClosingPanel( object sender, DevExpress.XtraBars.Docking.DockPanelCancelEventArgs e )
       {
          e.Panel.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Hidden;
+         e.Cancel = true;
       }
 
       private void dsCollBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
       {
+         this.tabbedView1.Controller.Activate( this.dsCollDocument );
          this.dsCollDockPanel.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Visible;
       }
 
       private void mdiCollBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
       {
+         this.tabbedView1.Controller.Activate( this.mdiCollDocument );
          this.mdiCollDockPanel.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Visible;
       }
 
       private void dviCollBarButtonItem_ItemClick( object sender, DevExpress.XtraBars.ItemClickEventArgs e )
       {
+         this.tabbedView1.Controller.Activate( this.dviCollDocument );
          this.dviCollDockPanel.Visibility = DevExpress.XtraBars.Docking.DockVisibility.Visible;
       }
 

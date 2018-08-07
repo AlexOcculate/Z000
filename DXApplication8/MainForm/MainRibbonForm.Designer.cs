@@ -508,6 +508,8 @@
          // 
          this.tabbedView1.DocumentGroups.AddRange(new DevExpress.XtraBars.Docking2010.Views.Tabbed.DocumentGroup[] {
             this.dsCollDocumentGroup});
+         this.tabbedView1.DocumentProperties.AllowGlyphSkinning = true;
+         this.tabbedView1.DocumentProperties.AllowPin = true;
          this.tabbedView1.Documents.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseDocument[] {
             this.dsCollDocument,
             this.mdiCollDocument,
