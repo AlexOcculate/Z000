@@ -49,15 +49,16 @@
          // 
          this.gridView1.GridControl = this.gridControl1;
          this.gridView1.Name = "gridView1";
+         this.gridView1.PrintInitialize += new DevExpress.XtraGrid.Views.Base.PrintInitializeEventHandler(this.gridView1_PrintInitialize);
          this.gridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridView1_MouseDown);
          this.gridView1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gridView1_MouseMove);
          // 
-         // DataStoreCollectionXuc
+         // DataStoreConfigXuc
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.Controls.Add(this.gridControl1);
-         this.Name = "DataStoreCollectionXuc";
+         this.Name = "DataStoreConfigXuc";
          this.Size = new System.Drawing.Size(800, 450);
          this.Load += new System.EventHandler(this.DataStoreCollectionXuc_Load);
          ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();

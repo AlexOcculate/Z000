@@ -10,6 +10,7 @@ using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Base.ViewInfo;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraPrinting;
 using System;
 using System.Drawing;
 using System.IO;
@@ -27,15 +28,15 @@ namespace DataPhilosophiae
 
       public DataStoreConfigXuc()
       {
-         this.InitializeComponent();
+         this.InitializeComponent( );
          ToolTipController.DefaultController.GetActiveObjectInfo += this.DefaultController_GetActiveObjectInfo;
       }
 
-      private void DataStoreCollectionXuc_Load(object sender, EventArgs e)
+      private void DataStoreCollectionXuc_Load( object sender, EventArgs e )
       {
          this.gridControl1.UseEmbeddedNavigator = true;
          this.gridView1.OptionsView.ShowGroupPanel = false;
-         this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+         this.gridView1.OptionsView.NewItemRowPosition = NewItemRowPosition.Top;
          this.gridView1.OptionsView.ShowAutoFilterRow = false;
          this.gridView1.OptionsFilter.UseNewCustomFilterDialog = true;
          //this.gridView1.OptionsFind.AlwaysVisible = true;
@@ -62,7 +63,7 @@ namespace DataPhilosophiae
       {
          this.gridControl1.UseEmbeddedNavigator = true;
          this.gridView1.OptionsView.ShowGroupPanel = false;
-         this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+         this.gridView1.OptionsView.NewItemRowPosition = NewItemRowPosition.Top;
          this.gridView1.OptionsFilter.UseNewCustomFilterDialog = true;
          this.gridView1.OptionsView.ShowAutoFilterRow = false;
          //this.gridView1.OptionsFind.AlwaysVisible = true;
@@ -70,62 +71,62 @@ namespace DataPhilosophiae
          this.gridView1.OptionsMenu.ShowConditionalFormattingItem = true;
          //this.gridView1.OptionsView.ShowPreview = true;
          {
-            GridFormatRule gridFormatRule = new GridFormatRule();
-            FormatConditionRuleExpression formatConditionRuleExpression = new FormatConditionRuleExpression();
+            GridFormatRule gridFormatRule = new GridFormatRule( );
+            FormatConditionRuleExpression formatConditionRuleExpression = new FormatConditionRuleExpression( );
             gridFormatRule.Column = this._colStagePathDir;
             //gridFormatRule.ColumnApplyTo = this._colStagePathDir;
             gridFormatRule.ApplyToRow = true;
             formatConditionRuleExpression.PredefinedName = "Yellow Fill, Yellow Text";
             formatConditionRuleExpression.Expression = "[" + DataStore.StagePathDir_FldName + "] == '" + this.dsCfg.DefaultStgDirVal + "'";
             gridFormatRule.Rule = formatConditionRuleExpression;
-            this.gridView1.FormatRules.Add(gridFormatRule);
+            this.gridView1.FormatRules.Add( gridFormatRule );
          }
-         this.Load += new System.EventHandler(this.XtraUserControl_Load);
+         this.Load += new System.EventHandler( this.XtraUserControl_Load );
       }
 
-      private void XtraUserControl_Load(object sender, EventArgs e)
+      private void XtraUserControl_Load( object sender, EventArgs e )
       {
          this.gridControl1.DataSource = this.dsCfg.DataStoreList;
-         this._colStagePathDir = this.gridView1.Columns[DataStore.StagePathDir_FldName];
+         this._colStagePathDir = this.gridView1.Columns[ DataStore.StagePathDir_FldName ];
          this.gridView1.CustomColumnDisplayText += this.GridView1_CustomColumnDisplayText;
          //this.gridView1.CustomRowCellEdit += this.GridView1_CustomRowCellEdit;
          this.gridView1.InitNewRow += this.GridView1_InitNewRow;
          this.gridView1.CalcPreviewText += this.GridView1_CalcPreviewText;
       }
 
-      private void GridView1_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+      private void GridView1_CustomColumnDisplayText( object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e )
       {
-         if(e.ListSourceRowIndex < 0)
+         if( e.ListSourceRowIndex < 0 )
          {
             return;
          }
-         if(e.Column == this._colStagePathDir)
+         if( e.Column == this._colStagePathDir )
          {
-            if(e.Value == null || e.Value.ToString() == this.dsCfg.DefaultStgDirVal)
+            if( e.Value == null || e.Value.ToString( ) == this.dsCfg.DefaultStgDirVal )
             {
                e.DisplayText = "<DEFAULT>";
             }
          }
       }
 
-      private void GridView1_InitNewRow(object sender, InitNewRowEventArgs e)
+      private void GridView1_InitNewRow( object sender, InitNewRowEventArgs e )
       {
          GridView view = sender as GridView;
-         view.SetRowCellValue(e.RowHandle, view.Columns[DataStore.StagePathDir_FldName], this.dsCfg.DefaultStgDirVal);
-         view.SetRowCellValue(e.RowHandle, view.Columns[DataStore.LoadSystemObjects_FldName], false);
-         view.SetRowCellValue(e.RowHandle, view.Columns[DataStore.LoadDefaultDatabaseOnly_FldName], true);
+         view.SetRowCellValue( e.RowHandle, view.Columns[ DataStore.StagePathDir_FldName ], this.dsCfg.DefaultStgDirVal );
+         view.SetRowCellValue( e.RowHandle, view.Columns[ DataStore.LoadSystemObjects_FldName ], false );
+         view.SetRowCellValue( e.RowHandle, view.Columns[ DataStore.LoadDefaultDatabaseOnly_FldName ], true );
       }
 
-      private void GridView1_CalcPreviewText(object sender, CalcPreviewTextEventArgs e)
+      private void GridView1_CalcPreviewText( object sender, CalcPreviewTextEventArgs e )
       {
          GridView view = sender as GridView;
-         if(view == null)
+         if( view == null )
          {
             return;
          }
 
          e.PreviewText = "Stage Path Dir: "
-            + view.GetRowCellDisplayText(e.RowHandle, view.Columns[DataStore.StagePathDir_FldName]);
+            + view.GetRowCellDisplayText( e.RowHandle, view.Columns[ DataStore.StagePathDir_FldName ] );
       }
 
       //private void gridControl1_MouseMove( object sender, MouseEventArgs e )
@@ -246,5 +247,51 @@ namespace DataPhilosophiae
             e.Info = info;
          }
       }
+
+      public void ShowPrintPreview()
+      {
+         // Check whether the GridControl can be previewed. 
+         if( !this.gridControl1.IsPrintingAvailable )
+         {
+            MessageBox.Show( "The 'DevExpress.XtraPrinting' library is not found", "Error" );
+            return;
+         }
+         this.gridView1.ShowPrintPreview( );
+      }
+
+      private void gridView1_PrintInitialize( object sender, PrintInitializeEventArgs e )
+      {
+         PrintingSystemBase pb = e.PrintingSystem as PrintingSystemBase;
+         pb.PageSettings.Landscape = true;
+      }
+
+      public void ExportToPdf()
+      {
+         GridView View = this.gridControl1.MainView as GridView;
+         if( View != null )
+         {
+            //View.OptionsPrint.ExpandAllDetails = true;
+            //View.ExportToPdf( "MainViewData.pdf" );
+            //
+            View.OptionsPrint.ExpandAllDetails = true;
+            View.ExportToPdf( "MainViewData.pdf" );
+         }
+      }
+
+      public void Print()
+      {
+         // Check whether the GridControl can be previewed. 
+         if( !this.gridControl1.IsPrintingAvailable )
+         {
+            MessageBox.Show( "The 'DevExpress.XtraPrinting' library is not found", "Error" );
+            return;
+         }
+         this.gridControl1.Print( );
+      }
+
+      public void ExportToHtml()
+      {
+        // this.gridControl1.Print
+       }
    }
 }

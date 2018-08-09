@@ -52,6 +52,8 @@ namespace DataPhilosophiae
                   gc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
                   gc.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
                   gc.MaxWidth = gc.MinWidth = gc.Width = 220;
+                  gc.SortMode = ColumnSortMode.DisplayText;
+                  gc.SortOrder = DevExpress.Data.ColumnSortOrder.Descending;
                }
                {
                   GridColumn gc = this.gridView1.Columns[ CODE_COLUMNNAME ];

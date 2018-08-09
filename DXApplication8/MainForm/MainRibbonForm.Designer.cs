@@ -28,16 +28,15 @@
       /// </summary>
       private void InitializeComponent()
       {
-         this.components = new System.ComponentModel.Container();
          DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::DataPhilosophiae.SplashScreen1), true, true, true);
          System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainRibbonForm));
          DevExpress.Utils.Animation.PushTransition pushTransition1 = new DevExpress.Utils.Animation.PushTransition();
          DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer dockingContainer1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.DockingContainer();
          DevExpress.Utils.Controls.SnapOptions snapOptions1 = new DevExpress.Utils.Controls.SnapOptions();
-         this.dsCollDocumentGroup = new DevExpress.XtraBars.Docking2010.Views.Tabbed.DocumentGroup(this.components);
-         this.dsCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document(this.components);
-         this.mdiCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document(this.components);
-         this.dviCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document(this.components);
+         this.dsCollDocumentGroup = new DevExpress.XtraBars.Docking2010.Views.Tabbed.DocumentGroup();
+         this.dsCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document();
+         this.mdiCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document();
+         this.dviCollDocument = new DevExpress.XtraBars.Docking2010.Views.Tabbed.Document();
          this.mainRibbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
          this.backstageViewControl1 = new DevExpress.XtraBars.Ribbon.BackstageViewControl();
          this.fileNewBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -78,9 +77,9 @@
          this.helpRibbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
          this.helpRibbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
          this.mainRibbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-         this.documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
-         this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
-         this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
+         this.documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager();
+         this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView();
+         this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager();
          this.msgCollDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
          this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
          this.dsCollDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
@@ -89,10 +88,11 @@
          this.mdiCollControlContainer = new DevExpress.XtraBars.Docking.ControlContainer();
          this.dviCollDockPanel = new DevExpress.XtraBars.Docking.DockPanel();
          this.dviCollControlContainer = new DevExpress.XtraBars.Docking.ControlContainer();
-         this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
-         this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
-         this.xtraSaveFileDialog1 = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
-         this.xtraFolderBrowserDialog1 = new DevExpress.XtraEditors.XtraFolderBrowserDialog(this.components);
+         this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager();
+         this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog();
+         this.xtraSaveFileDialog1 = new DevExpress.XtraEditors.XtraSaveFileDialog();
+         this.xtraFolderBrowserDialog1 = new DevExpress.XtraEditors.XtraFolderBrowserDialog();
+         this.exportHtmlBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
          ((System.ComponentModel.ISupportInitialize)(this.dsCollDocumentGroup)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.dsCollDocument)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.mdiCollDocument)).BeginInit();
@@ -179,9 +179,10 @@
             this.dvCollsBarButtonItem,
             this.messagesBarButtonItem,
             this.helpBarButtonItem,
-            this.aboutBarButtonItem});
+            this.aboutBarButtonItem,
+            this.exportHtmlBarButtonItem});
          this.mainRibbonControl.Location = new System.Drawing.Point(0, 0);
-         this.mainRibbonControl.MaxItemId = 1;
+         this.mainRibbonControl.MaxItemId = 2;
          this.mainRibbonControl.Name = "mainRibbonControl";
          this.mainRibbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.fileRibbonPage,
@@ -420,6 +421,7 @@
          // 
          this.fileExportRibbonPageGroup.ItemLinks.Add(this.fileExportBarButtonItem);
          this.fileExportRibbonPageGroup.ItemLinks.Add(this.fileImportBarButtonItem);
+         this.fileExportRibbonPageGroup.ItemLinks.Add(this.exportHtmlBarButtonItem);
          this.fileExportRibbonPageGroup.Name = "fileExportRibbonPageGroup";
          this.fileExportRibbonPageGroup.Text = "Export && Import";
          // 
@@ -627,6 +629,13 @@
          // 
          this.xtraFolderBrowserDialog1.SelectedPath = "xtraFolderBrowserDialog1";
          // 
+         // htmlBarButtonItem
+         // 
+         this.exportHtmlBarButtonItem.Caption = "Export HTML";
+         this.exportHtmlBarButtonItem.Id = 1;
+         this.exportHtmlBarButtonItem.Name = "exportHtmlBarButtonItem";
+         this.exportHtmlBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exportHtmlBarButtonItem_ItemClick);
+         // 
          // MainRibbonForm
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -725,6 +734,7 @@
       private DevExpress.XtraBars.BarButtonItem aboutBarButtonItem;
       private DevExpress.XtraBars.Ribbon.RibbonPage helpRibbonPage;
       private DevExpress.XtraBars.Ribbon.RibbonPageGroup helpRibbonPageGroup;
+      private DevExpress.XtraBars.BarButtonItem exportHtmlBarButtonItem;
    }
 }
 

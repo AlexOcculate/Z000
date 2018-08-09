@@ -9,6 +9,7 @@ Search
 BackstageView
 
 RecentlyOpenedFiles Control
+- Implementar data model (XPO/DataTable/etc...)
 - Filter
 - Finder
 - Views: Windows Explorer / Tile, Contents, Grid, etc...
@@ -22,14 +23,16 @@ RibbonForm + DataStorage Control
 - Usar o Application Title + Form Title
 
 DataStorage Control
+- Implementar data model (XPO/DataTable/etc...)
 - Implementar "Refresh this/Refresh All" (Select/Invert Selection/Filtered/etc...)
+
+MetadataItem Control
+- Implementar data model (XPO/DataTable/etc...)
+- Implementar
 
 Icons
 - Padronizar todos os icons da applicacao
 - Criar projeto so de icones para aplicacao
-
-MetadataItem Control
-- Implementar
 
 RibbonStatusBar
 - Indicar nome do arquivo aberto
@@ -37,11 +40,19 @@ RibbonStatusBar
 - indicar status do systema
 
 MessagesControl
+- Implementar data model (XPO/DataTable/etc...)
 - Salvar e Restauras as mensagens a cada sessao.
 
 ===================== ==== =====================
 ===================== DONE =====================
 ===================== ==== =====================
+
+2018/08/09
+
+MessagesControl
+- Ordenar as mensagens por timestamp decrescente.
+
+2018/08/08
 
 BackstageView
 - fechar backstage apos "Recently Opned File" tiver sido escolhido
